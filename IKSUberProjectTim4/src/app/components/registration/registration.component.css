@@ -10,8 +10,8 @@ mat-card {
   }
   
   mat-form-field {
-    height: 55px;
-    margin-bottom: 10px;
+    height: 25px;
+    margin-bottom: 40px;
     display: block;
   }
 

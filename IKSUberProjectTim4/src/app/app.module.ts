@@ -19,6 +19,9 @@ import {MatOptionModule } from '@angular/material/core';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { UnregFormComponent } from './components/unreg-form/unreg-form.component';
 import{MatInputModule} from '@angular/material/input';
+import { UnregInfoComponent } from './components/unreg-info/unreg-info.component';
+import {MatListModule} from '@angular/material/list';
+import {MatDividerModule} from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,7 @@ import{MatInputModule} from '@angular/material/input';
     LoginComponent,
     RegistrationComponent,
     UnregFormComponent,
+    UnregInfoComponent,
 
   ],
   imports: [
@@ -44,7 +48,9 @@ import{MatInputModule} from '@angular/material/input';
     MatSlideToggleModule,
     MatSelectModule,
     MatOptionModule,
-    MatInputModule
+    MatInputModule,
+    MatListModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
