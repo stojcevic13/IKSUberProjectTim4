@@ -22,6 +22,9 @@ import{MatInputModule} from '@angular/material/input';
 import { UnregInfoComponent } from './components/unreg-info/unreg-info.component';
 import {MatListModule} from '@angular/material/list';
 import {MatDividerModule} from '@angular/material/divider';
+import { RegFormComponent } from './components/reg-form/reg-form.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,7 @@ import {MatDividerModule} from '@angular/material/divider';
     RegistrationComponent,
     UnregFormComponent,
     UnregInfoComponent,
+    RegFormComponent,
 
   ],
   imports: [
@@ -50,7 +54,9 @@ import {MatDividerModule} from '@angular/material/divider';
     MatOptionModule,
     MatInputModule,
     MatListModule,
-    MatDividerModule
+    MatDividerModule,
+    MatCheckboxModule,
+    MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
