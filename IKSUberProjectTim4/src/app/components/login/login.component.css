@@ -1,7 +1,7 @@
 mat-card {
     max-width: 400px;
     margin: 2em auto;
-    height:435px;
+    height:415px;
     margin-top: 100px;
   }
   mat-card-content{
@@ -24,10 +24,10 @@ mat-card {
  }
 
  #fPass{
-    margin-left: 30px;
+    margin-left: 25px;
     color:rgb(196, 146, 53);
     margin-top: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     text-decoration: underline;
     
  }
@@ -38,6 +38,7 @@ mat-card {
 
 #lgButton{
     margin-top: 20px;
+    background-color: #E39D5C;
 }
 
 #conBtn{

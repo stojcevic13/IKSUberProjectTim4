@@ -17,6 +17,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import {MatOptionModule } from '@angular/material/core';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { UnregFormComponent } from './components/unreg-form/unreg-form.component';
+import{MatInputModule} from '@angular/material/input';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +27,7 @@ import { RegistrationComponent } from './components/registration/registration.co
     DummyComponent,
     LoginComponent,
     RegistrationComponent,
+    UnregFormComponent,
 
   ],
   imports: [
@@ -39,7 +43,8 @@ import { RegistrationComponent } from './components/registration/registration.co
     MatTableModule,
     MatSlideToggleModule,
     MatSelectModule,
-    MatOptionModule
+    MatOptionModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
