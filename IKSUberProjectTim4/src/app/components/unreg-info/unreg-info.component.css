@@ -1,0 +1,33 @@
+table{
+    width:480px;
+    font-size: large;
+    border-radius: 16px;
+    background-color: #F8F6EF;
+    height:40px;
+    margin-top: 15px;
+}
+
+
+
+mat-card{
+    margin: 2em auto;
+    width:500px;
+    height:70px;
+    text-align: center;
+    stroke:black;
+    stroke-width: 5px;
+    align-items: center;
+}
+
+#headline{
+    color:#E39D5C
+}
+
+#price{
+    color:#757575
+}
+
+
+#time{
+    color:#757575
+}

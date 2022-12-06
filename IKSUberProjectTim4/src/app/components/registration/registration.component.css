@@ -1,15 +1,17 @@
 mat-card {
     max-width: 600px;
     margin: 2em auto;
-    height:570px;
+    height:610px;
     margin-top: 50px;
+
   }
   mat-card-content{
     text-align: center;
   }
   
   mat-form-field {
-    height: 55px;
+    height: 25px;
+    margin-bottom: 40px;
     display: block;
   }
 
@@ -54,6 +56,12 @@ mat-card {
 #pair{
   display: flex;
 }
-#pairFields{
-  width:50%;
+
+#pairField1{
+  width:49%;
+}
+
+#pairField2{
+  width:49%;
+  margin-left: 20px;
 }
