@@ -1,0 +1,17 @@
+.footer {
+    padding: 1vh 3vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: black;
+}
+
+.rights {
+    color: white;
+    text-align: right;
+}
+
+.eg-link {
+    color: inherit;
+    text-decoration: inherit;
+}
