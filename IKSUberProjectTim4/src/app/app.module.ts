@@ -26,6 +26,9 @@ import { RegFormComponent } from './components/reg-form/reg-form.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatChipsModule} from '@angular/material/chips';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { PlaymarketBadge } from './components/playmarket-badge/playmarket-badge.component';
+import { FooterComponent } from './components/footer/footer.component';
+
 
 @NgModule({
   declarations: [
@@ -38,7 +41,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     UnregInfoComponent,
     RegFormComponent,
     UserProfileComponent,
-
+    PlaymarketBadge,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
