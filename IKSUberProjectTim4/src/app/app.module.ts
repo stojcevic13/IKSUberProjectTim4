@@ -25,6 +25,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import { RegFormComponent } from './components/reg-form/reg-form.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatChipsModule} from '@angular/material/chips';
+import { EditFormComponent } from './components/edit-form/edit-form.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import {MatChipsModule} from '@angular/material/chips';
     UnregFormComponent,
     UnregInfoComponent,
     RegFormComponent,
+    EditFormComponent,
 
   ],
   imports: [
