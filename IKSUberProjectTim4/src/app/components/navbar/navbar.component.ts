@@ -16,4 +16,12 @@ export class NavbarComponent {
     this.currentClicked = "profile"
   }
 
+  historyClicked() {
+    this.currentClicked = "history"
+  }
+  
+  reportsClicked() {
+    this.currentClicked = "reports"
+  }
+
 }

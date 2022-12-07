@@ -2,10 +2,10 @@
     <span class="logo">easy<span class="orangeLogo">GO</span></span>
     <div class="spacer"></div>
     <div>
-    <a mat-button (click)="homeClicked()" [ngStyle]="{'color': currentClicked == 'home'? 'green' : 'white' }" color="white" routerLink="home" >HOME</a>
-    <a mat-button (click)="profileClicked()" [ngStyle]="{'color': currentClicked == 'profile'? 'green' : 'white' }" color="white">PROFILE</a> 
-    <a mat-button color="white">HISTORY</a>
-    <a mat-button color="white">REPORTS</a>
+    <a mat-button (click)="homeClicked()" [ngStyle]="{'color': currentClicked == 'home'? 'orange' : 'white' }" color="white" routerLink="home" >HOME</a>
+    <a mat-button (click)="profileClicked()" [ngStyle]="{'color': currentClicked == 'profile'? 'orange' : 'white' }" color="white">PROFILE</a> 
+    <a mat-button (click)="historyClicked()" [ngStyle]="{'color': currentClicked == 'history'? 'orange' : 'white' }" color="white">HISTORY</a>
+    <a mat-button (click)="reportsClicked()" [ngStyle]="{'color': currentClicked == 'reports'? 'orange' : 'white' }" color="white">REPORTS</a>
     <a mat-stroked-button color="accent" id="logoutBtn">LOGOUT</a>
     </div>
 </mat-toolbar>
