@@ -25,6 +25,8 @@ import {MatDividerModule} from '@angular/material/divider';
 import { RegFormComponent } from './components/reg-form/reg-form.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatChipsModule} from '@angular/material/chips';
+import { PlaymarketBadge } from './components/playmarket-badge/playmarket-badge.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import {MatChipsModule} from '@angular/material/chips';
     UnregFormComponent,
     UnregInfoComponent,
     RegFormComponent,
-
+    PlaymarketBadge,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

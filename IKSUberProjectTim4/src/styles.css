@@ -6,4 +6,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-html { background-color: #F8F6EF; } 
+html { background-color: #F8F6EF; }
+
+.one-window {
+    height: 100vh;
+}
