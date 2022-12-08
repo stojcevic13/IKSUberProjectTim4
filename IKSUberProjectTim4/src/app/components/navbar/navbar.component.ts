@@ -6,5 +6,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
+  currentClicked = ""
+
+  homeClicked() {
+    this.currentClicked = "home"
+  }
+
+  profileClicked() {
+    this.currentClicked = "profile"
+  }
+
+  historyClicked() {
+    this.currentClicked = "history"
+  }
+  
+  reportsClicked() {
+    this.currentClicked = "reports"
+  }
 
 }

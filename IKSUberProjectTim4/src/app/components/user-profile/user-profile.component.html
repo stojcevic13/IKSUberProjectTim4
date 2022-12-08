@@ -1,0 +1,38 @@
+<mat-card>
+    <mat-card-content>
+        <div id="up-container">
+            <img src="../../../assets/images/cat.JPG" id="profilePicture">
+            <button mat-mini-fab id="updatePic"><mat-icon>link</mat-icon> </button>
+            <div id="up-fields">
+                <mat-form-field>
+                    <mat-label>Name</mat-label>
+                    <input matInput placeholder="Name" name="name" value="Nemanja" required>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Last name</mat-label>
+                    <input matInput placeholder="Last Name" name="lastname" value="Stojcevic" required>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <mat-form-field class="largerMargine">
+            <mat-label>Address</mat-label>
+            <input matInput placeholder="Address" name="address" value="Nikole Tesle 13" required>
+        </mat-form-field>
+        <mat-form-field class="largerMargine">
+            <mat-label>Phone</mat-label>
+            <input matInput placeholder="Phone" name="phone" value="0613451452" required>
+        </mat-form-field>
+        <mat-form-field class="largerMargine">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" name="email" value="example@gmail.com" required>
+        </mat-form-field>
+
+        <div id="buttons">
+            <button mat-raised-button id="changeBtn"><span>CHANGE PASSWORD</span></button>
+            <button mat-raised-button id="saveBtn"><span>SAVE CHANGES</span></button>
+        </div>
+
+
+    </mat-card-content>
+</mat-card>
