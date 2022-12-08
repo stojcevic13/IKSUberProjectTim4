@@ -1,9 +1,0 @@
-<mat-toolbar color="primary" class="mat-elevation-z5">
-    <span class="logo">easy<span class="orangeLogo">GO</span></span>
-    <div class="spacer"></div>
-    <div>
-        <a mat-stroked-button (click)="homeClicked()" [ngStyle]="{'color': currentClicked == 'home'? 'orange' : 'white' }" color="white" id="loginBtn" routerLink="/unreg-form">HOME</a>
-        <a mat-stroked-button (click)="loginClicked()" [ngStyle]="{'color': currentClicked == 'login'? 'orange' : 'white' }" color="white" id="loginBtn" routerLink="/login">LOGIN</a>
-        <a mat-stroked-button (click)="signInClicked()" [ngStyle]="{'color': currentClicked == 'signIn'? 'orange' : 'white' }" color="white" id="signUpBtn" routerLink="/registration">SIGN IN</a>
-    </div>
-</mat-toolbar>

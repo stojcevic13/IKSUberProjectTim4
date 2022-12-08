@@ -8,7 +8,6 @@ import { RegFormComponent } from './components/reg-form/reg-form.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { UnregFormComponent } from './components/unreg-form/unreg-form.component';
 import { UnregInfoComponent } from './components/unreg-info/unreg-info.component';
-import { UnregNavbarComponent } from './components/unreg-navbar/unreg-navbar.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 const routes: Routes = [
@@ -22,16 +21,7 @@ const routes: Routes = [
     outlet: 'navbar',
     component: NavbarComponent
   },
-  {
-    path: 'unreg-navbar',
-    outlet: 'navbar',
-    component: UnregNavbarComponent
-  },
-  {
-    path: '',
-    outlet: 'navbar',
-    component: UnregNavbarComponent
-  },
+
   {path: 'user-profile', component:UserProfileComponent},
 ];
 
@@ -41,4 +31,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 export const routingComponents = [DummyComponent, FooterComponent, LoginComponent, NavbarComponent, RegFormComponent,
-   RegistrationComponent, UnregFormComponent, UnregInfoComponent, UnregNavbarComponent, UserProfileComponent];
+   RegistrationComponent, UnregFormComponent, UnregInfoComponent,UserProfileComponent];
