@@ -28,6 +28,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { PlaymarketBadge } from './components/playmarket-badge/playmarket-badge.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { FavRoutesComponent } from './fav-routes/fav-routes.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { FooterComponent } from './components/footer/footer.component';
     RegFormComponent,
     UserProfileComponent,
     PlaymarketBadge,
-    FooterComponent
+    FooterComponent,
+    FavRoutesComponent
   ],
   imports: [
     BrowserModule,
