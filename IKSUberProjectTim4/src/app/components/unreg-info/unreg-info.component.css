@@ -5,18 +5,20 @@ table{
     background-color: #F8F6EF;
     height:40px;
     margin-top: 15px;
+
 }
 
 
 
 mat-card{
-    margin: 2em auto;
     width:500px;
     height:70px;
-    text-align: center;
+    margin-left: 1060px;
     stroke:black;
     stroke-width: 5px;
+    text-align:center;
     align-items: center;
+    margin-top: 50px;
 }
 
 #headline{
