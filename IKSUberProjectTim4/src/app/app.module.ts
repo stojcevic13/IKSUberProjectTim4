@@ -42,7 +42,8 @@ import { FooterComponent } from './components/footer/footer.component';
     RegFormComponent,
     UserProfileComponent,
     PlaymarketBadge,
-    FooterComponent
+    FooterComponent,
+    UnregFormComponent
   ],
   imports: [
     BrowserModule,

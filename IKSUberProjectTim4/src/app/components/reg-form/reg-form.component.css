@@ -2,8 +2,8 @@ mat-card {
     max-width: 360px;
     margin: 2em auto;
     height:540px;
-    margin-top: 50px;
-   
+    margin-top: 150px;
+   margin-left: 1200px;
   }
 
   .example-form {
@@ -18,6 +18,15 @@ mat-card {
   
   td {
     padding-right: 8px;
+  }
+
+  #homeMap{
+    height: 85%;
+    width: 70%;
+    margin-left: 20px;
+    left: 0px;
+    top:10%;
+    position: absolute;
   }
 
 span{
