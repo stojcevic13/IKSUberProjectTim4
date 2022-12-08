@@ -13,6 +13,7 @@
         </mat-form-field>
     </form>
 
-    <button mat-raised-button id="checkBtn"><span>CHECK</span></button>
+    <button mat-raised-button (click)="showEstimate()" id="checkBtn"><span>CHECK</span></button>
 </mat-card-content>
 </mat-card>
+<app-unreg-info *ngIf="estimateShow"></app-unreg-info>

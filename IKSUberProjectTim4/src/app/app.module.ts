@@ -28,7 +28,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { PlaymarketBadge } from './components/playmarket-badge/playmarket-badge.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { FavRoutesComponent } from './fav-routes/fav-routes.component';
+import { UnregNavbarComponent } from './components/unreg-navbar/unreg-navbar.component';
 
 
 @NgModule({
@@ -44,7 +44,7 @@ import { FavRoutesComponent } from './fav-routes/fav-routes.component';
     UserProfileComponent,
     PlaymarketBadge,
     FooterComponent,
-    FavRoutesComponent
+
   ],
   imports: [
     BrowserModule,
