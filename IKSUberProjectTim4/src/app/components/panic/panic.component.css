@@ -1,0 +1,14 @@
+mat-card {
+    max-width: 200px;
+    margin: 2em auto;
+    height:140px;
+    margin-top: 50px;
+}
+
+#panicBtn {
+    height: 100%;   
+    margin: 20px; 
+    background-color: #E39D5C;
+    color: white;
+    font-size: 35px;
+}
