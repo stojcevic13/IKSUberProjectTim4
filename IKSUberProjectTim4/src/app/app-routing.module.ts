@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DriverNavbarComponent } from './components/driver-navbar/driver-navbar.component';
 import { DummyComponent } from './components/dummy/dummy.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
@@ -8,21 +9,28 @@ import { RegFormComponent } from './components/reg-form/reg-form.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { UnregFormComponent } from './components/unreg-form/unreg-form.component';
 import { UnregInfoComponent } from './components/unreg-info/unreg-info.component';
+import { UnregNavbarComponent } from './components/unreg-navbar/unreg-navbar.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 const routes: Routes = [
-  {path: '', component:UnregFormComponent},
+  // {path: '', component:UnregFormComponent},
+
   {path: 'unreg-form', component:UnregFormComponent}, 
   {path: 'reg-form', component:RegFormComponent}, 
   {path: 'login', component:LoginComponent},
   {path: 'registration', component:RegistrationComponent},
-  {
-    path: 'reg-navbar',
-    outlet: 'navbar',
-    component: NavbarComponent
-  },
+  // {
+  //   path: 'reg-navbar',
+  //   outlet: 'navbar',
+  //   component: NavbarComponent
+  // },
 
   {path: 'user-profile', component:UserProfileComponent},
+
+  {path: '', component:UnregNavbarComponent},
+  {path: 'unreg-navbar', component:UnregNavbarComponent},
+  {path: 'reg-navbar', component: NavbarComponent},
+  {path: 'driver-navbar', component: DriverNavbarComponent}
 ];
 
 @NgModule({

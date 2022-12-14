@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  selector: 'app-driver-navbar',
+  templateUrl: './driver-navbar.component.html',
+  styleUrls: ['./driver-navbar.component.css']
 })
-export class NavbarComponent {
+export class DriverNavbarComponent {
   currentClicked = "home"
 
   homeClicked() {
@@ -22,18 +22,6 @@ export class NavbarComponent {
   
   reportsClicked() {
     this.currentClicked = "reports"
-  }
-
-  unregHomeClicked() {
-    this.currentClicked = "unregHome"
-  }
-
-  loginClicked() {
-    this.currentClicked = "login"
-  }
-
-  signInClicked() {
-    this.currentClicked = "signIn"
   }
 
   logoutClicked() {

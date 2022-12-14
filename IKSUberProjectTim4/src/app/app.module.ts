@@ -29,6 +29,12 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { PlaymarketBadge } from './components/playmarket-badge/playmarket-badge.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CarProfileComponent } from './components/car-profile/car-profile.component';
+// import { UnregPageComponent } from './components/unreg-page/unreg-page.component';
+// import { RegPageComponent } from './components/reg-page/reg-page.component';
+// import { DriverPageComponent } from './components/driver-page/driver-page.component';
+import { UnregNavbarComponent } from './components/unreg-navbar/unreg-navbar.component';
+import { DriverNavbarComponent } from './components/driver-navbar/driver-navbar.component';
+import { DriverProfileComponent } from './components/driver-profile/driver-profile.component';
 
 
 @NgModule({
@@ -45,7 +51,13 @@ import { CarProfileComponent } from './components/car-profile/car-profile.compon
     PlaymarketBadge,
     FooterComponent,
     UnregFormComponent,
-    CarProfileComponent
+    CarProfileComponent,
+    // UnregPageComponent,
+    // RegPageComponent,
+    // DriverPageComponent,
+    UnregNavbarComponent,
+    DriverNavbarComponent,
+    DriverProfileComponent
   ],
   imports: [
     BrowserModule,
