@@ -61,7 +61,7 @@ import { EndRideComponent } from './components/end-ride/end-ride.component';
     // DriverPageComponent,
     UnregNavbarComponent,
     DriverNavbarComponent,
-    DriverProfileComponent
+    DriverProfileComponent,
     RideRequestComponent,
     PanicComponent,
     EndRideComponent
