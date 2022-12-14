@@ -35,6 +35,10 @@ import { CarProfileComponent } from './components/car-profile/car-profile.compon
 import { UnregNavbarComponent } from './components/unreg-navbar/unreg-navbar.component';
 import { DriverNavbarComponent } from './components/driver-navbar/driver-navbar.component';
 import { DriverProfileComponent } from './components/driver-profile/driver-profile.component';
+import { RideRequestComponent } from './components/ride-request/ride-request.component';
+import { PanicComponent } from './components/panic/panic.component';
+import { EndRideComponent } from './components/end-ride/end-ride.component';
+
 
 
 @NgModule({
@@ -58,6 +62,9 @@ import { DriverProfileComponent } from './components/driver-profile/driver-profi
     UnregNavbarComponent,
     DriverNavbarComponent,
     DriverProfileComponent
+    RideRequestComponent,
+    PanicComponent,
+    EndRideComponent
   ],
   imports: [
     BrowserModule,
