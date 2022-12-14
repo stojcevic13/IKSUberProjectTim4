@@ -28,6 +28,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { PlaymarketBadge } from './components/playmarket-badge/playmarket-badge.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { RideRequestComponent } from './components/ride-request/ride-request.component';
 import { PanicComponent } from './components/panic/panic.component';
 import { EndRideComponent } from './components/end-ride/end-ride.component';
 
@@ -46,6 +47,7 @@ import { EndRideComponent } from './components/end-ride/end-ride.component';
     PlaymarketBadge,
     FooterComponent,
     UnregFormComponent,
+    RideRequestComponent,
     PanicComponent,
     EndRideComponent
   ],
