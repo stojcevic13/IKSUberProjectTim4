@@ -1,0 +1,51 @@
+mat-card {
+    max-width: 750px;
+    margin: 2em auto;
+    height:600px;
+    margin-top: 50px;
+}
+
+mat-card-content{
+    margin: 20px;
+}
+
+#carPicture {
+    width: 400px;
+    border-radius: 20px;
+    margin: 0px 150px;
+    position: absolute;
+}
+
+#updatePic {
+    background-color: #E39D5C;
+    margin-top: 200px;
+    margin-left: 530px;
+}
+
+#carInfo {
+    margin-top: 50px;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+#leftInfo {
+    width: 50%;
+    float: left;
+}
+
+#rightInfo {
+    width: 30%;
+    float: right;
+}
+
+#endButton {
+    text-align: center;
+}
+
+#validateBtn {
+    background-color: #DDDDDD;
+    margin-top: 30px;
+    margin-left: 250px;
+}
