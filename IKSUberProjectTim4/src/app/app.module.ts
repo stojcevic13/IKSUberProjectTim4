@@ -29,6 +29,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { PlaymarketBadge } from './components/playmarket-badge/playmarket-badge.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PanicComponent } from './components/panic/panic.component';
+import { EndRideComponent } from './components/end-ride/end-ride.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { PanicComponent } from './components/panic/panic.component';
     PlaymarketBadge,
     FooterComponent,
     UnregFormComponent,
-    PanicComponent
+    PanicComponent,
+    EndRideComponent
   ],
   imports: [
     BrowserModule,
