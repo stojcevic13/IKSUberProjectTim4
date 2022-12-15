@@ -1,0 +1,49 @@
+#homeMap{
+    height: 85%;
+    width: 70%;
+    margin-left: 20px;
+    left: 0px;
+    top:10%;
+    position: absolute;
+}
+
+mat-card {
+    /* max-width: 700px; */
+    width: fit-content;
+    /* margin: 2em auto; */
+    margin-top: 700px;
+    margin-left: 50px;
+    padding: 20px 30px;
+}
+
+#next-rides-title {
+    margin: 20px 15px;
+    font-size: 13px;
+    color: grey;
+}
+
+.ride {
+    padding: 10px;
+    border-radius: 40px;
+}
+
+.ride:hover{
+    background-color: rgba(192, 192, 192, 0.15);
+}
+
+.rideDescription {
+    margin: 0px 10px;
+}
+
+
+#goBtn {
+    background-color: #E39D5C;
+    border-radius: 20px;
+    margin-left: 50px; 
+    margin-right: 10px;  
+}
+
+#cancelBtn {
+    background-color: #E39D5C;
+    border-radius: 20px;
+}
