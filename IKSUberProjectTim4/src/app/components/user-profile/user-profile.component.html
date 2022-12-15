@@ -6,26 +6,26 @@
             <div id="up-fields">
                 <mat-form-field>
                     <mat-label>Name</mat-label>
-                    <input matInput placeholder="Name" name="name" value="Nemanja" required>
+                    <input matInput placeholder="Name" name="name" value={{passenger.name}} required>
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label>Last name</mat-label>
-                    <input matInput placeholder="Last Name" name="lastname" value="Stojcevic" required>
+                    <input matInput placeholder="Last Name" name="surname" value={{passenger.surname}} required>
                 </mat-form-field>
             </div>
         </div>
 
         <mat-form-field class="largerMargine">
             <mat-label>Address</mat-label>
-            <input matInput placeholder="Address" name="address" value="Nikole Tesle 13" required>
+            <input matInput placeholder="Address" name="address" value={{passenger.address}} required>
         </mat-form-field>
         <mat-form-field class="largerMargine">
             <mat-label>Phone</mat-label>
-            <input matInput placeholder="Phone" name="phone" value="0613451452" required>
+            <input matInput placeholder="Phone" name="telephoneNumber" value={{passenger.telephoneNumber}} required>
         </mat-form-field>
         <mat-form-field class="largerMargine">
             <mat-label>Email</mat-label>
-            <input matInput placeholder="Email" name="email" value="example@gmail.com" required>
+            <input matInput placeholder="Email" name="email" value={{passenger.email}} required>
         </mat-form-field>
 
         <div id="buttons">

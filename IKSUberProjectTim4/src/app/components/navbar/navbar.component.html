@@ -4,7 +4,7 @@
     <div>
 
     <a mat-button (click)="homeClicked()" [ngStyle]="{'color': currentClicked == 'home'? 'orange' : 'white' }" color="white" routerLink="/reg-form" >HOME</a>
-    <a mat-button (click)="profileClicked()" [ngStyle]="{'color': currentClicked == 'profile'? 'orange' : 'white' }" color="white" routerLink="/user-profile" >PROFILE</a> 
+    <a mat-button (click)="profileClicked()" [ngStyle]="{'color': currentClicked == 'profile'? 'orange' : 'white' }" color="white" routerLink="/user-profile/:passengerId" >PROFILE</a> 
     <a mat-button (click)="historyClicked()" [ngStyle]="{'color': currentClicked == 'history'? 'orange' : 'white' }" color="white" >HISTORY</a>
     <a mat-button (click)="reportsClicked()" [ngStyle]="{'color': currentClicked == 'reports'? 'orange' : 'white' }" color="white" >REPORTS</a>
     <a mat-button (click)="loginClicked()" [ngStyle]="{'color': currentClicked == 'login'? 'orange' : 'white' }" color="white" id="loginBtn" routerLink="/login">LOGIN</a>

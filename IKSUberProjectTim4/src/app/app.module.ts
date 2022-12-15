@@ -31,7 +31,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { RideRequestComponent } from './components/ride-request/ride-request.component';
 import { PanicComponent } from './components/panic/panic.component';
 import { EndRideComponent } from './components/end-ride/end-ride.component';
-
+import { PassengerComponent } from './components/passenger/passenger.component';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { EndRideComponent } from './components/end-ride/end-ride.component';
     UnregFormComponent,
     RideRequestComponent,
     PanicComponent,
-    EndRideComponent
+    EndRideComponent,
+    PassengerComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +71,8 @@ import { EndRideComponent } from './components/end-ride/end-ride.component';
     MatListModule,
     MatDividerModule,
     MatCheckboxModule,
-    MatChipsModule
+    MatChipsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
