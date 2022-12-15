@@ -13,6 +13,8 @@ interface CarType {
 
 export class RegFormComponent {
 
+  invitedFriends = false;
+
   carTypes: CarType[] = [
     {value: 'luxury-0', viewValue: 'Lukury'},
     {value: 'standard-1', viewValue: 'Standard'},
@@ -20,5 +22,7 @@ export class RegFormComponent {
   ];
 
 
-
+  inviteFriends() {
+    this.invitedFriends = true;
+  }
 }

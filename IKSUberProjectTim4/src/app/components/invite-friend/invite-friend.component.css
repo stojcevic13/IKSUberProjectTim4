@@ -1,0 +1,61 @@
+invite-friend {
+    /* position: absolute; 
+    width: 400px; 
+    margin-left: 400px; 
+    margin-top: 300px; */
+}
+
+mat-card {
+    max-width: 400px;
+    margin: 2em auto;
+    margin-top: 50px;
+    margin: 0px;
+    padding: 20px 30px;
+}
+
+#friends-title {
+    margin: 20px 15px;
+    font-size: 13px;
+    color: grey;
+}
+
+.friend {
+    padding: 5px;
+    border-radius: 40px;
+}
+
+.friend:hover {
+    background-color: rgba(192, 192, 192, 0.15);
+}
+
+#friend-icon {
+    margin-top: 5px;
+    margin-right: 20px;
+}
+
+#friend-name {
+    position: absolute;
+    margin-top: 8px;
+}
+
+#inviteBtn {
+    background-color: #E39D5C;
+    border-radius: 20px;
+    float: right;
+}
+
+#uninviteBtn {
+    background-color: #E39D5C;
+    border-radius: 20px;
+    float: right;    
+}
+
+#end-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+#okBtn {
+    background-color: #E39D5C;
+    border-radius: 20px;   
+}

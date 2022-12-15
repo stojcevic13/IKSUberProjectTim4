@@ -1,33 +1,34 @@
+
 mat-card {
     max-width: 360px;
-    margin: 2em auto;
+    /* margin: 2em auto; */
     height:540px;
     margin-top: 150px;
-   margin-left: 1200px;
-  }
+    margin-left: 1200px;
+}
 
-  .example-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
-  }
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
   
-  .example-full-width {
-    width: 100%;
-  }
+.example-full-width {
+  width: 100%;
+}
   
-  td {
-    padding-right: 8px;
-  }
+td {
+  padding-right: 8px;
+}
 
-  #homeMap{
-    height: 85%;
-    width: 70%;
-    margin-left: 20px;
-    left: 0px;
-    top:10%;
-    position: absolute;
-  }
+#homeMap{
+  height: 85%;
+  width: 70%;
+  margin-left: 20px;
+  left: 0px;
+  top:10%;
+  position: absolute;
+}
 
 span{
     color: white;
