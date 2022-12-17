@@ -10,10 +10,12 @@ import { UnregFormComponent } from './components/unreg-form/unreg-form.component
 import { UnregInfoComponent } from './components/unreg-info/unreg-info.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { PassengerComponent } from './components/passenger/passenger.component';
+import { PassengerHomeComponent } from './modules/passenger/passenger-home/passenger-home.component';
+import { UnregisteredHomeComponent } from './modules/passenger/unregistered-home/unregistered-home.component';
 const routes: Routes = [
   {path: '', component:UnregFormComponent},
-  {path: 'unreg-form', component:UnregFormComponent}, 
-  {path: 'reg-form', component:RegFormComponent}, 
+  {path: 'unregisteredHome', component:UnregisteredHomeComponent}, 
+  {path: 'passengerHome', component:PassengerHomeComponent}, 
   {path: 'login', component:LoginComponent},
   {path: 'passengers', component:PassengerComponent},
   {path: 'registration', component:RegistrationComponent},
@@ -31,5 +33,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [DummyComponent, FooterComponent, LoginComponent, NavbarComponent, RegFormComponent,
+export const routingComponents = [DummyComponent, FooterComponent, LoginComponent, NavbarComponent, PassengerHomeComponent,
    RegistrationComponent, UnregFormComponent, UnregInfoComponent,UserProfileComponent, PassengerComponent];

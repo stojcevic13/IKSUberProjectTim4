@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-unreg-form',
@@ -7,7 +8,15 @@ import { Component } from '@angular/core';
 })
 export class UnregFormComponent {
 
-  estimateShow: boolean = false;
+  estimateShow: boolean = false;        
+  departure: string = "";       
+  destination: string = "";
+  @Output() emitter: EventEmitter<Array<string>> = new EventEmitter<Array<string>>();
+
+  notify() {
+    console.log([this.departure, this.destination]);
+    this.emitter.emit([this.departure, this.destination]);
+  }
 
   showEstimate(){
     this.estimateShow = true;

@@ -33,7 +33,10 @@ import { PanicComponent } from './components/panic/panic.component';
 import { EndRideComponent } from './components/end-ride/end-ride.component';
 import { PassengerComponent } from './components/passenger/passenger.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-
+import { MapComponent } from './modules/map/map/map.component';
+import { PassengerHomeComponent } from './modules/passenger/passenger-home/passenger-home.component';
+import { FlexLayoutModule } from "@angular/flex-layout";
+import { UnregisteredHomeComponent } from './modules/passenger/unregistered-home/unregistered-home.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +54,10 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
     RideRequestComponent,
     PanicComponent,
     EndRideComponent,
-    PassengerComponent
+    PassengerComponent,
+    MapComponent,
+    PassengerHomeComponent,
+    UnregisteredHomeComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +78,8 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
     MatDividerModule,
     MatCheckboxModule,
     MatChipsModule,
-    HttpClientModule
+    HttpClientModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

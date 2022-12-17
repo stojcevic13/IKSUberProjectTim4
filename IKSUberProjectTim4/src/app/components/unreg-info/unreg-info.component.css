@@ -1,6 +1,6 @@
 table{
-    width:480px;
-    font-size: large;
+    width:90%;
+    font-size:medium;
     border-radius: 16px;
     background-color: #F8F6EF;
     height:40px;
@@ -8,12 +8,9 @@ table{
 
 }
 
-
-
 mat-card{
-    width:500px;
+    width:85%;
     height:70px;
-    margin-left: 1060px;
     stroke:black;
     stroke-width: 5px;
     text-align:center;
