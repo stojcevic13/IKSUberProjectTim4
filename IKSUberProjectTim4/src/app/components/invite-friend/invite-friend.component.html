@@ -1,0 +1,13 @@
+<mat-card *ngIf="showInviteFriend">
+    <div id="friends-title">FRIENDS</div>
+
+    <div *ngFor="let f of friends" class="friend">
+        <mat-icon id="friend-icon">person_icon</mat-icon>
+        <span id="friend-name">{{ f.name }} {{ f.surname }}</span>
+        <button (click)="invite(f)" mat-raised-button *ngIf="!f.invited" id="inviteBtn" >INVITE</button>
+        <button (click)="uninvite(f)" mat-raised-button *ngIf="f.invited" id="uninviteBtn">UNINVITE <mat-icon>cancel</mat-icon> </button>
+    </div>
+    <div id="end-container">
+        <button (click)="hideInviteFriend()" mat-raised-button id="okBtn" >OK</button>
+    </div>
+</mat-card>

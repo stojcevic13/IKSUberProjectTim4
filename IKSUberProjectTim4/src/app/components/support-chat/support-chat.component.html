@@ -1,0 +1,21 @@
+<mat-card *ngIf="showSupportChat">
+    <div id="cancel-container">
+        <mat-icon (click)="hideSupportChat()" id="cancelIcon">cancel</mat-icon>
+    </div>
+
+    <div id="support-title">
+        <span>CHAT WITH ADMIN</span>
+    </div>
+
+    <div id="support-header">
+        <mat-icon id="support-icon">person_icon</mat-icon>
+        <span id="support-welcome">How can I help you?</span>
+    </div>
+    <div id="send-message">
+        <mat-form-field class="example-full-width">
+            <mat-label>Ask a question</mat-label>
+            <textarea matInput placeholder="Message"></textarea>
+        </mat-form-field>
+        <button mat-raised-button id="sendBtn" >SEND</button>
+    </div>
+</mat-card>

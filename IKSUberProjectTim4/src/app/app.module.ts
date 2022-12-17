@@ -28,6 +28,13 @@ import {MatChipsModule} from '@angular/material/chips';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { PlaymarketBadge } from './components/playmarket-badge/playmarket-badge.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { CarProfileComponent } from './components/car-profile/car-profile.component';
+// import { UnregPageComponent } from './components/unreg-page/unreg-page.component';
+// import { RegPageComponent } from './components/reg-page/reg-page.component';
+// import { DriverPageComponent } from './components/driver-page/driver-page.component';
+import { UnregNavbarComponent } from './components/unreg-navbar/unreg-navbar.component';
+import { DriverNavbarComponent } from './components/driver-navbar/driver-navbar.component';
+import { DriverProfileComponent } from './components/driver-profile/driver-profile.component';
 import { RideRequestComponent } from './components/ride-request/ride-request.component';
 import { PanicComponent } from './components/panic/panic.component';
 import { EndRideComponent } from './components/end-ride/end-ride.component';
@@ -37,6 +44,13 @@ import { MapComponent } from './modules/map/map/map.component';
 import { PassengerHomeComponent } from './modules/passenger/passenger-home/passenger-home.component';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { UnregisteredHomeComponent } from './modules/passenger/unregistered-home/unregistered-home.component';
+import { InviteFriendComponent } from './components/invite-friend/invite-friend.component';
+import { SupportChatComponent } from './components/support-chat/support-chat.component';
+import { DriverNextRidesComponent } from './components/driver-next-rides/driver-next-rides.component';
+import { DriverHomeComponent } from './components/driver-home/driver-home.component';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,13 +65,24 @@ import { UnregisteredHomeComponent } from './modules/passenger/unregistered-home
     PlaymarketBadge,
     FooterComponent,
     UnregFormComponent,
+    CarProfileComponent,
+    // UnregPageComponent,
+    // RegPageComponent,
+    // DriverPageComponent,
+    UnregNavbarComponent,
+    DriverNavbarComponent,
+    DriverProfileComponent,
     RideRequestComponent,
     PanicComponent,
     EndRideComponent,
     PassengerComponent,
     MapComponent,
     PassengerHomeComponent,
-    UnregisteredHomeComponent
+    UnregisteredHomeComponent,
+    InviteFriendComponent,
+    SupportChatComponent,
+    DriverNextRidesComponent,
+    DriverHomeComponent
   ],
   imports: [
     BrowserModule,

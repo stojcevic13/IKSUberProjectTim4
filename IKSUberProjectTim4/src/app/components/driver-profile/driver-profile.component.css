@@ -1,0 +1,15 @@
+app-user-profile {
+    float: left;
+    margin-right: 20px;
+}
+
+car-profile {
+    float: left;
+}
+
+#driver-profile {
+    width: fit-content;
+    height: 622px;
+    text-align: center;
+    margin: 0px auto;
+}

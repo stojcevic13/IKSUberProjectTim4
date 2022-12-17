@@ -1,0 +1,52 @@
+mat-card {
+    max-width: 400px;
+    margin: 2em auto;
+    margin-top: 50px;
+    padding: 20px 30px;
+}
+
+#support-title {
+    margin: 20px 15px;
+    font-size: 13px;
+    color: grey;
+}
+
+#cancelIcon {
+    float: right;
+}
+#cancelIcon:hover{
+    cursor: pointer;
+}
+
+#support-header {
+    padding: 5px;
+    border-radius: 40px;
+}
+
+#support-header:hover {
+    background-color: rgba(192, 192, 192, 0.15);
+}
+
+#support-icon {
+    margin-top: 5px;
+    margin-right: 30px;
+}
+
+#support-welcome {
+    position: absolute;
+    margin-top: 8px;
+}
+
+#send-message {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+#sendBtn {
+    background-color: #E39D5C;
+    border-radius: 20px;   
+}
