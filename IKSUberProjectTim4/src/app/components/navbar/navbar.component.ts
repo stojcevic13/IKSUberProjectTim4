@@ -24,16 +24,8 @@ export class NavbarComponent {
     this.currentClicked = "reports"
   }
 
-  unregHomeClicked() {
-    this.currentClicked = "unregHome"
-  }
-
-  loginClicked() {
-    this.currentClicked = "login"
-  }
-
-  signInClicked() {
-    this.currentClicked = "signIn"
+  supportClicked() {
+    this.currentClicked = "support"
   }
 
   logoutClicked() {

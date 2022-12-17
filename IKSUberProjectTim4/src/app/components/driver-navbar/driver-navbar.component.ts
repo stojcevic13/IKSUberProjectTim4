@@ -24,6 +24,10 @@ export class DriverNavbarComponent {
     this.currentClicked = "reports"
   }
 
+  supportClicked() {
+    this.currentClicked = "support"
+  }
+
   logoutClicked() {
     this.currentClicked = "logout"
   }

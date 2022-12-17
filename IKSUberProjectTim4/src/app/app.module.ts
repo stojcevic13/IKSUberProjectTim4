@@ -39,6 +39,7 @@ import { RideRequestComponent } from './components/ride-request/ride-request.com
 import { PanicComponent } from './components/panic/panic.component';
 import { EndRideComponent } from './components/end-ride/end-ride.component';
 import { InviteFriendComponent } from './components/invite-friend/invite-friend.component';
+import { SupportChatComponent } from './components/support-chat/support-chat.component';
 
 
 
@@ -66,7 +67,8 @@ import { InviteFriendComponent } from './components/invite-friend/invite-friend.
     RideRequestComponent,
     PanicComponent,
     EndRideComponent,
-    InviteFriendComponent
+    InviteFriendComponent,
+    SupportChatComponent
   ],
   imports: [
     BrowserModule,
