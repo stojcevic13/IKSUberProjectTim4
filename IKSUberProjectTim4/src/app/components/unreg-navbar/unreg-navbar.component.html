@@ -1,0 +1,15 @@
+<mat-toolbar color="primary" class="mat-elevation-z5">
+    <span class="logo">easy<span class="orangeLogo">GO</span></span>
+    <div class="spacer"></div>
+    <div>
+
+    <!-- SKLONIO routerLink jer se dole pomocu *ngIf bira sta ce se prikazati -->
+    <a mat-button (click)="homeClicked()" [ngStyle]="{'color': currentClicked == 'home'? 'orange' : 'white' }" color="white">HOME</a>
+    <a mat-button (click)="loginClicked()" [ngStyle]="{'color': currentClicked == 'login'? 'orange' : 'white' }" color="white" id="loginBtn" >LOGIN</a>
+    <a mat-button (click)="signUpClicked()" [ngStyle]="{'color': currentClicked == 'signUp'? 'orange' : 'white' }" color="white" id="signUpBtn" >SIGN UP</a>
+    </div>
+</mat-toolbar>
+
+<app-unreg-form *ngIf="currentClicked == 'home'"></app-unreg-form>
+<app-login *ngIf="currentClicked == 'login'"></app-login>
+<app-registration *ngIf="currentClicked == 'signUp'"></app-registration>
