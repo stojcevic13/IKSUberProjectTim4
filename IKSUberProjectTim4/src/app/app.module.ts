@@ -40,6 +40,8 @@ import { PanicComponent } from './components/panic/panic.component';
 import { EndRideComponent } from './components/end-ride/end-ride.component';
 import { InviteFriendComponent } from './components/invite-friend/invite-friend.component';
 import { SupportChatComponent } from './components/support-chat/support-chat.component';
+import { DriverNextRidesComponent } from './components/driver-next-rides/driver-next-rides.component';
+import { DriverHomeComponent } from './components/driver-home/driver-home.component';
 
 
 
@@ -68,7 +70,9 @@ import { SupportChatComponent } from './components/support-chat/support-chat.com
     PanicComponent,
     EndRideComponent,
     InviteFriendComponent,
-    SupportChatComponent
+    SupportChatComponent,
+    DriverNextRidesComponent,
+    DriverHomeComponent
   ],
   imports: [
     BrowserModule,
