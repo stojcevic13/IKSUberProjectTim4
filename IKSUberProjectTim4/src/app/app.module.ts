@@ -38,6 +38,7 @@ import { DriverProfileComponent } from './components/driver-profile/driver-profi
 import { RideRequestComponent } from './components/ride-request/ride-request.component';
 import { PanicComponent } from './components/panic/panic.component';
 import { EndRideComponent } from './components/end-ride/end-ride.component';
+import { InviteFriendComponent } from './components/invite-friend/invite-friend.component';
 
 
 
@@ -64,7 +65,8 @@ import { EndRideComponent } from './components/end-ride/end-ride.component';
     DriverProfileComponent,
     RideRequestComponent,
     PanicComponent,
-    EndRideComponent
+    EndRideComponent,
+    InviteFriendComponent
   ],
   imports: [
     BrowserModule,
