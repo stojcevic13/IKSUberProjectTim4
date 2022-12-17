@@ -69,6 +69,7 @@ export class MapComponent implements AfterViewInit {
     });
 
     L.Marker.prototype.options.icon = DefaultIcon;
+    this.map?.invalidateSize();
     this.initMap();
   }
 }

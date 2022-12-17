@@ -14,12 +14,14 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { PassengerComponent } from './components/passenger/passenger.component';
 import { PassengerHomeComponent } from './modules/passenger/passenger-home/passenger-home.component';
 import { UnregisteredHomeComponent } from './modules/passenger/unregistered-home/unregistered-home.component';
+import { SupportChatComponent } from './components/support-chat/support-chat.component';
 const routes: Routes = [
   {path: '', component:UnregisteredHomeComponent},
   {path: 'passengerHome', component:PassengerHomeComponent}, 
   {path: 'login', component:LoginComponent},
   {path: 'passengers', component:PassengerComponent},
   {path: 'registration', component:RegistrationComponent},
+  {path: 'support', component:SupportChatComponent},
   // {
   //   path: 'reg-navbar',
   //   outlet: 'navbar',
