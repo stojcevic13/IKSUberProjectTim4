@@ -19,6 +19,7 @@ export class UnregisteredHomeComponent {
     this.destination = locations[1];
     this.mapComponent.markDeparture(this.departure);
     this.mapComponent.markDestination(this.destination);
+    this.mapComponent.route(this.departure, this.destination);
 
   }
 

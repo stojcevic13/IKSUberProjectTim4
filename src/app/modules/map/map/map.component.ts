@@ -9,6 +9,7 @@ import 'leaflet-routing-machine';
 })
 export class MapComponent implements AfterViewInit {
 
+
   private map: any;   // Luka je rekao da je ok da ovdje ostavimo any :D
   constructor(private mapService: MapService) {}
 
@@ -28,6 +29,7 @@ export class MapComponent implements AfterViewInit {
       }
     );
     tiles.addTo(this.map);
+    
   }
 
   markDeparture(departure:string){
@@ -52,16 +54,25 @@ export class MapComponent implements AfterViewInit {
     })
 
   }
-  /*
-  route(destination:string , departure:string): void {
-    L.Routing.control({
-      waypoints: [L.latLng(57.74, 11.94), L.latLng(57.6792, 11.949)],
-    }).addTo(this.map);
-  }*/
 
-    // his.addMarker();
-    // this.registerOnClick();
-    // this.route();}
+  getLat(d:string):any{
+ 
+    this.mapService.search(d).subscribe(val => {return val[0].lng});
+  }
+
+  getLng(d:string):any{
+    this.mapService.search(d).subscribe(val => {return val[0].lng});
+  }
+
+
+
+  route(departure:string, destination:string): void {
+    L.Routing.control({
+      waypoints: [L.latLng(this.getLat(departure),this.getLng(departure)), L.latLng(this.getLat(destination), this.getLng(destination))],
+    }).addTo(this.map);
+  }
+
+  
 
   ngAfterViewInit(): void {
     let DefaultIcon = L.icon({

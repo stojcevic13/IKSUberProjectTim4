@@ -6,8 +6,9 @@
     <a mat-button (click)="profileClicked()" [ngStyle]="{'color': currentClicked == 'profile'? 'orange' : 'white' }" color="white" routerLink="/user-profile/:passengerId" >PROFILE</a> 
     <a mat-button (click)="historyClicked()" [ngStyle]="{'color': currentClicked == 'history'? 'orange' : 'white' }" color="white" >HISTORY</a>
     <a mat-button (click)="reportsClicked()" [ngStyle]="{'color': currentClicked == 'reports'? 'orange' : 'white' }" color="white" >REPORTS</a>
-    <a mat-button (click)="logoutClicked()" color="accent" id="logoutBtn" routerLink="">LOGOUT</a>
     <a mat-button (click)="supportClicked()" [ngStyle]="{'color': currentClicked == 'support'? 'orange' : 'white' }" color="white" routerLink="/support">SUPPORT</a>
+    <a mat-button (click)="logoutClicked()" color="accent" id="logoutBtn" routerLink="">LOGOUT</a>
+
     </div>
 </mat-toolbar>
 <support-chat *ngIf="currentClicked == 'support'"></support-chat>
