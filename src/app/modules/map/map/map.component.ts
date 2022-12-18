@@ -1,5 +1,7 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { MapService } from '../map.service';
+import { forkJoin, Observable } from 'rxjs';
+import { map, filter, tap } from 'rxjs/operators'
 import * as L from 'leaflet';
 import 'leaflet-routing-machine';
 @Component({
@@ -55,21 +57,30 @@ export class MapComponent implements AfterViewInit {
 
   }
 
-  getLat(d:string):any{
- 
-    this.mapService.search(d).subscribe(val => {return val[0].lng});
+  getCoordinates(d:string):Observable<any>{
+    return this.mapService.search(d).pipe(map(val => {
+      console.log(val);
+      return val[0];
+    }));
   }
 
-  getLng(d:string):any{
-    this.mapService.search(d).subscribe(val => {return val[0].lng});
-  }
-
-
+  // route(departure:string, destination:string): void {
+  //   console.log("Try route")
+  //   L.Routing.control({
+  //     waypoints: [L.latLng(this.getLat(departure),this.getLng(departure)), L.latLng(this.getLat(destination), this.getLng(destination))],
+  //   }).addTo(this.map);
+  // }
 
   route(departure:string, destination:string): void {
-    L.Routing.control({
-      waypoints: [L.latLng(this.getLat(departure),this.getLng(departure)), L.latLng(this.getLat(destination), this.getLng(destination))],
-    }).addTo(this.map);
+    forkJoin([
+      this.getCoordinates(departure),
+      this.getCoordinates(destination)
+    ]).subscribe((points)=>{
+      console.log(points)
+      L.Routing.control({
+        waypoints: points
+      }).addTo(this.map);
+    })
   }
 
   
