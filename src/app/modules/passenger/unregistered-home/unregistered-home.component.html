@@ -1,0 +1,13 @@
+<div fxLayout
+fxLayout.xs="column"
+fxLayoutAlign="center"
+fxLayoutGap.xs="0" class="container">
+    <div class="map" fxFlex="70%">
+        <app-map></app-map>
+    </div>
+    <div fxFlex="30%">
+        <app-unreg-form
+            (emitter)="update($event)"> 
+        </app-unreg-form>
+    </div>
+</div>

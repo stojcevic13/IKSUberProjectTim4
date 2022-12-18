@@ -1,0 +1,54 @@
+
+mat-card {
+    max-width: 350px;
+    height:100%;
+    margin:0;
+  }
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+  
+.example-full-width {
+  width: 100%;
+}
+  
+td {
+  padding-right: 8px;
+}
+
+span{
+    color: white;
+}
+
+#inviteBtn{
+    background-color: #E39D5C;
+}
+
+#select{
+
+    margin-top: 20px;
+}
+
+#goBtn{
+    background-color: #E39D5C;
+    margin-left: 5px;
+}
+
+#laterBtn{
+    background-color: #E39D5C;
+    margin-left: 100px;
+}
+
+mat-chip{
+    background-color: #E39D5C;
+    margin-top: 25px;
+    margin-left:20px;
+    width:86px;
+}
+
+#buttons{
+    margin-top: 20px;
+}
