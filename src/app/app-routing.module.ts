@@ -15,20 +15,29 @@ import { PassengerComponent } from './components/passenger/passenger.component';
 import { PassengerHomeComponent } from './modules/passenger/passenger-home/passenger-home.component';
 import { UnregisteredHomeComponent } from './modules/passenger/unregistered-home/unregistered-home.component';
 import { SupportChatComponent } from './components/support-chat/support-chat.component';
+import { DriverHomeComponent } from './components/driver-home/driver-home.component';
+import { DriverProfileComponent } from './components/driver-profile/driver-profile.component';
 const routes: Routes = [
-  {path: '', component:UnregisteredHomeComponent},
-  {path: 'passengerHome', component:PassengerHomeComponent}, 
-  {path: 'login', component:LoginComponent},
-  {path: 'passengers', component:PassengerComponent},
-  {path: 'registration', component:RegistrationComponent},
-  {path: 'support', component:SupportChatComponent},
-  // {
-  //   path: 'reg-navbar',
-  //   outlet: 'navbar',
-  //   component: NavbarComponent
-  // },
 
+  // UNREGISTERED USER COMPONENTS
+  {path: '', component:UnregisteredHomeComponent},
+  {path: 'unregHome', component:UnregisteredHomeComponent},
+  {path: 'login', component:LoginComponent},
+  {path: 'registration', component:RegistrationComponent},
+
+
+  // PASSENGER COMPONENTS
+  {path: 'passengerHome', component:PassengerHomeComponent}, 
   {path: 'user-profile/:passengerId', component:UserProfileComponent},
+  {path: 'passengers', component:PassengerComponent},
+
+
+  // DRIVER COMPONENTS
+  {path: 'driverHome', component:DriverHomeComponent}, 
+  {path: 'driverProfile/:driverId', component:DriverProfileComponent},
+
+
+  {path: 'support', component:SupportChatComponent},
 ];
 
 @NgModule({
