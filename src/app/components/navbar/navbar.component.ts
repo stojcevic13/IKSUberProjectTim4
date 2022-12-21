@@ -17,9 +17,11 @@ export class NavbarComponent {
   }
   loginClicked() {
     this.currentClicked = "login"
+    this.role = "driver"
   }
   registrationClicked() {
     this.currentClicked = "registration"
+    this.role = "passenger"
   }
 
 
