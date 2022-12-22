@@ -15,7 +15,7 @@ import { PassengerComponent } from './components/passenger/passenger.component';
 import { PassengerHomeComponent } from './modules/passenger/passenger-home/passenger-home.component';
 import { UnregisteredHomeComponent } from './modules/passenger/unregistered-home/unregistered-home.component';
 import { SupportChatComponent } from './components/support-chat/support-chat.component';
-import { DriverHomeComponent } from './components/driver-home/driver-home.component';
+import { DriverHomePageComponent } from './components/driver-home-page/driver-home-page.component';
 import { DriverProfileComponent } from './components/driver-profile/driver-profile.component';
 const routes: Routes = [
 
@@ -33,7 +33,7 @@ const routes: Routes = [
 
 
   // DRIVER COMPONENTS
-  {path: 'driverHome', component:DriverHomeComponent}, 
+  {path: 'driverHome', component:DriverHomePageComponent}, 
   {path: 'driverProfile/:driverId', component:DriverProfileComponent},
 
 

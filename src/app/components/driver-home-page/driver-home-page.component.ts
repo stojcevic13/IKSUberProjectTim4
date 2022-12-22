@@ -4,11 +4,11 @@ import { DriverService } from 'src/app/services/driver.service';
 import { Driver } from 'src/app/services/driver.service';
 
 @Component({
-  selector: 'driver-profile',
-  templateUrl: './driver-profile.component.html',
-  styleUrls: ['./driver-profile.component.css']
+  selector: 'driver-home-page',
+  templateUrl: './driver-home-page.component.html',
+  styleUrls: ['./driver-home-page.component.css']
 })
-export class DriverProfileComponent implements OnInit {
+export class DriverHomePageComponent implements OnInit  {
   driver: Driver = {
     _id: 0,
     name: '',
@@ -18,6 +18,7 @@ export class DriverProfileComponent implements OnInit {
     email:''
   }
 
+  
   constructor(
     private route: ActivatedRoute,
     private driverService: DriverService

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PassengerService } from 'src/app/services/passenger.service';
 import { Passenger } from '../passenger/passenger.component';
@@ -10,7 +10,7 @@ import { Passenger } from '../passenger/passenger.component';
 })
 export class UserProfileComponent {
   constructor(private passengerService: PassengerService,  private route: ActivatedRoute) {}
-  passenger:Passenger = {
+  @Input() passenger:Passenger = {
     _id: 0,
     name: '',
     surname: '',

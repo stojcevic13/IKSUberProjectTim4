@@ -48,5 +48,6 @@ mat-card {
 
 #sendBtn {
     background-color: #E39D5C;
+    color: white;
     border-radius: 20px;   
 }
