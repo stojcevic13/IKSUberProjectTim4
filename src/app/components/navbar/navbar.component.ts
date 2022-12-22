@@ -6,23 +6,67 @@ import { Component } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  currentClicked = "home"
+  currentClicked = "passengerHome"
+  role = "passenger"
 
-  homeClicked() {
-    this.currentClicked = "home"
+
+  // NAVIGATION METHODS FOR UNREGISTERED USER
+
+  unregHomeClicked() {
+    this.currentClicked = "unregHome"
+  }
+  loginClicked() {
+    this.currentClicked = "login"
+    this.role = "driver"
+  }
+  registrationClicked() {
+    this.currentClicked = "registration"
+    this.role = "passenger"
   }
 
-  profileClicked() {
-    this.currentClicked = "profile"
+
+
+  // NAVIGATION METHODS FOR PASSENGER
+
+  passengerHomeClicked() {
+    this.currentClicked = "passengerHome"
   }
 
-  historyClicked() {
-    this.currentClicked = "history"
+  passengerProfileClicked() {
+    this.currentClicked = "passengerProfile"
+  }
+
+  passengerHistoryClicked() {
+    this.currentClicked = "passengerHistory"
   }
   
-  reportsClicked() {
-    this.currentClicked = "reports"
+  passengerReportsClicked() {
+    this.currentClicked = "passengerReports"
   }
+
+
+
+  // NAVIGATION METHODS FOR DRIVER
+
+  driverHomeClicked() {
+    this.currentClicked = "driverHome"
+  }
+
+  driverProfileClicked() {
+    this.currentClicked = "driverProfile"
+  }
+
+  driverHistoryClicked() {
+    this.currentClicked = "driverHistory"
+  }
+  
+  driverReportsClicked() {
+    this.currentClicked = "driverReports"
+  }
+
+
+
+  // BOTH PASSENGER AND DRIVER HAS SUPPORT AND LOGOUT
 
   supportClicked() {
     this.currentClicked = "support"
@@ -30,6 +74,7 @@ export class NavbarComponent {
 
   logoutClicked() {
     this.currentClicked = "logout"
+    this.role = "unregistered"
   }
 
 }
