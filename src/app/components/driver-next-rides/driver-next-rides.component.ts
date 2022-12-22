@@ -13,9 +13,9 @@ export interface ride {
 })
 export class DriverNextRidesComponent {
   rides: ride[] = [
-    {id: 1, startPoint: "NEDOVICA 26", endPoint: "VILDOZE 1"},
-    {id: 2, startPoint: "NEDOVICA 26", endPoint: "VILDOZE 1"},
-    {id: 3, startPoint: "NEDOVICA 26", endPoint: "VILDOZE 1"},
-    {id: 4, startPoint: "NEDOVICA 26", endPoint: "VILDOZE 1"}
+    {id: 1, startPoint: "NEMANJE NEDOVICA 26", endPoint: "LUKE VILDOZE 1"},
+    {id: 2, startPoint: "NEMANJE NEDOVICA 26", endPoint: "LUKE VILDOZE 1"},
+    {id: 3, startPoint: "NEMANJE NEDOVICA 26", endPoint: "LUKE VILDOZE 1"},
+    {id: 4, startPoint: "NEMANJE NEDOVICA 26", endPoint: "LUKE VILDOZE 1"}
   ]
 }

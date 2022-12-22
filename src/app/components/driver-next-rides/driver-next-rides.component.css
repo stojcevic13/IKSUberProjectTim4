@@ -11,7 +11,7 @@ mat-card {
     /* max-width: 700px; */
     width: fit-content;
     /* margin: 2em auto; */
-    margin-top: 700px;
+    margin-top: 10px;
     margin-left: 50px;
     padding: 20px 30px;
 }
@@ -38,6 +38,7 @@ mat-card {
 
 #goBtn {
     background-color: #E39D5C;
+    color: white;
     border-radius: 20px;
     margin-left: 50px; 
     margin-right: 10px;  
@@ -45,5 +46,6 @@ mat-card {
 
 #cancelBtn {
     background-color: #E39D5C;
+    color: white;
     border-radius: 20px;
 }
