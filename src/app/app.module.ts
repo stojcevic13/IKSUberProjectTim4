@@ -34,7 +34,7 @@ import { CarProfileComponent } from './components/car-profile/car-profile.compon
 // import { DriverPageComponent } from './components/driver-page/driver-page.component';
 import { UnregNavbarComponent } from './components/unreg-navbar/unreg-navbar.component';
 import { DriverNavbarComponent } from './components/driver-navbar/driver-navbar.component';
-import { DriverProfileComponent } from './components/driver-profile/driver-profile.component';
+import { DriverProfilePageComponent } from './components/driver-profile-page/driver-profile-page.component';
 import { RideRequestComponent } from './components/ride-request/ride-request.component';
 import { PanicComponent } from './components/panic/panic.component';
 import { EndRideComponent } from './components/end-ride/end-ride.component';
@@ -48,6 +48,7 @@ import { InviteFriendComponent } from './components/invite-friend/invite-friend.
 import { SupportChatComponent } from './components/support-chat/support-chat.component';
 import { DriverNextRidesComponent } from './components/driver-next-rides/driver-next-rides.component';
 import { DriverHomePageComponent } from './components/driver-home-page/driver-home-page.component';
+import { DriverProfileComponent } from './components/driver-profile/driver-profile.component';
 
 
 
@@ -71,7 +72,7 @@ import { DriverHomePageComponent } from './components/driver-home-page/driver-ho
     // DriverPageComponent,
     UnregNavbarComponent,
     DriverNavbarComponent,
-    DriverProfileComponent,
+    DriverProfilePageComponent,
     RideRequestComponent,
     PanicComponent,
     EndRideComponent,
@@ -82,7 +83,8 @@ import { DriverHomePageComponent } from './components/driver-home-page/driver-ho
     InviteFriendComponent,
     SupportChatComponent,
     DriverNextRidesComponent,
-    DriverHomePageComponent
+    DriverHomePageComponent,
+    DriverProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,15 @@
+driver-profile {
+    float: left;
+    margin-right: 0px;
+}
+
+car-profile {
+    float: left;
+}
+
+#driver-profile-page {
+    width: fit-content;
+    height: 622px;
+    text-align: center;
+    margin: 0px auto;
+}
