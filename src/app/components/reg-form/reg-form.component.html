@@ -1,5 +1,5 @@
 <!-- ZNACI AKO STAVIM MARGINE U STYLE ATRIBUT U HTML-U ONDA RADI. AKO SVE OVO POMJERIM U CSS NECE DA RADI... ZATO JE OVDE U HTML-U. -->
-<invite-friend *ngIf="invitedFriends" style="position: absolute; width: 400px; margin-left: 770px; margin-top: 300px;"></invite-friend>
+<!-- <invite-friend *ngIf="invitedFriends" style="position: absolute; width: 400px; margin-left: 770px; margin-top: 300px;"></invite-friend> -->
 
 <mat-card>
     <mat-card-content>
@@ -18,10 +18,12 @@
 
     <button (click)="inviteFriends()" mat-raised-button id="inviteBtn"><span>INVITE FRIENDS</span></button>
     <br>
-    
-    <mat-chip color="accent">Ana <mat-icon matChipRemove>cancel</mat-icon></mat-chip>
+    <div *ngFor="let f of friends" class="friend">
+        <mat-chip *ngIf="f.invited" color="accent">{{f.name}} {{f.surname}}<mat-icon matChipRemove (click)="uninviteFriend(f)">cancel</mat-icon></mat-chip>
+    </div>
+    <!-- <mat-chip color="accent">Ana <mat-icon matChipRemove>cancel</mat-icon></mat-chip>
     <mat-chip color="accent">Marko <mat-icon matChipRemove>cancel</mat-icon></mat-chip>
-    <mat-chip color="accent">Vlada <mat-icon matChipRemove>cancel</mat-icon></mat-chip>
+    <mat-chip color="accent">Vlada <mat-icon matChipRemove>cancel</mat-icon></mat-chip> -->
 
     <mat-form-field appearance="fill" id="select">
         <mat-label>Car type</mat-label>
@@ -44,6 +46,4 @@
     </div>
     </mat-card-content>
 </mat-card>
-
-
 

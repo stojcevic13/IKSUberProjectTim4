@@ -48,6 +48,8 @@ import { InviteFriendComponent } from './components/invite-friend/invite-friend.
 import { SupportChatComponent } from './components/support-chat/support-chat.component';
 import { DriverNextRidesComponent } from './components/driver-next-rides/driver-next-rides.component';
 import { DriverHomePageComponent } from './components/driver-home-page/driver-home-page.component';
+import { RideHistoryComponent } from './components/ride-history/ride-history.component';
+import { PassengerRideHistoryComponent } from './modules/passenger/passenger-ride-history/passenger-ride-history.component';
 
 
 
@@ -82,7 +84,10 @@ import { DriverHomePageComponent } from './components/driver-home-page/driver-ho
     InviteFriendComponent,
     SupportChatComponent,
     DriverNextRidesComponent,
-    DriverHomePageComponent
+    DriverHomePageComponent,
+    RideHistoryComponent,
+    PassengerRideHistoryComponent,
+
   ],
   imports: [
     BrowserModule,

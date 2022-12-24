@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { friend, InviteFriendComponent } from 'src/app/components/invite-friend/invite-friend.component';
+import { RegFormComponent } from 'src/app/components/reg-form/reg-form.component';
 
 @Component({
   selector: 'app-passenger-home',
@@ -6,5 +8,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./passenger-home.component.css']
 })
 export class PassengerHomeComponent {
+
+  @ViewChild(RegFormComponent) regFormComponent: any; 
+  @ViewChild(InviteFriendComponent) inviteFriendComponent: any; 
+  invitedFriends:boolean = false;
+  friends:friend[] =[];
+  showInviteFriendsComponent(){
+    this.invitedFriends = this.regFormComponent.invitedFriends;
+    this.inviteFriendComponent.showInviteFriend = this.regFormComponent.invitedFriends;
+  }
+
+  getFriends(){
+    this.friends = this.inviteFriendComponent.invitedFriends;
+  }
 
 }
