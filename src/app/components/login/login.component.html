@@ -7,21 +7,25 @@
         </mat-error>
 -->
         <mat-form-field>
-          <input matInput placeholder="Email" name="username" required>
+          <input matInput placeholder="Email" name="email" [(ngModel)]="email" required>
           <mat-error>
             Please provide a valid email address
           </mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput type="password" placeholder="Password" name="password" required>
+          <input matInput type="password" placeholder="Password" [(ngModel)]="password" name="password" required>
           <mat-error>
             Please provide a valid password
           </mat-error>
         </mat-form-field>
-        <button mat-raised-button id="lgButton"  [disabled]="!loginForm.form.valid" routerLink="/driver-navbar"><span>LOGIN </span></button>
+        <button mat-raised-button id="lgButton"  [disabled]="!loginForm.form.valid" (click)="login()"><span>LOGIN </span></button>
       </form>
     </mat-card-content>
-    <div id="fPass"><a color="accent">Forgot password?</a></div>
+    <div id="fPass">
+      <a color="accent" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+        Forgot password?
+      </a>
+    </div>
     <button mat-stroked-button id="conBtn" color="accent">Continue with Google</button>
     <button mat-stroked-button id="conBtn" color="accent">Continue with Facebook</button>
   </mat-card>
