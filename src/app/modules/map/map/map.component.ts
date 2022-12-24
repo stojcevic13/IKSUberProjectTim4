@@ -11,11 +11,13 @@ import 'leaflet-routing-machine';
 })
 export class MapComponent implements AfterViewInit {
 
-
+  center: number[] =  [45.2396, 19.8227];
   private map: any;   // Luka je rekao da je ok da ovdje ostavimo any :D
   constructor(private mapService: MapService) {}
 
   private initMap(): void {
+    let myMapElement = document.getElementById("mymap")
+    //this.map = L.map(myMapElement)
     this.map = L.map('map', { 
       center: [45.2396, 19.8227],               // centar postavljen na Novi Sad
       zoom: 13,                                 // inicijalni zoom 
@@ -64,12 +66,6 @@ export class MapComponent implements AfterViewInit {
     }));
   }
 
-  // route(departure:string, destination:string): void {
-  //   console.log("Try route")
-  //   L.Routing.control({
-  //     waypoints: [L.latLng(this.getLat(departure),this.getLng(departure)), L.latLng(this.getLat(destination), this.getLng(destination))],
-  //   }).addTo(this.map);
-  // }
 
   route(departure:string, destination:string): void {
     forkJoin([
@@ -90,8 +86,11 @@ export class MapComponent implements AfterViewInit {
       iconUrl: 'https://unpkg.com/leaflet@1.6.0/dist/images/marker-icon.png',
     });
 
-    L.Marker.prototype.options.icon = DefaultIcon;
     this.map?.invalidateSize();
+    if(this.map!=undefined){
+      this.map.remove();
+    }
+    L.Marker.prototype.options.icon = DefaultIcon;
     this.initMap();
   }
 }

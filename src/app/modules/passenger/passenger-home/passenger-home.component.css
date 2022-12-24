@@ -1,4 +1,23 @@
-.container {
-    margin: 40px;
+.container{
+    margin:20px;
 }
-  
+.overlaying {
+  align-items: right;
+}
+
+.map{ 
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right:0;
+    opacity: 0.9;
+    
+}
+.inviteFriends{
+    z-index: 9;
+    float:right;
+   margin-top:30px;
+    
+}

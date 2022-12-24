@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {FormBuilder} from '@angular/forms'
+import { friend } from '../invite-friend/invite-friend.component';
 interface CarType {
   value: string;
   viewValue: string;
@@ -14,7 +15,11 @@ interface CarType {
 export class RegFormComponent {
 
   invitedFriends = false;
+  @Output() emitter: EventEmitter<Boolean> = new EventEmitter<Boolean>();
+  @Input() friends!:friend[];
+  constructor() {}
 
+  
   carTypes: CarType[] = [
     {value: 'luxury-0', viewValue: 'Lukury'},
     {value: 'standard-1', viewValue: 'Standard'},
@@ -23,6 +28,18 @@ export class RegFormComponent {
 
 
   inviteFriends() {
+  
     this.invitedFriends = true;
+    this.emitter.emit(this.invitedFriends);
+  }
+
+
+  uninviteFriend(friend:friend){
+    let f:friend;
+    for(f of this.friends){
+        if(f.name==friend.name){
+          f.invited = false;
+        }
+    }
   }
 }

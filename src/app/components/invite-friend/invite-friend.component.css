@@ -1,10 +1,8 @@
 
 mat-card {
-    max-width: 400px;
-    margin: 2em auto;
-    margin-top: 50px;
-    margin: 0px;
-    padding: 20px 30px;
+    min-width: 400px;
+    padding: 10px 20px;
+  
 }
 
 #friends-title {
