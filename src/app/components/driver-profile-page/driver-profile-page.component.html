@@ -1,4 +1,13 @@
 <div id="driver-profile-page">
-    <driver-profile [passenger]="driver"></driver-profile>
-    <car-profile></car-profile>
+    <div>
+        <driver-profile [passenger]="driver"></driver-profile>
+        <car-profile></car-profile>    
+    </div>
+
+    <mat-card id="requestBtnCard">
+        <div id="requestBtnDiv">
+            <button mat-raised-button id="requestBtn" disabled="true"><span>SEND REQUEST</span></button>
+        </div>
+    </mat-card>
+
 </div>

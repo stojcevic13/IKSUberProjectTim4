@@ -1,6 +1,6 @@
 driver-profile {
     float: left;
-    margin-right: 0px;
+    margin-right: 20px;
 }
 
 car-profile {
@@ -12,4 +12,15 @@ car-profile {
     height: 622px;
     text-align: center;
     margin: 0px auto;
+}
+
+#requestBtnCard {
+    width: 1200px;
+    margin: 0px auto;
+    padding: 20px;
+}
+
+#requestBtn {
+    background-color: #DDDDDD;
+    width: 400px;
 }
