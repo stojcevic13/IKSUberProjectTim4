@@ -1,5 +1,5 @@
 mat-card {
-    max-width: 360px;
+    max-width: 400px;
     height:260px;
     margin:0;
     text-align: center;
@@ -27,4 +27,35 @@ mat-card {
 
 span{
     color: white;
+}
+
+#inputButtonContainer{
+  display: flex;
+  flex-direction: row;
+}
+
+#startLocationDone{
+  background-color: #E39D5C;
+  color: white;
+  width:50px;
+  height:100%;
+  margin-top:5px;
+  margin-left: 15px;
+  border:none;
+  padding:8px;
+  border-radius: 5px;
+  box-shadow: 10px;
+}
+
+#startLocationNotDone{
+  background-color: #E39D5C;
+  color: white;
+  width:50px;
+  height:100%;
+  margin-top:5px;
+  margin-left: 15px;
+  border:none;
+  padding:8px;
+  border-radius: 5px;
+  box-shadow: 10px;
 }

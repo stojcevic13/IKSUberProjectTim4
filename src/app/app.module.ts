@@ -57,7 +57,6 @@ import { MapService } from './modules/map/map.service';
 import { UserService } from './modules/security/user.service';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,

@@ -25,10 +25,8 @@ export class RegFormComponent {
     {value: 'standard-1', viewValue: 'Standard'},
     {value: 'van-2', viewValue: 'Van'},
   ];
-
-
-  inviteFriends() {
   
+  inviteFriends() {
     this.invitedFriends = true;
     this.emitter.emit(this.invitedFriends);
   }
