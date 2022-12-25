@@ -1,5 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { LatLngTuple } from 'leaflet';
+import { RegFormComponent } from 'src/app/components/reg-form/reg-form.component';
+import { UnregFormComponent } from 'src/app/components/unreg-form/unreg-form.component';
 import { MapComponent } from '../../map/map/map.component';
 
 @Component({
@@ -10,9 +13,14 @@ import { MapComponent } from '../../map/map/map.component';
 export class UnregisteredHomeComponent {
 
   @ViewChild(MapComponent) mapComponent: any;
-
+  @ViewChild(UnregFormComponent) unregFormComponent:any;
   departure: string = "";
   destination: string = "";
+
+
+  pinToGetLocation(location:Array<string>){
+    this.unregFormComponent.setStartAndEndLocation(location);
+  }
 
   update(locations: Array<string>) {
     this.departure = locations[0];

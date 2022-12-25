@@ -52,7 +52,6 @@ import { RideHistoryComponent } from './components/ride-history/ride-history.com
 import { PassengerRideHistoryComponent } from './modules/passenger/passenger-ride-history/passenger-ride-history.component';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,

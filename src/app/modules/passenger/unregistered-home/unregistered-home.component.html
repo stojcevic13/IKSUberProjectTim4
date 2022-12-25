@@ -3,7 +3,7 @@ fxLayout.xs="column"
 fxLayoutAlign="center"
 fxLayoutGap.xs="0" class="container">
     <div class="map" fxFlex="70%">
-        <app-map></app-map>
+        <app-map (emitter)="pinToGetLocation($event)"></app-map>
     </div>
     <div fxFlex="30%">
         <app-unreg-form
@@ -11,3 +11,6 @@ fxLayoutGap.xs="0" class="container">
         </app-unreg-form>
     </div>
 </div>
+
+
+

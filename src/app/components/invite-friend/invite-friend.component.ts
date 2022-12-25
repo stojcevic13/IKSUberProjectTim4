@@ -35,12 +35,7 @@ export class InviteFriendComponent {
      }
      this.emitter.emit(this.invitedFriends); 
   }
-
-  getAlreadyInvited(){
-    //alreadyInvited: friend[] = [];
-
-
-  }
+  
   invite(f: friend) {
     f.invited = true;
     this.invited = true;
