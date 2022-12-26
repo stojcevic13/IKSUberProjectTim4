@@ -13,6 +13,7 @@ export class UnregFormComponent {
   departure: string = "";       
   destination: string = "";
   startLocationChosen:boolean = false;
+
   @ViewChild(UnregInfoComponent) unregInfoComponent: any; 
   @Output() emitter: EventEmitter<Array<string>> = new EventEmitter<Array<string>>();
 
@@ -20,6 +21,7 @@ export class UnregFormComponent {
     console.log([this.departure, this.destination]);
     this.emitter.emit([this.departure, this.destination]);
   }
+
   showEstimate(){
     this.estimateShow = true;
   }
@@ -31,6 +33,7 @@ export class UnregFormComponent {
   setUnchosenStartLocation(){
     this.startLocationChosen = false;
   }
+
 
   setLengthRoute(length:string){
     this.unregInfoComponent.setKilometersLength(length);
@@ -47,5 +50,6 @@ export class UnregFormComponent {
     }else{
       this.destination =  startLocation;
     }
+
   }
 }

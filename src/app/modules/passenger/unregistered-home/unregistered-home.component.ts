@@ -30,7 +30,6 @@ export class UnregisteredHomeComponent {
     this.unregFormComponent.setTimeRoute(time);
   }
 
-
   update(locations: Array<string>) {
     this.departure = locations[0];
     this.destination = locations[1];

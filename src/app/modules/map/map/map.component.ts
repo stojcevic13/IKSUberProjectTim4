@@ -14,9 +14,11 @@ export class MapComponent implements AfterViewInit, OnDestroy {
   center: number[] = [45.2396, 19.8227];
   private map: any;   // Luka je rekao da je ok da ovdje ostavimo any :D
 
+
   @Output() emitter: EventEmitter<Array<string>> = new EventEmitter<Array<string>>();
   @Output() emitter_kilometeres: EventEmitter<string> = new EventEmitter<string>();
   @Output() emitter_minutes:EventEmitter<string> = new EventEmitter<string>();
+
   constructor(private mapService: MapService) { }
 
   private initMap(): void {
@@ -83,6 +85,7 @@ export class MapComponent implements AfterViewInit, OnDestroy {
       this.getCoordinates(departure),
       this.getCoordinates(destination)
     ]).subscribe((points) => {
+
       L.Routing.control({
         waypoints: points
       }).addTo(this.map).on('routesfound', (e) => {
@@ -96,8 +99,8 @@ export class MapComponent implements AfterViewInit, OnDestroy {
   
     })
   }
-
-
+  
+  
   ngAfterViewInit(): void {
     let DefaultIcon = L.icon({
       iconUrl: 'https://unpkg.com/leaflet@1.6.0/dist/images/marker-icon.png',
@@ -119,6 +122,7 @@ export class MapComponent implements AfterViewInit, OnDestroy {
       })
 
     });
+
 
 
   }
