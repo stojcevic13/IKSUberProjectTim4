@@ -13,9 +13,12 @@ export class MapComponent implements AfterViewInit, OnDestroy {
 
   center: number[] = [45.2396, 19.8227];
   private map: any;   // Luka je rekao da je ok da ovdje ostavimo any :D
-  //@Output() emitter: EventEmitter<L.LatLngTuple> = new EventEmitter<L.LatLngTuple>();
+
 
   @Output() emitter: EventEmitter<Array<string>> = new EventEmitter<Array<string>>();
+  @Output() emitter_kilometeres: EventEmitter<string> = new EventEmitter<string>();
+  @Output() emitter_minutes:EventEmitter<string> = new EventEmitter<string>();
+
   constructor(private mapService: MapService) { }
 
   private initMap(): void {
@@ -76,17 +79,28 @@ export class MapComponent implements AfterViewInit, OnDestroy {
 
 
   route(departure: string, destination: string): void {
+    let kilometers:number = 0;
+    let time:number = 0;
     forkJoin([
       this.getCoordinates(departure),
       this.getCoordinates(destination)
     ]).subscribe((points) => {
-      console.log(points)
+
       L.Routing.control({
         waypoints: points
-      }).addTo(this.map);
+      }).addTo(this.map).on('routesfound', (e) => {
+        let routes = e.routes;
+        let summary = routes[0].summary;
+        kilometers = summary.totalDistance/1000;
+        time = summary.totalTime% 3600/60;
+        this.emitter_kilometeres.emit(String(Number(kilometers.toFixed(2))));
+        this.emitter_minutes.emit(String(Number(time.toFixed(2))));
+     });
+  
     })
   }
-
+  
+  
   ngAfterViewInit(): void {
     let DefaultIcon = L.icon({
       iconUrl: 'https://unpkg.com/leaflet@1.6.0/dist/images/marker-icon.png',
@@ -108,6 +122,7 @@ export class MapComponent implements AfterViewInit, OnDestroy {
       })
 
     });
+
 
 
   }

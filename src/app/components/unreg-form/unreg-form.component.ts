@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { UnregInfoComponent } from '../unreg-info/unreg-info.component';
 
 @Component({
   selector: 'app-unreg-form',
@@ -13,22 +14,14 @@ export class UnregFormComponent {
   destination: string = "";
   startLocationChosen:boolean = false;
 
+  @ViewChild(UnregInfoComponent) unregInfoComponent: any; 
   @Output() emitter: EventEmitter<Array<string>> = new EventEmitter<Array<string>>();
 
   notify() {
     console.log([this.departure, this.destination]);
     this.emitter.emit([this.departure, this.destination]);
   }
-/*
-  setStartLocation(startLocation:string){
-    this.departure=startLocation;
-  }
 
-  setEndLocation(endLocation:string){
-    this.destination = endLocation;
-  }
-
-*/ 
   showEstimate(){
     this.estimateShow = true;
   }
@@ -39,6 +32,15 @@ export class UnregFormComponent {
 
   setUnchosenStartLocation(){
     this.startLocationChosen = false;
+  }
+
+
+  setLengthRoute(length:string){
+    this.unregInfoComponent.setKilometersLength(length);
+  }
+
+  setTimeRoute(time:string){
+    this.unregInfoComponent.setTimeLength(time);
   }
 
 
