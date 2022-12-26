@@ -22,13 +22,22 @@ export class UnregisteredHomeComponent {
     this.unregFormComponent.setStartAndEndLocation(location);
   }
 
+  setLengthRoute(kilometers:string){
+    this.unregFormComponent.setLengthRoute(kilometers);
+  }
+
+  setTimeRoute(time:string){
+    this.unregFormComponent.setTimeRoute(time);
+  }
+
+
   update(locations: Array<string>) {
     this.departure = locations[0];
     this.destination = locations[1];
     this.mapComponent.markDeparture(this.departure);
     this.mapComponent.markDestination(this.destination);
     this.mapComponent.route(this.departure, this.destination);
-
+    
   }
 
 
