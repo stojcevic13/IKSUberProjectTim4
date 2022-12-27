@@ -1,8 +1,14 @@
 <div   fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap.xs="0" class="container">
-    <div class="map" fxFlex="70%">
-        <app-map></app-map>
+    <div class="overlaying" fxFlex="70%">
+        <div class="map">
+            <app-map></app-map>
+        </div>
+        <div *ngIf="invitedFriends" class="inviteFriends">
+            <invite-friend (emitter)="getFriends()"></invite-friend>
+        </div>
     </div>
     <div fxFlex="30%">
-        <app-reg-form></app-reg-form>
+        <app-reg-form [friends]="friends" (emitter)="showInviteFriendsComponent()"></app-reg-form>
     </div>
+
 </div>

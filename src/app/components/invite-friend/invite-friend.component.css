@@ -1,10 +1,8 @@
 
 mat-card {
-    max-width: 400px;
-    margin: 2em auto;
-    margin-top: 50px;
-    margin: 0px;
-    padding: 20px 30px;
+    min-width: 400px;
+    padding: 10px 20px;
+  
 }
 
 #friends-title {
@@ -12,6 +10,7 @@ mat-card {
     font-size: 13px;
     color: grey;
 }
+
 
 .friend {
     padding: 5px;
@@ -34,13 +33,15 @@ mat-card {
 
 #inviteBtn {
     background-color: #E39D5C;
-    border-radius: 20px;
+    color: white;
+    border-radius: 5px;
     float: right;
 }
 
 #uninviteBtn {
     background-color: #E39D5C;
-    border-radius: 20px;
+    border-radius: 5px;
+    color: white;
     float: right;    
 }
 
@@ -51,5 +52,6 @@ mat-card {
 
 #okBtn {
     background-color: #E39D5C;
-    border-radius: 20px;   
+    border-radius: 5px;   
+    color: white;
 }

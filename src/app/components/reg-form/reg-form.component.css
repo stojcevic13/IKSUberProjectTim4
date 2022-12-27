@@ -2,7 +2,8 @@
 mat-card {
     max-width: 350px;
     height:100%;
-    margin:0;
+    margin-top:20px;
+    margin-left: 20px;
   }
 
 .example-form {
@@ -44,9 +45,9 @@ span{
 
 mat-chip{
     background-color: #E39D5C;
-    margin-top: 25px;
-    margin-left:20px;
-    width:86px;
+    margin-top: 15px;
+    margin-left:10px;
+    width:156px;
 }
 
 #buttons{

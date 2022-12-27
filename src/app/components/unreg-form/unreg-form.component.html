@@ -1,17 +1,22 @@
 <mat-card>
 <mat-card-content>
     <form class="form" (submit)="notify()">
-        <mat-form-field class="example-full-width">
+        <div id="inputButtonContainer">
+        <mat-form-field class="example-full-width" >
             <mat-label>Start destination</mat-label>
-            <input matInput placeholder="Ex. Trg Slobode 4" [(ngModel)]="departure" name="departure">
+            <input matInput id="startLocation" placeholder="Ex. Trg Slobode 4" [(ngModel)]="departure" name="departure">
             <mat-icon matSuffix color="primary">flag</mat-icon>
         </mat-form-field>
+        <button (click)="setUnchosenStartLocation()" *ngIf="startLocationChosen" id="startLocationDone"><mat-icon>highlight_off</mat-icon></button>
+        <button (click)="setChosenStartLocation()" *ngIf="!startLocationChosen" id="startLocationNotDone"><mat-icon>done_outline</mat-icon></button>    
+        </div>
         <mat-form-field class="example-full-width">
             <mat-label>Final destination</mat-label>
             <input matInput placeholder="Ex. Narodni Front 4" [(ngModel)]="destination" name="destination">
             <mat-icon matSuffix color="primary">flag</mat-icon>
         </mat-form-field>
         <button mat-raised-button type="submit" (click)="showEstimate()" id="checkBtn"><span>CHECK</span></button>
+    
     </form>
 </mat-card-content>
 </mat-card>

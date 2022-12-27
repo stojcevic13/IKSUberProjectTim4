@@ -49,7 +49,13 @@ import { SupportChatComponent } from './components/support-chat/support-chat.com
 import { DriverNextRidesComponent } from './components/driver-next-rides/driver-next-rides.component';
 import { DriverHomePageComponent } from './components/driver-home-page/driver-home-page.component';
 import { DriverProfileComponent } from './components/driver-profile/driver-profile.component';
-
+import { RideHistoryComponent } from './components/ride-history/ride-history.component';
+import { PassengerRideHistoryComponent } from './modules/passenger/passenger-ride-history/passenger-ride-history.component';
+import { TokenInterceptor } from './modules/security/token.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthService } from './modules/security/auth.service';
+import { MapService } from './modules/map/map.service';
+import { UserService } from './modules/security/user.service';
 
 
 @NgModule({
@@ -84,7 +90,9 @@ import { DriverProfileComponent } from './components/driver-profile/driver-profi
     SupportChatComponent,
     DriverNextRidesComponent,
     DriverHomePageComponent,
-    DriverProfileComponent
+    DriverProfileComponent,
+    RideHistoryComponent,
+    PassengerRideHistoryComponent,
   ],
   imports: [
     BrowserModule,
@@ -108,7 +116,16 @@ import { DriverProfileComponent } from './components/driver-profile/driver-profi
     HttpClientModule,
     FlexLayoutModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    AuthService,
+    MapService,
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

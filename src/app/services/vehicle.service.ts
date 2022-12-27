@@ -1,8 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/enviroments/environment';
-
 
 @Injectable({
   providedIn: 'root'
@@ -10,29 +9,33 @@ import { environment } from 'src/enviroments/environment';
 
 
 export class VehicleService {
-  // private value$ = new BehaviorSubject<any>({});
-  // selectedValue$ = this.value$.asObservable();      // posmatra value i onda neka druga komponenta moze da zna da neka druga komponenta to vidi
 
+  private value$ = new BehaviorSubject<any>({});
+  selectedValue$ = this.value$.asObservable();  
   constructor(private http : HttpClient) {}
-  // setValue(test: any) {           // moze String umjesto any
-  //   this.value$.next(test);
+  setValue(test: any) {           // moze String umjesto any
+    this.value$.next(test);
   }
 
-  // getAll():Observable<Driver[]>{
-  //   return this.http.get<Driver[]>(environment.apiHost + 'api/driver/all');
-  // }
+  getAll():Observable<Vehicle[]>{
+    return this.http.get<Vehicle[]>(environment.apiHost + 'api/vehicle/all');
+  }
 
-  // getDriver(driverId: number): Observable<Driver> {
-  //   return this.http.get<Driver>(environment.apiHost + 'api/driver/' + driverId);
-  // }
-// }
+}
 
+export interface Vehicle{
+  babyTransport:boolean,
+  petTransport:boolean,
+  passengerSeats:number,
+  licenseNumber:string,
+  model:string,
+  vehicleType:string,
+  currentLocation:LocationVehicle,
+  available:boolean
+}
 
-// export interface Vehicle {
-//   _id: number;
-//   name: string;
-//   surname:string;
-//   telephoneNumber:string;
-//   address:string;
-//   email:string;
-// }
+export interface LocationVehicle{
+  address:string,
+  latitude:number,
+  longitude:number
+}
