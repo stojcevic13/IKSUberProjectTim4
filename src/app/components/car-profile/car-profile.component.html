@@ -9,18 +9,18 @@
             <div id="leftInfo">
                 <mat-form-field>
                     <mat-label>Model</mat-label>
-                    <input matInput placeholder="Model" name="model" value="Honda" required>
+                    <input (change)="enableRequest()" matInput placeholder="Model" name="model" [(ngModel)]="vehicle.model" required>
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label>Registration number</mat-label>
-                    <input matInput placeholder="Registration number" name="regNumber" value="DTK-452-3L" required>
+                    <input (change)="enableRequest()" matInput placeholder="Registration number" name="regNumber" [(ngModel)]="vehicle.licenseNumber" required>
                 </mat-form-field>
             </div>
     
             <div id="rightInfo">
                 <mat-form-field appearance="fill" id="select">
                     <mat-label>Car type</mat-label>
-                    <mat-select>
+                    <mat-select (valueChange)="enableRequest()" [(ngModel)]="vehicle.vehicleType">
                         <mat-option *ngFor="let type of carTypes" [value]="type.value">
                             {{type.viewValue}}
                         </mat-option>
@@ -28,15 +28,15 @@
                 </mat-form-field>
 
                 <section>
-                    <mat-checkbox class="example-margin"> Baby </mat-checkbox>
+                    <mat-checkbox (change)="enableRequest()" class="example-margin" [(ngModel)]="vehicle.babyTransport"> Baby </mat-checkbox>
                     <br>
-                    <mat-checkbox class="example-margin"> Pet </mat-checkbox>  
+                    <mat-checkbox (change)="enableRequest()" class="example-margin" [(ngModel)]="vehicle.petTransport"> Pet </mat-checkbox>  
                 </section>            
             </div>
         </div>
 
         <div id="confirm">
-            <button mat-raised-button id="validateBtn"><span>VALIDATE CHANGES</span></button>
+            <button  (click)="sendEnabledRequest(disabledRequest)" mat-raised-button id="validateBtn"><span>VALIDATE CHANGES</span></button>
         </div>
     </mat-card-content>
     <!-- <div id="end-button">

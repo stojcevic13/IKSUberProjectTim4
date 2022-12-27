@@ -1,12 +1,12 @@
 <div id="driver-profile-page">
     <div>
-        <driver-profile [passenger]="driver"></driver-profile>
-        <car-profile></car-profile>    
+        <driver-profile [driver]="driver" (disabledValue)="update($event)"></driver-profile>
+        <car-profile [vehicle]="vehicle" (disabledValue)="update($event)"></car-profile>    
     </div>
 
     <mat-card id="requestBtnCard">
         <div id="requestBtnDiv">
-            <button mat-raised-button id="requestBtn" disabled="true"><span>SEND REQUEST</span></button>
+            <button (click)="sendDriverRequest()" mat-raised-button id="requestBtn" disabled={{disabledRequest}}><span>SEND REQUEST</span></button>
         </div>
     </mat-card>
 

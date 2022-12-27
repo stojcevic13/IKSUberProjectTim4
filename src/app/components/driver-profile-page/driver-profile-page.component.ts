@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DriverService } from 'src/app/services/driver.service';
+import { DriverService, Vehicle } from 'src/app/services/driver.service';
 import { Driver } from 'src/app/services/driver.service';
 
 @Component({
@@ -18,6 +18,19 @@ export class DriverProfilePageComponent implements OnInit {
     email:''
   }
 
+  vehicle: Vehicle = {
+    _id: 0,
+    driverId: 0,
+    vehicleType: '',
+    model: '',
+    licenseNumber: '',
+    passengerSeats: 0,
+    babyTransport: false,
+    petTransport: false
+  }
+
+  disabledRequest: boolean = true;
+
   constructor(
     private route: ActivatedRoute,
     private driverService: DriverService
@@ -28,6 +41,31 @@ export class DriverProfilePageComponent implements OnInit {
       this.driverService
         .getDriver(+params['driverId'])
         .subscribe((driver) => (this.driver = driver));
+      
+      this.driverService
+        .getDriverVehicle(+params['driverId'])
+        .subscribe((vehicle) => (this.vehicle = vehicle));
     });
+
+    // this.driverService
+    //   .getDriverVehicle(+params['driverId'])
+    //   .subscribe((vehicle) => (this.vehicle = vehicle));
+
   }
+
+  printajj(){
+    console.log(this.driver);
+    console.log(this.vehicle);
+  }
+
+  sendDriverRequest(){
+
+  }
+
+
+  update(value: boolean) {
+    if (this.disabledRequest == true)
+      this.disabledRequest = value;
+  }
+
 }

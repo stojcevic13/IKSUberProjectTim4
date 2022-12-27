@@ -1,7 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { PassengerService } from 'src/app/services/passenger.service';
-import { Passenger } from '../passenger/passenger.component';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Driver } from 'src/app/services/driver.service';
 
 @Component({
   selector: 'driver-profile',
@@ -10,8 +8,12 @@ import { Passenger } from '../passenger/passenger.component';
 })
 
 export class DriverProfileComponent {
-  constructor(private passengerService: PassengerService,  private route: ActivatedRoute) {}
-  @Input() passenger:Passenger = {
+
+  constructor() {}
+
+  disabledRequest: boolean = true;
+
+  @Input() driver:Driver = {
     _id: 0,
     name: '',
     surname: '',
@@ -20,11 +22,19 @@ export class DriverProfileComponent {
     email: '',    
   };
 
-  ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      this.passengerService
-        .getPassenger(+params['passengerId'])
-        .subscribe((passenger) => (this.passenger = passenger));
-    });
+  @Output() disabledValue = new EventEmitter<boolean>();
+
+  printajj(){
+    console.log(this.driver);
   }
+
+  sendEnabledRequest(value: boolean){
+    this.disabledValue.emit(value);
+  }
+
+  enableRequest(){
+    this.disabledRequest = false;
+    console.log(this.disabledRequest);
+  }
+
 }
