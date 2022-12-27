@@ -107,6 +107,7 @@ export class MapComponent implements AfterViewInit, OnDestroy {
     });
 
     L.Marker.prototype.options.icon = DefaultIcon;
+  
     this.initMap();
 
     this.map.on('click', (e: { latlng: { lat: number; lng: number; }; }) => {
@@ -125,6 +126,41 @@ export class MapComponent implements AfterViewInit, OnDestroy {
 
 
 
+  }
+  markAvailableCar(location: string){
+    
+    let customIcon = L.icon({iconUrl:"../../../assets/images/car.png", iconSize:[40,40]});
+    var markerOptions = {
+      title: "CarLocation",
+      clickable: true,
+      draggable: false,
+      icon: customIcon
+   }
+    this.mapService.search(location).subscribe({
+      next: (result) => {
+        L.marker([result[0].lat, result[0].lon], markerOptions).addTo(this.map)
+          .openPopup();
+      },
+      error: () => { }
+    })
+  }
+
+  markUnavailableCar(location: string){
+    
+    let customIcon = L.icon({iconUrl:"../../../assets/images/red.png", iconSize:[40,40]});
+    var markerOptions = {
+      title: "CarLocation",
+      clickable: true,
+      draggable: false,
+      icon: customIcon
+   }
+    this.mapService.search(location).subscribe({
+      next: (result) => {
+        L.marker([result[0].lat, result[0].lon], markerOptions).addTo(this.map)
+          .openPopup();
+      },
+      error: () => { }
+    })
   }
 
   ngOnDestroy():void{

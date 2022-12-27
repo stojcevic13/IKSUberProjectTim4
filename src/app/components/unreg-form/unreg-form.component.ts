@@ -19,7 +19,7 @@ export class UnregFormComponent {
 
   notify() {
     console.log([this.departure, this.destination]);
-    this.emitter.emit([this.departure, this.destination]);
+    this.emitter.emit([this.departure + ", Novi Sad", this.destination + ", Novi Sad"]);
   }
 
   showEstimate(){
