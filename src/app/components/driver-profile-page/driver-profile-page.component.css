@@ -1,0 +1,26 @@
+driver-profile {
+    float: left;
+    margin-right: 20px;
+}
+
+car-profile {
+    float: left;
+}
+
+#driver-profile-page {
+    width: fit-content;
+    height: 622px;
+    text-align: center;
+    margin: 0px auto;
+}
+
+#requestBtnCard {
+    width: 1200px;
+    margin: 0px auto;
+    padding: 20px;
+}
+
+#requestBtn {
+    background-color: #DDDDDD;
+    width: 400px;
+}

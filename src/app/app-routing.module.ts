@@ -16,7 +16,7 @@ import { PassengerHomeComponent } from './modules/passenger/passenger-home/passe
 import { UnregisteredHomeComponent } from './modules/passenger/unregistered-home/unregistered-home.component';
 import { SupportChatComponent } from './components/support-chat/support-chat.component';
 import { DriverHomePageComponent } from './components/driver-home-page/driver-home-page.component';
-import { DriverProfileComponent } from './components/driver-profile/driver-profile.component';
+import { DriverProfilePageComponent } from './components/driver-profile-page/driver-profile-page.component';
 const routes: Routes = [
 
   // UNREGISTERED USER COMPONENTS
@@ -34,7 +34,7 @@ const routes: Routes = [
 
   // DRIVER COMPONENTS
   {path: 'driverHome', component:DriverHomePageComponent}, 
-  {path: 'driverProfile/:driverId', component:DriverProfileComponent},
+  {path: 'driverProfile/:driverId', component:DriverProfilePageComponent},
 
 
   {path: 'support', component:SupportChatComponent},
