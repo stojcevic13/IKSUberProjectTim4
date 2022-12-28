@@ -9,7 +9,7 @@ import { PassengerHomeComponent } from './modules/passenger/passenger-home/passe
 import { UnregisteredHomeComponent } from './modules/unregistered-user/unregistered-home/unregistered-home.component';
 import { SupportChatComponent } from './modules/user/support-chat/support-chat.component';
 import { DriverHomePageComponent } from './modules/driver/driver-home-page/driver-home-page.component';
-import { DriverProfilePageComponent } from './components/driver-profile-page/driver-profile-page.component';
+import { DriverProfilePageComponent } from './modules/driver/driver-profile-page/driver-profile-page.component';
 const routes: Routes = [
 
   // UNREGISTERED USER COMPONENTS
