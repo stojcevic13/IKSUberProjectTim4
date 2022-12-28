@@ -66,7 +66,7 @@ export class NavbarComponent {
 
 
 
-  // BOTH PASSENGER AND DRIVER HAS SUPPORT AND LOGOUT
+  // BOTH PASSENGER AND DRIVER HAVE SUPPORT AND LOGOUT
 
   supportClicked() {
     this.currentClicked = "support"

@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PassengerService } from 'src/app/services/passenger.service';
-import { Passenger } from '../passenger/passenger.component';
+import { Passenger } from 'src/app/services/passenger.service';
 
 @Component({
   selector: 'app-user-profile',

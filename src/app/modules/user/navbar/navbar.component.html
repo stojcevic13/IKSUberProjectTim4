@@ -2,7 +2,7 @@
     <span class="logo">easy<span class="orangeLogo">GO</span></span>
     <div class="spacer"></div>
     <div>
-        <a id="unreg-home"   *ngIf="role == 'unregistered'" mat-button (click)="unregHomeClicked()" [ngStyle]="{'color': currentClicked == 'unregHome'? 'orange' : 'white' }" color="white" routerLink="/unregHome" >HOME</a>
+        <a id=" "   *ngIf="role == 'unregistered'" mat-button (click)="unregHomeClicked()" [ngStyle]="{'color': currentClicked == 'unregHome'? 'orange' : 'white' }" color="white" routerLink="/unregHome" >HOME</a>
         <a id="login"        *ngIf="role == 'unregistered'" mat-button (click)="loginClicked()" [ngStyle]="{'color': currentClicked == 'login'? 'orange' : 'white' }" color="white" routerLink="/login" >LOGIN</a> 
         <a id="registration" *ngIf="role == 'unregistered'" mat-button (click)="registrationClicked()" [ngStyle]="{'color': currentClicked == 'registration'? 'orange' : 'white' }" color="white" routerLink="/registration" >SIGN UP</a>
         

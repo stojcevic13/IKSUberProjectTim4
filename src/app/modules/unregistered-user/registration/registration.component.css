@@ -1,15 +1,17 @@
 mat-card {
-    max-width: 400px;
+    max-width: 600px;
     margin: 2em auto;
-    height:415px;
-    margin-top: 100px;
+    height:610px;
+    margin-top: 10px;
+
   }
   mat-card-content{
     text-align: center;
   }
   
   mat-form-field {
-    height: 60px;
+    height: 25px;
+    margin-bottom: 40px;
     display: block;
   }
 
@@ -24,10 +26,10 @@ mat-card {
  }
 
  #fPass{
-    margin-left: 25px;
+    margin-left: 30px;
     color:rgb(196, 146, 53);
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     text-decoration: underline;
     
  }
@@ -36,15 +38,38 @@ mat-card {
     text-decoration: underline;
  }
 
-#lgButton{
-    margin-top: 20px;
+#sgButton{
+    margin-top: 30px;
+    margin-bottom: 40px;
+    width:240px;
     background-color: #E39D5C;
 }
 
 #conBtn{
-    height:45px;
+    height:50px;
     font-size: large;
     background-color: rgb(255, 248, 234);
     color:rgb(196, 146, 53);
 
+}
+
+
+#pair{
+  display: flex;
+}
+
+#pairField1{
+  width:49%;
+}
+
+#pairField2{
+  width:49%;
+  margin-left: 20px;
+}
+
+
+body {
+  top:0;
+  background-image: url("../../../assets/images/image.png");
+  padding-bottom: 50px;
 }
