@@ -16,7 +16,10 @@ export class NavbarComponent {
     this.currentClicked = "unregHome"
   }
   loginClicked() {
+    console.log(":");
+    //this.routerLink = 
     this.currentClicked = "login"
+    console.log(this.currentClicked);
     this.role = "driver"
   }
   registrationClicked() {
@@ -66,7 +69,7 @@ export class NavbarComponent {
 
 
 
-  // BOTH PASSENGER AND DRIVER HAS SUPPORT AND LOGOUT
+  // BOTH PASSENGER AND DRIVER HAVE SUPPORT AND LOGOUT
 
   supportClicked() {
     this.currentClicked = "support"

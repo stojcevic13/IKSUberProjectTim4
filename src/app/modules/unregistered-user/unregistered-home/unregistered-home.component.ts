@@ -1,8 +1,7 @@
 import {AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { LatLngTuple } from 'leaflet';
-import { RegFormComponent } from 'src/app/components/reg-form/reg-form.component';
-import { UnregFormComponent } from 'src/app/components/unreg-form/unreg-form.component';
+import { UnregFormComponent } from '../unreg-form/unreg-form.component';
 import { Vehicle, VehicleService } from 'src/app/services/vehicle.service';
 import { MapComponent } from '../../map/map/map.component';
 

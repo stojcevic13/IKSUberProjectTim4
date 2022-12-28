@@ -43,7 +43,7 @@ export class MapComponent implements AfterViewInit, OnDestroy {
   markDeparture(departure: string) {
     this.mapService.search(departure).subscribe({
       next: (result) => {
-        L.marker([result[0].lat, result[0].lon]).addTo(this.map)    // Luka izabere ovako, prvi element iz liste, mi moramo nekako da se osiguramo da prvi element bude unutar Novog Sada
+        L.marker([result[0].lat, result[0].lon]).addTo(this.map)  
           .bindPopup('START')
           .openPopup();
       },
