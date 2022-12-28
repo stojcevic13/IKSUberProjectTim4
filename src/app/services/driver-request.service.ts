@@ -35,37 +35,12 @@ export class DriverRequestService {
     return this.http.post<DriverRequest>('http://localhost:8080/api/driver/driver-request', driverRequest);
   }
 
-  // public saveUser(user: User): Observable<any> {
-  //   const url = 'https://reqres.in/api/users';
-  //   return this.http.post<any>(url, user);
-  // }
 
 
 
 }
 
 export interface DriverRequest {
-  driverId: number;
-  newName: string;
-  newSurname: string;
-  newProfilePicture: string;
-  newTelephoneNumber: string;
-  newEmail: string;
-  newAddress: string;
-  
-  vehicleId: number;
-  newModel: string;
-  newVehicleName: string;
-  newRegPlates: string;
-  newNumSeats: number;
-  newBabyProof: boolean;
-  newPetsAllowed: boolean;
-}
-
-
-export interface DriverRequest2 {
-  id: number;
-  status: string;
   driverId: number;
   newName: string;
   newSurname: string;

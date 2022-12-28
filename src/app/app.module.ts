@@ -56,6 +56,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthService } from './modules/security/auth.service';
 import { MapService } from './modules/map/map.service';
 import { UserService } from './modules/security/user.service';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 
 @NgModule({
@@ -93,6 +94,7 @@ import { UserService } from './modules/security/user.service';
     DriverProfileComponent,
     RideHistoryComponent,
     PassengerRideHistoryComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,

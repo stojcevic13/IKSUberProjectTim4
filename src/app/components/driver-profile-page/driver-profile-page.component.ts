@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DriverRequestService, DriverRequest, DriverRequest2 } from 'src/app/services/driver-request.service';
+import { DriverRequestService, DriverRequest } from 'src/app/services/driver-request.service';
 import { DriverService, Vehicle } from 'src/app/services/driver.service';
 import { Driver } from 'src/app/services/driver.service';
 
