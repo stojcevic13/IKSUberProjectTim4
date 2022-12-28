@@ -12,6 +12,10 @@ export class DriverProfileComponent {
   constructor() {}
 
   disabledRequest: boolean = true;
+  showChangePassword: boolean = false;
+
+  previousPassword: string = '';
+  newPassword: string = '';
 
   @Input() driver:Driver = {
     id: 0,
@@ -19,7 +23,8 @@ export class DriverProfileComponent {
     surname: '',
     telephoneNumber: '',
     address: '',
-    email: '',    
+    email: '',  
+    password: ''  
   };
 
   @Output() disabledValue = new EventEmitter<boolean>();
@@ -32,9 +37,13 @@ export class DriverProfileComponent {
     this.disabledValue.emit(value);
   }
 
-  enableRequest(){
+  enableRequest() {
     this.disabledRequest = false;
     console.log(this.disabledRequest);
+  }
+
+  changingPassword() {
+    this.showChangePassword = true;
   }
 
 }
