@@ -16,7 +16,10 @@ export class NavbarComponent {
     this.currentClicked = "unregHome"
   }
   loginClicked() {
+    console.log(":");
+    //this.routerLink = 
     this.currentClicked = "login"
+    console.log(this.currentClicked);
     this.role = "driver"
   }
   registrationClicked() {

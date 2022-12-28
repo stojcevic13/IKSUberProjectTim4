@@ -56,6 +56,7 @@ import { UserModule } from '../user/user.module';
     AuthService,
     UserService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports:[PassengerHomeComponent]
 })
 export class PassengerModule { }
