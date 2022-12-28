@@ -34,7 +34,7 @@ export class PassengerComponent implements OnInit{
 
 
 export interface Passenger {
-  _id: number;
+  id: number;
   name: string;
   surname:string;
   telephoneNumber:string;

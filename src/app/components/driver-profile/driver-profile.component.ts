@@ -14,7 +14,7 @@ export class DriverProfileComponent {
   disabledRequest: boolean = true;
 
   @Input() driver:Driver = {
-    _id: 0,
+    id: 0,
     name: '',
     surname: '',
     telephoneNumber: '',

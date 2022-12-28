@@ -35,7 +35,7 @@ export class DriverService {
 
 
 export interface Driver {
-  _id: number;
+  id: number;
   name: string;
   surname:string;
   telephoneNumber:string;
