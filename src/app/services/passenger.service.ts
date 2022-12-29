@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Passenger } from '../components/passenger/passenger.component';
 import { environment } from 'src/enviroments/environment';
 
 @Injectable({
@@ -29,4 +28,12 @@ export class PassengerService {
     return this.http.put<Passenger>(environment.apiHost + 'api/passenger/' + passenger.id, passenger);
   }
 
+}
+export interface Passenger {
+  id: number;
+  name: string;
+  surname:string;
+  telephoneNumber:string;
+  address:string;
+  email:string;
 }

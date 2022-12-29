@@ -1,0 +1,68 @@
+mat-card {
+    max-width: 450px;
+    margin: 2em auto;
+    height:425px;
+    margin-top: 80px;
+  }
+  mat-card-content{
+    text-align: center;
+  }
+  
+  mat-form-field {
+    height: 60px;
+    display: block;
+  }
+
+  a{
+    text-decoration: none;
+    color:#E39D5C;
+  }
+
+  input{
+    width: 100%;
+    height: 25px;
+    font-size: 19px;
+    outline-color: rgb(196, 146, 53);
+  }
+ span{
+    color: white;
+ }
+
+ #fPass{
+    margin-left: 25px;
+    color:rgb(196, 146, 53);
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-decoration: underline;
+    
+ }
+ h2{
+    font-size:26px;
+    text-decoration: underline;
+ }
+
+#lgButton{
+    margin-top: 20px;
+    background-color: #E39D5C;
+}
+
+#conBtn{
+    height:55px;
+    font-size: large;
+    background-color: rgb(255, 248, 234);
+    color:rgb(196, 146, 53);
+
+}
+
+#image{
+  float:left;
+}
+
+body {
+  top:0;
+  background-image: url("../../../../assets/images/image.png");
+}
+
+#container{
+  margin-top: 100px;
+}

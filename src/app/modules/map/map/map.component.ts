@@ -4,6 +4,7 @@ import { forkJoin, Observable } from 'rxjs';
 import { map, filter, tap } from 'rxjs/operators'
 import * as L from 'leaflet';
 import 'leaflet-routing-machine';
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -43,7 +44,7 @@ export class MapComponent implements AfterViewInit, OnDestroy {
   markDeparture(departure: string) {
     this.mapService.search(departure).subscribe({
       next: (result) => {
-        L.marker([result[0].lat, result[0].lon]).addTo(this.map)    // Luka izabere ovako, prvi element iz liste, mi moramo nekako da se osiguramo da prvi element bude unutar Novog Sada
+        L.marker([result[0].lat, result[0].lon]).addTo(this.map)  
           .bindPopup('START')
           .openPopup();
       },
@@ -123,10 +124,8 @@ export class MapComponent implements AfterViewInit, OnDestroy {
       })
 
     });
-
-
-
   }
+
   markAvailableCar(location: string){
     
     let customIcon = L.icon({iconUrl:"../../../assets/images/car.png", iconSize:[40,40]});
@@ -140,9 +139,13 @@ export class MapComponent implements AfterViewInit, OnDestroy {
       next: (result) => {
         L.marker([result[0].lat, result[0].lon], markerOptions).addTo(this.map)
           .openPopup();
-      },
+      /*
+        let marker = L.marker([result[0].lat, result[0].lon], markerOptions).addTo(this.map)
+          .openPopup();
+        setInterval(() => {marker.setLatLng([45.2396, 19.8227])}, 300);
+        */
       error: () => { }
-    })
+    }})
   }
 
   markUnavailableCar(location: string){

@@ -1,0 +1,46 @@
+<body>
+  <p>.</p>
+<mat-card>
+    <mat-card-content>
+      <form #loginForm="ngForm">
+        <h2 color="primary">SIGN IN NOW</h2>
+        <div id="pair">
+        <mat-form-field id="pairField1">
+          <input matInput placeholder="Name" name="name" required>
+        </mat-form-field>
+        <mat-form-field id="pairField2">
+            <input matInput placeholder="Last Name" name="lastname" required>
+        </mat-form-field>
+        </div>
+        <div id="pair">
+        <mat-form-field id="pairField1">
+            <input matInput placeholder="Address" name="address" required>
+        </mat-form-field>
+        <mat-form-field id="pairField2">
+            <input matInput placeholder="Phone" name="phone" required>
+        </mat-form-field>
+        </div>
+        <mat-form-field>
+            <input matInput placeholder="Email" name="email" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="password" placeholder="Password" name="password" required>
+          <mat-error>
+            Please provide a valid password
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="password" placeholder="Confirm password" name="password" required>
+            <mat-error>
+              Please provide a valid password
+            </mat-error>
+        </mat-form-field>
+        <!-- [disabled]="!loginForm.form.valid" - izbacio sam disabled jer nece da reaguje na click ako je dugme disable -->
+        <button mat-raised-button id="sgButton" color="accent" routerLink="/reg-navbar"><span>SIGN UP</span></button>
+      </form>
+    </mat-card-content>
+    <button mat-stroked-button id="conBtn" color="accent">Continue with Google</button>
+    <button mat-stroked-button id="conBtn" color="accent">Continue with Facebook</button>
+  </mat-card>
+
+  </body>
