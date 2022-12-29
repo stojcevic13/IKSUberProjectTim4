@@ -19,6 +19,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { DriverProfilePageComponent } from './driver-profile-page/driver-profile-page.component';
 import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     DriverHomePageComponent,

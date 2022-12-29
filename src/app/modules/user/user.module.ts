@@ -14,6 +14,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { FormsModule } from '@angular/forms';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 @NgModule({
   declarations: [
     FooterComponent,
@@ -22,7 +24,8 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
     PanicComponent,
     RideHistoryComponent,
     SupportChatComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    ChangePasswordComponent
   ],
   imports: [
     CommonModule,
@@ -32,8 +35,9 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
-  exports:[NavbarComponent, PanicComponent, RideHistoryComponent, SupportChatComponent, UserProfileComponent, FooterComponent]
+  exports:[NavbarComponent, PanicComponent, RideHistoryComponent, SupportChatComponent, UserProfileComponent, FooterComponent, ChangePasswordComponent]
 })
 export class UserModule { }

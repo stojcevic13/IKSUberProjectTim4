@@ -24,9 +24,13 @@ export class PassengerService {
     return this.http.get<Passenger>(environment.apiHost + 'api/passenger/' + passengerId);
   }
 
+  updatePassenger(passenger: Passenger): Observable<Passenger> {
+    return this.http.put<Passenger>(environment.apiHost + 'api/passenger/' + passenger.id, passenger);
+  }
+
 }
 export interface Passenger {
-  _id: number;
+  id: number;
   name: string;
   surname:string;
   telephoneNumber:string;

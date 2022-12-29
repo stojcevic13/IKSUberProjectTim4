@@ -29,11 +29,17 @@
         </mat-form-field>
 
         <div id="buttons">
-            <button mat-raised-button id="changeBtn"><span>CHANGE PASSWORD</span></button>
+            <button (click)="changingPassword()" mat-raised-button id="changeBtn"><span>CHANGE PASSWORD</span></button>
             <button (click)="sendEnabledRequest(disabledRequest)" mat-raised-button id="saveBtn"><span>VALIDATE CHANGES</span></button>
         </div>
+        
 
-
+        <change-password [driver]="driver"
+                         [previousPassword]="previousPassword" 
+                         (showWindow)="update($event)"
+                         *ngIf="showChangePassword">
+        </change-password>
+        
     </mat-card-content>
 </mat-card>
 

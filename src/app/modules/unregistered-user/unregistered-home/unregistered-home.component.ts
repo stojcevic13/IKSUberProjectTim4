@@ -25,8 +25,9 @@ export class UnregisteredHomeComponent implements OnInit{
       this.vehicles = result;
       let v:Vehicle;
       for(v of this.vehicles){
-        console.log(v);
+        // console.log(v);
         if(v.available){
+        console.log(v.currentLocation);
         this.mapComponent.markAvailableCar(v.currentLocation.address);
         }else{
           this.mapComponent.markUnavailableCar(v.currentLocation.address);

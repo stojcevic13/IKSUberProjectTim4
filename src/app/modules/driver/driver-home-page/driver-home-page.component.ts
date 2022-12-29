@@ -10,12 +10,13 @@ import { Driver } from 'src/app/services/driver.service';
 })
 export class DriverHomePageComponent implements OnInit  {
   driver: Driver = {
-    _id: 0,
+    id: 0,
     name: '',
     surname: '',
     telephoneNumber:'',
     address:'',
-    email:''
+    email:'',
+    password:''
   }
 
   

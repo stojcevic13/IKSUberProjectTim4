@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { DriverRequestService, DriverRequest } from 'src/app/services/driver-request.service';
 import { DriverService, Vehicle } from 'src/app/services/driver.service';
 import { Driver } from 'src/app/services/driver.service';
 
@@ -10,12 +11,13 @@ import { Driver } from 'src/app/services/driver.service';
 })
 export class DriverProfilePageComponent implements OnInit {
   driver: Driver = {
-    _id: 0,
+    id: 0,
     name: '',
     surname: '',
     telephoneNumber:'',
     address:'',
-    email:''
+    email:'',
+    password: ''
   }
 
   vehicle: Vehicle = {
@@ -29,11 +31,13 @@ export class DriverProfilePageComponent implements OnInit {
     petTransport: false
   }
 
+
   disabledRequest: boolean = true;
 
   constructor(
     private route: ActivatedRoute,
-    private driverService: DriverService
+    private driverService: DriverService,
+    private driverRequestService: DriverRequestService
   ) {}
 
   ngOnInit(): void {
@@ -46,11 +50,6 @@ export class DriverProfilePageComponent implements OnInit {
         .getDriverVehicle(+params['driverId'])
         .subscribe((vehicle) => (this.vehicle = vehicle));
     });
-
-    // this.driverService
-    //   .getDriverVehicle(+params['driverId'])
-    //   .subscribe((vehicle) => (this.vehicle = vehicle));
-
   }
 
   printajj(){
@@ -59,7 +58,9 @@ export class DriverProfilePageComponent implements OnInit {
   }
 
   sendDriverRequest(){
-
+    const driverRequest: DriverRequest = this.pickUpDriverRequest();
+    this.driverRequestService.createDriverRequest(driverRequest).subscribe();
+    alert("Successfully created  request!")
   }
 
 
@@ -67,5 +68,27 @@ export class DriverProfilePageComponent implements OnInit {
     if (this.disabledRequest == true)
       this.disabledRequest = value;
   }
+
+  pickUpDriverRequest() : DriverRequest {
+    return {
+      driverId: 6,
+      newName: this.driver.name,
+      newSurname: this.driver.surname,
+      newProfilePicture: '2.png',
+      newTelephoneNumber: this.driver.telephoneNumber,
+      newEmail: this.driver.email,
+      newAddress: this.driver.address,
+      
+      vehicleId: 1,
+      newModel: this.vehicle.model,
+      newVehicleName: this.vehicle.vehicleType,
+      newRegPlates: this.vehicle.licenseNumber,
+      newNumSeats: this.vehicle.passengerSeats,
+      newBabyProof: this.vehicle.babyTransport,
+      newPetsAllowed: this.vehicle.petTransport
+    };
+  }
+
+  
 
 }

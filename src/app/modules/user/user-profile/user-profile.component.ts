@@ -11,7 +11,7 @@ import { Passenger } from 'src/app/services/passenger.service';
 export class UserProfileComponent {
   constructor(private passengerService: PassengerService,  private route: ActivatedRoute) {}
   @Input() passenger:Passenger = {
-    _id: 0,
+    id: 0,
     name: '',
     surname: '',
     telephoneNumber: '',
@@ -26,4 +26,11 @@ export class UserProfileComponent {
         .subscribe((passenger) => (this.passenger = passenger));
     });
   }
+
+
+  updatePassenger() {
+    this.passengerService.updatePassenger(this.passenger).subscribe();
+  }
+
+
 }
