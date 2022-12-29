@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Driver } from 'src/app/services/driver.service';
+import { Driver, DriverService } from 'src/app/services/driver.service';
+import { ChangePasswordComponent } from '../change-password/change-password.component';
 
 @Component({
   selector: 'driver-profile',
@@ -9,7 +10,7 @@ import { Driver } from 'src/app/services/driver.service';
 
 export class DriverProfileComponent {
 
-  constructor() {}
+  constructor(private driverService: DriverService) {}
 
   disabledRequest: boolean = true;
   showChangePassword: boolean = false;
@@ -44,6 +45,11 @@ export class DriverProfileComponent {
 
   changingPassword() {
     this.showChangePassword = true;
+    new ChangePasswordComponent(this.driverService);
+  }
+
+  update(show: boolean) {
+    this.showChangePassword = show;
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { DriverService, Driver } from 'src/app/services/driver.service';
 
 @Component({
@@ -8,11 +8,14 @@ import { DriverService, Driver } from 'src/app/services/driver.service';
 })
 export class ChangePasswordComponent {
 
-  constructor( private driverService: DriverService) {}
+  constructor( private driverService: DriverService) { }
 
   @Input() previousPassword = '';
   @Input() newPassword = '';
+  
   @Input() showChangePassword = true;
+  @Output() showWindow = new EventEmitter<boolean>();
+
   @Input() driver:Driver = {
     id: 0,
     name: '',
@@ -34,8 +37,13 @@ export class ChangePasswordComponent {
     }
   }
 
+  sendBeverage2() {
+    this.showWindow.emit(this.showChangePassword);
+  }
+
   hideChangePassword() {
     this.showChangePassword = false;
+    this.sendBeverage2();
   }
 
 }

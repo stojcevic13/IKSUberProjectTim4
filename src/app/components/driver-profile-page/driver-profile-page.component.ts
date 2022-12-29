@@ -50,7 +50,6 @@ export class DriverProfilePageComponent implements OnInit {
         .getDriverVehicle(+params['driverId'])
         .subscribe((vehicle) => (this.vehicle = vehicle));
     });
-
   }
 
   printajj(){
@@ -61,6 +60,7 @@ export class DriverProfilePageComponent implements OnInit {
   sendDriverRequest(){
     const driverRequest: DriverRequest = this.pickUpDriverRequest();
     this.driverRequestService.createDriverRequest(driverRequest).subscribe();
+    alert("Successfully created  request!")
   }
 
 
