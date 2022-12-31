@@ -16,7 +16,7 @@ export class UserProfileComponent {
     surname: '',
     telephoneNumber: '',
     address: '',
-    email: '',    
+    email: ''
   };
 
   ngOnInit(): void {

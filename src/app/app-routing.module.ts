@@ -19,12 +19,12 @@ const routes: Routes = [
 
 
   // PASSENGER COMPONENTS
-  {path: 'passengerHome', component:PassengerHomeComponent}, 
+  {path: 'passengerHome/:passengerId', component:PassengerHomeComponent}, 
   {path: 'user-profile/:passengerId', component:UserProfileComponent},
 
 
   // DRIVER COMPONENTS
-  {path: 'driverHome', component:DriverHomePageComponent}, 
+  {path: 'driverHome/:driverId', component:DriverHomePageComponent}, 
   {path: 'driverProfile/:driverId', component:DriverProfilePageComponent},
 
 
