@@ -3,7 +3,9 @@ import { friend, InviteFriendComponent } from '../invite-friend/invite-friend.co
 import { RegFormComponent } from '../reg-form/reg-form.component';
 import { ActivatedRoute } from '@angular/router';
 import { PassengerService, Passenger } from 'src/app/services/passenger.service';
-import { RideServiceService, RideDTO, RouteDTO } from 'src/app/services/ride-service.service';
+import { RideDTOResponse, RideServiceService, RideStatus } from 'src/app/services/ride-service.service';
+import { LoginComponent } from '../../unregistered-user/login/login.component';
+
 
 @Component({
   selector: 'app-passenger-home',
@@ -12,7 +14,7 @@ import { RideServiceService, RideDTO, RouteDTO } from 'src/app/services/ride-ser
 })
 export class PassengerHomeComponent {
 
-  constructor(private passengerService: PassengerService,  private route: ActivatedRoute) {}
+  constructor(private passengerService: PassengerService, private rideService: RideServiceService,  private route: ActivatedRoute) {}
   passenger:Passenger = {
     id: 0,
     name: '',
@@ -21,6 +23,9 @@ export class PassengerHomeComponent {
     address: '',
     email: ''
   };
+
+  activeRide: boolean = false;
+  passengerRides: RideDTOResponse[] = [];
 
   @ViewChild(RegFormComponent) regFormComponent: any; 
   @ViewChild(InviteFriendComponent) inviteFriendComponent: any; 
@@ -36,6 +41,13 @@ export class PassengerHomeComponent {
       this.passengerService
         .getPassenger(+params['passengerId'])
         .subscribe((passenger) => (this.passenger = passenger));
+      
+      this.rideService
+        .getByPassengerId(+params['passengerId'])
+        .subscribe((passengerRides) => {
+          (this.passengerRides = passengerRides)
+          this.checkRides();
+        });
     });
   }
 
@@ -43,6 +55,15 @@ export class PassengerHomeComponent {
     this.friends = this.inviteFriendComponent.invitedFriends;
   }
 
+
+  checkRides() {
+    for (let ride of this.passengerRides) {
+      if (Number(RideStatus[ride.status]) === RideStatus.ACCEPTED) 
+        alert("You have ride at " + ride.startTime)
+      if (Number(RideStatus[ride.status]) === RideStatus.ACTIVE) 
+        this.activeRide = true;
+    }
+  }
 
 
 }

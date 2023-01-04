@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import {FormBuilder} from '@angular/forms'
+import { FormBuilder } from '@angular/forms'
 import { friend } from '../invite-friend/invite-friend.component';
 import { PassengerService, Passenger } from 'src/app/services/passenger.service';
 import { RideServiceService, RideDTO, RouteDTO } from 'src/app/services/ride-service.service';
 import { LocationVehicle } from 'src/app/services/vehicle.service';
+import { ThisReceiver } from '@angular/compiler';
 
 interface CarType {
   value: string;
@@ -18,14 +19,21 @@ interface CarType {
 
 export class RegFormComponent {
 
+  futureOrder: boolean = false;
+
   ride : RideDTO = {
     passengers: [],
-    routes: [],
+    routes: [],     // Na IKS-u imamo samo 2 tacke, a na ISS-u treba da podrzimo rad sa vise tacaka pa zato ide lista routes.
     babyTransport: false,
     petTransport: false,
-    vehicleName: ''
+    vehicleName: '',
+    estimatedTime: 50,   // Treba iz mape da se dobavi
+    startTime: new Date(),
+    kilometers: 2
   }
 
+
+  futureTime: string = '';
   invitedFriends = false;
   @Output() emitter: EventEmitter<Boolean> = new EventEmitter<Boolean>();
   @Input() friends!:friend[];
@@ -62,11 +70,17 @@ export class RegFormComponent {
         }
     }
   }
-
+  a : number = 0;
   orderRide() {
     this.ride.routes = this.getRoutes();
     this.ride.passengers = this.getPassengersFromFriends();
+    this.ride.startTime = new Date();
+    if (this.futureOrder && this.futureTime != '') {
+      this.ride.startTime.setHours(Number(this.futureTime.split(":")[0]));
+      this.ride.startTime.setMinutes(Number(this.futureTime.split(":")[1]));  
+    }
     this.rideService.createRide(this.ride).subscribe();
+    alert("Ride successfully ordered!")
   }
 
   getRoutes() : RouteDTO[] {
@@ -89,5 +103,13 @@ export class RegFormComponent {
         passengers.push(friend.passenger);
     }
     return passengers;
+  }
+
+  showFutureOrder() {
+    this.futureOrder = true;
+  }
+
+  hideFutureOrder() {
+    this.futureOrder = false;
   }
 }
