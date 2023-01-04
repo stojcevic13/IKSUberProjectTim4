@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RideHistoryComponent } from './ride-history.component';
+import { RidePopupComponent } from './ride-popup.component';
 
-describe('RideHistoryComponent', () => {
-  let component: RideHistoryComponent;
-  let fixture: ComponentFixture<RideHistoryComponent>;
+describe('RidePopupComponent', () => {
+  let component: RidePopupComponent;
+  let fixture: ComponentFixture<RidePopupComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RideHistoryComponent ]
+      declarations: [ RidePopupComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(RideHistoryComponent);
+    fixture = TestBed.createComponent(RidePopupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

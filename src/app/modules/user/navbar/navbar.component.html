@@ -8,7 +8,7 @@
         
         <a id="passenger-home"    *ngIf="role == 'passenger'" mat-button (click)="passengerHomeClicked()" [ngStyle]="{'color': currentClicked == 'passengerHome'? 'orange' : 'white' }" color="white" routerLink="/passengerHome" >HOME</a>
         <a id="passenger-profile" *ngIf="role == 'passenger'" mat-button (click)="passengerProfileClicked()" [ngStyle]="{'color': currentClicked == 'passengerProfile'? 'orange' : 'white' }" color="white" routerLink="/user-profile/3" >PROFILE</a> 
-        <a id="passenger-history" *ngIf="role == 'passenger'" mat-button (click)="passengerHistoryClicked()" [ngStyle]="{'color': currentClicked == 'passengerHistory'? 'orange' : 'white' }" color="white" >HISTORY</a>
+        <a id="passenger-history" *ngIf="role == 'passenger'" mat-button (click)="passengerHistoryClicked()" [ngStyle]="{'color': currentClicked == 'passengerHistory'? 'orange' : 'white' }" color="white" routerLink="passenger/rideHistory">HISTORY</a>
         <a id="passenger-reports" *ngIf="role == 'passenger'" mat-button (click)="passengerReportsClicked()" [ngStyle]="{'color': currentClicked == 'passengerReports'? 'orange' : 'white' }" color="white" >REPORTS</a>
         
         <a id="driver-home-page"    *ngIf="role == 'driver'"   mat-button (click)="driverHomeClicked()" [ngStyle]="{'color': currentClicked == 'driverHome'? 'orange' : 'white' }" color="white" routerLink="/driverHome" >HOME</a>

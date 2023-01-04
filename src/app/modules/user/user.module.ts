@@ -4,7 +4,6 @@ import { FooterComponent } from './footer/footer.component';
 import { PlaymarketBadge } from './playmarket-badge/playmarket-badge.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { SupportChatComponent } from './support-chat/support-chat.component';
-import { RideHistoryComponent } from './ride-history/ride-history.component';
 import { PanicComponent } from './panic/panic.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -22,7 +21,6 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     PlaymarketBadge,
     NavbarComponent,
     PanicComponent,
-    RideHistoryComponent,
     SupportChatComponent,
     UserProfileComponent,
     ChangePasswordComponent
@@ -38,6 +36,6 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     AppRoutingModule,
     FormsModule
   ],
-  exports:[NavbarComponent, PanicComponent, RideHistoryComponent, SupportChatComponent, UserProfileComponent, FooterComponent, ChangePasswordComponent]
+  exports:[NavbarComponent, PanicComponent, SupportChatComponent, UserProfileComponent, FooterComponent, ChangePasswordComponent]
 })
 export class UserModule { }
