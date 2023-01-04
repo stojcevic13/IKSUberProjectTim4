@@ -10,7 +10,7 @@ import 'leaflet-routing-machine';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements AfterViewInit, OnDestroy {
+export class MapComponent implements AfterViewInit {
 
   center: number[] = [45.2396, 19.8227];
   private map: any;   // Luka je rekao da je ok da ovdje ostavimo any :D
@@ -66,14 +66,12 @@ export class MapComponent implements AfterViewInit, OnDestroy {
 
   getCoordinates(d: string): Observable<any> {
     return this.mapService.search(d).pipe(map(val => {
-      console.log(val);
       return val[0];
     }));
   }
 
   getLocation(lat: number, lng: number) {
     return this.mapService.reverseSearch(lat, lng).pipe(map(val => {
-      console.log(val.address, "bla");
       return `${val.address.road} ${val.address.house_number}`
     }));
   }
@@ -109,21 +107,24 @@ export class MapComponent implements AfterViewInit, OnDestroy {
 
     L.Marker.prototype.options.icon = DefaultIcon;
   
-    this.initMap();
+    setTimeout(() => {
+      this.initMap();
+      this.map.on('click', (e: { latlng: { lat: number; lng: number; }; }) => {
+        forkJoin([this.getLocation(e.latlng.lat, e.latlng.lng)]).subscribe((startLocation) => {
+          this.emitter.emit(startLocation);
+        })
+  
+      });
+  
+      this.map.on('click', (e: { latlng: { lat: number; lng: number; }; }) => {
+        forkJoin([this.getLocation(e.latlng.lat, e.latlng.lng)]).subscribe((location) => {
+          this.emitter.emit(location);
+        })
+  
+      });
+    }, 0);
 
-    this.map.on('click', (e: { latlng: { lat: number; lng: number; }; }) => {
-      forkJoin([this.getLocation(e.latlng.lat, e.latlng.lng)]).subscribe((startLocation) => {
-        this.emitter.emit(startLocation);
-      })
-
-    });
-
-    this.map.on('click', (e: { latlng: { lat: number; lng: number; }; }) => {
-      forkJoin([this.getLocation(e.latlng.lat, e.latlng.lng)]).subscribe((location) => {
-        this.emitter.emit(location);
-      })
-
-    });
+   
   }
 
   markAvailableCar(location: string){
@@ -164,6 +165,8 @@ export class MapComponent implements AfterViewInit, OnDestroy {
       },
       error: () => { }
     })
+
+
   }
 
   ngOnDestroy():void{

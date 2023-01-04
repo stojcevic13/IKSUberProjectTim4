@@ -19,10 +19,17 @@ import { UserService } from '../security/user.service';
 import { AppComponent } from 'src/app/app.component';
 import { MapModule } from '../map/map/map.module';
 import { FlexLayoutModule } from "@angular/flex-layout";
-import{MatInputModule} from '@angular/material/input';
+import {MatInputModule} from '@angular/material/input';
 import { RideRequestComponent } from './ride-request/ride-request.component';
 import { EndRideComponent } from './end-ride/end-ride.component';
 import { UserModule } from '../user/user.module';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RidePopupComponent } from './ride-popup/ride-popup.component';
+import { MatListModule } from '@angular/material/list';
 @NgModule({
   declarations: [
     InviteFriendComponent,
@@ -30,7 +37,8 @@ import { UserModule } from '../user/user.module';
     PassengerHomeComponent,
     PassengerRideHistoryComponent,
     RideRequestComponent,
-    EndRideComponent
+    EndRideComponent,
+    RidePopupComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +53,14 @@ import { UserModule } from '../user/user.module';
     MapModule,
     MatInputModule,
     FlexLayoutModule,
-    UserModule
+    UserModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatListModule,
+
   ],
   providers: [
     {
@@ -57,6 +72,6 @@ import { UserModule } from '../user/user.module';
     UserService
   ],
   bootstrap: [AppComponent],
-  exports:[PassengerHomeComponent]
+  exports:[PassengerHomeComponent, RidePopupComponent]
 })
 export class PassengerModule { }

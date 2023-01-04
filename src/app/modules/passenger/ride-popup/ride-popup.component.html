@@ -1,0 +1,49 @@
+<body>
+<mat-card *ngIf = "show">
+    <div id = "mapContainer" fxFlex>
+        <app-map id="map"></app-map>
+    </div>
+    <div id="tableDiv" fxFlex>
+        <table>
+            <tr>
+                <td> <span id="name"> FROM: </span> </td>
+                <td><span id="data">{{ride.departure.split(",")[0].toUpperCase()}} </span></td>
+            </tr>
+            <tr> 
+                <td> <span id="name"> TO: </span></td>
+                <td><span id="data">{{ride.destination.split(",")[0].toUpperCase()}} </span></td>
+            </tr>
+            <tr>
+                <td> <span id="name"> DRIVER: </span></td>
+                <td><span id="data">{{driver.email.toUpperCase()}} </span></td>
+            </tr>
+
+            <tr>
+                <td> <span id="name"></span></td>
+                <td><span id="data">{{driver.name.toUpperCase() + " " + driver.surname.toUpperCase()}} </span></td>
+            </tr>
+
+            <tr>
+                <td> <span id="name"> VEHICLE TYPE: </span></td>
+                <td><span id="data">{{ride.vehicleType}} </span></td>
+            </tr>
+            <tr>
+                <td> <span id="name"> PRICE: </span></td>
+                <td><span id="data">{{ride.totalCost + "DIN"}} </span></td>
+            </tr>
+            <tr>
+                <td><span id="name"> REVIEWS:</span></td>
+            </tr>
+            <tr *ngFor="let r of reviews">
+                <td> <span id="rating">BY {{r.passenger.name.toUpperCase() + " " + r.passenger.surname.toUpperCase()}}: </span></td>
+                <td> <span id="dataRating"> {{r.rating + "/5 "}} {{"'" + r.comment.toUpperCase() + "'"}}</span></td>
+            </tr>
+           
+        </table> 
+    </div>
+    <span class = "buttons">
+    <button mat-stroked-button id="now"> ORDER NOW </button>
+    <button mat-stroked-button id="later"> LATER </button>
+    <button mat-stroked-button (click)="close()" id="okButton"> OK </button>
+    </span>
+</mat-card>
