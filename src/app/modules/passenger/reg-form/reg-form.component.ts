@@ -2,8 +2,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms'
 import { friend } from '../invite-friend/invite-friend.component';
 import { PassengerService, Passenger } from 'src/app/services/passenger.service';
-import { RideServiceService, RideDTO, RouteDTO } from 'src/app/services/ride-service.service';
-import { LocationVehicle } from 'src/app/services/vehicle.service';
+import { RideServiceService, RideDTORequest, RouteDTO } from 'src/app/services/ride-service.service';
+import { LocationVehicle, VehicleName } from 'src/app/services/vehicle.service';
 import { ThisReceiver } from '@angular/compiler';
 
 interface CarType {
@@ -21,12 +21,12 @@ export class RegFormComponent {
 
   futureOrder: boolean = false;
 
-  ride : RideDTO = {
+  ride : RideDTORequest = {
     passengers: [],
-    routes: [],     // Na IKS-u imamo samo 2 tacke, a na ISS-u treba da podrzimo rad sa vise tacaka pa zato ide lista routes.
+    locations: [],     // Na IKS-u imamo samo 2 tacke, a na ISS-u treba da podrzimo rad sa vise tacaka pa zato ide lista routes.
     babyTransport: false,
     petTransport: false,
-    vehicleName: '',
+    vehicleType: 0,
     estimatedTime: 50,   // Treba iz mape da se dobavi
     startTime: new Date(),
     kilometers: 2
@@ -72,7 +72,7 @@ export class RegFormComponent {
   }
   a : number = 0;
   orderRide() {
-    this.ride.routes = this.getRoutes();
+    this.ride.locations = this.getLocations();
     this.ride.passengers = this.getPassengersFromFriends();
     this.ride.startTime = new Date();
     if (this.futureOrder && this.futureTime != '') {
@@ -83,7 +83,7 @@ export class RegFormComponent {
     alert("Ride successfully ordered!")
   }
 
-  getRoutes() : RouteDTO[] {
+  getLocations() : RouteDTO[] {
     const departureHTML: HTMLInputElement = document.getElementById("startLocation") as HTMLInputElement
     const departure: LocationVehicle = {latitude: 50, longitude: 80, address: departureHTML.value}
 

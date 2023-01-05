@@ -24,7 +24,7 @@
 
     <mat-form-field appearance="fill" id="select">
         <mat-label>Car type</mat-label>
-        <mat-select [(ngModel)]="ride.vehicleName">
+        <mat-select [(ngModel)]="ride.vehicleType">
             <mat-option *ngFor="let type of carTypes" [value]="type.value">
                 {{type.viewValue}}
             </mat-option>

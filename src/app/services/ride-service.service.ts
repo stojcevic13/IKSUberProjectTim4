@@ -19,9 +19,9 @@ export class RideServiceService {
     this.value$.next(test);
   }
 
-  createRide(ride: RideDTO): Observable<RideDTO> {
+  createRide(ride: RideDTORequest): Observable<RideDTORequest> {
     const url: string = environment.apiHost + 'api/ride/create-example';
-    return this.http.post<RideDTO>(url, ride);
+    return this.http.post<RideDTORequest>(url, ride);
   }
 
   getByPassengerId(passengerId: number):Observable<RideDTOResponse[]>{
@@ -30,14 +30,14 @@ export class RideServiceService {
 
 }
 
-export interface RideDTO {
-  routes: RouteDTO[];
+export interface RideDTORequest {
   babyTransport: boolean;
   petTransport: boolean;
   passengers: Passenger[];
-  vehicleName: string;
-  estimatedTime: number;
+  locations: RouteDTO[];
+  vehicleType: VehicleName;
   startTime: Date;
+  estimatedTime: number;
   kilometers: number;
 }
 
