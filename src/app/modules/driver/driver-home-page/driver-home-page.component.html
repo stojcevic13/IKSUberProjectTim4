@@ -7,13 +7,14 @@
     </div>
 </div> -->
 
-<div fxlayout="row">
+<div fxlayout="column" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap.xs="0" class="container">
 
-    <!-- <driver-next-rides fyFlex="20"></driver-next-rides> -->
-    <div class="map"  style="margin-top: 600px">
-        <app-map></app-map>
+    <div class="overlaying" fxFlex="65%">
+        <div class="map" fxFlex="70%">
+            <app-map></app-map>
+        </div>
     </div>
-    <driver-next-rides fyFlex="80" ></driver-next-rides>
+    <driver-next-rides fxFlex="43%" ></driver-next-rides>
 </div>
 <!-- <div fxlayout="column" fxLayoutAlign="space-evenly center" style="background-color: red;">
     

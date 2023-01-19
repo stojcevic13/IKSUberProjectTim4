@@ -1,30 +1,40 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { SharedService } from 'src/app/services/shared.service';
+import { AuthService, TokenDTO } from '../../security/auth.service';
+import { UserService } from '../../security/user.service';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
-  currentClicked = "passengerHome"
-  role = "passenger"
+export class NavbarComponent implements OnInit{
+  currentClicked = "passengerHome";
+  role:string = 'unregistered';
 
 
-  // NAVIGATION METHODS FOR UNREGISTERED USER
+  constructor(private sharedService: SharedService){}
+
+
+  ngOnInit() {
+    this.sharedService.currentRole.subscribe((role) => {
+      this.role = role;
+      console.log(this.role);
+  });
+}
+
 
   unregHomeClicked() {
-    this.currentClicked = "unregHome"
+    this.currentClicked = "unregHome";
+    this.role  = "unregistered";
   }
-  loginClicked() {
-    console.log(":");
-    //this.routerLink = 
-    this.currentClicked = "login"
-    console.log(this.currentClicked);
-    this.role = "driver"
+  loginClicked() { 
+    this.currentClicked = "login";
+    
   }
   registrationClicked() {
-    this.currentClicked = "registration"
-    this.role = "passenger"
+    this.currentClicked = "registration";
+
   }
 
 
@@ -32,19 +42,19 @@ export class NavbarComponent {
   // NAVIGATION METHODS FOR PASSENGER
 
   passengerHomeClicked() {
-    this.currentClicked = "passengerHome"
+    this.currentClicked = "passengerHome";
   }
 
   passengerProfileClicked() {
-    this.currentClicked = "passengerProfile"
+    this.currentClicked = "passengerProfile";
   }
 
   passengerHistoryClicked() {
-    this.currentClicked = "passengerHistory"
+    this.currentClicked = "passengerHistory";
   }
   
   passengerReportsClicked() {
-    this.currentClicked = "passengerReports"
+    this.currentClicked = "passengerReports";
   }
 
 
@@ -52,19 +62,19 @@ export class NavbarComponent {
   // NAVIGATION METHODS FOR DRIVER
 
   driverHomeClicked() {
-    this.currentClicked = "driverHome"
+    this.currentClicked = "driverHome";
   }
 
   driverProfileClicked() {
-    this.currentClicked = "driverProfile"
+    this.currentClicked = "driverProfile";
   }
 
   driverHistoryClicked() {
-    this.currentClicked = "driverHistory"
+    this.currentClicked = "driverHistory";
   }
   
   driverReportsClicked() {
-    this.currentClicked = "driverReports"
+    this.currentClicked = "driverReports";
   }
 
 
@@ -76,8 +86,8 @@ export class NavbarComponent {
   }
 
   logoutClicked() {
-    this.currentClicked = "logout"
     this.role = "unregistered"
+    this.currentClicked = "logout"
   }
 
 }

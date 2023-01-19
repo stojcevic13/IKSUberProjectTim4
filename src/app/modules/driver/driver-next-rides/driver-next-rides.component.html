@@ -2,7 +2,7 @@
     <div id="next-rides-title">NEXT RIDES</div>
 
     <div *ngFor="let r of rides" class="ride">
-        <span class="rideDescription">RIDE {{r.id}}</span>
+        <span class="rideDescription">R{{r.id}}</span>
         <span class="rideDescription">{{r.startPoint}}</span>
         <span class="rideDescription">{{r.endPoint}}</span>
         <button mat-raised-button id="goBtn">GO</button>

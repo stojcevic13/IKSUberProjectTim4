@@ -64,6 +64,5 @@ export class RidePopupComponent{
 
   close(){
     this.show = false;
-    
   }
 }
