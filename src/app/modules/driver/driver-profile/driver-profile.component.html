@@ -34,8 +34,7 @@
         </div>
         
 
-        <change-password [driver]="driver"
-                         [previousPassword]="previousPassword" 
+        <change-password 
                          (showWindow)="update($event)"
                          *ngIf="showChangePassword">
         </change-password>

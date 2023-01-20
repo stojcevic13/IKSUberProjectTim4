@@ -45,7 +45,6 @@ export interface Driver {
   telephoneNumber:string;
   address:string;
   email:string;
-  password:string;
 }
 
 export interface Vehicle {
