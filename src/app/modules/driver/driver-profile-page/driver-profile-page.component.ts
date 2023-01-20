@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DriverRequestService, DriverRequest } from 'src/app/services/driver-request.service';
 import { DriverService, Vehicle } from 'src/app/services/driver.service';
 import { Driver } from 'src/app/services/driver.service';
+import { UserService } from '../../security/user.service';
 
 @Component({
   selector: 'driver-profile-page',
@@ -37,19 +38,27 @@ export class DriverProfilePageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private driverService: DriverService,
-    private driverRequestService: DriverRequestService
+    private driverRequestService: DriverRequestService,
+    private userService:UserService
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
+ /*   this.route.params.subscribe((params) => {
       this.driverService
         .getDriver(+params['driverId'])
         .subscribe((driver) => (this.driver = driver));
       
-      this.driverService
+*/
+      this.userService.getUser().subscribe((user) => (
+        this.driverService.getDriver(user.user.id).subscribe((driver)=> (this.driver = driver)),
+        this.driverService.getDriverVehicle(user.user.id).subscribe((vehicle)=> (this.vehicle = vehicle))
+
+        ));
+
+    /*  this.driverService
         .getDriverVehicle(+params['driverId'])
         .subscribe((vehicle) => (this.vehicle = vehicle));
-    });
+    */
   }
 
   printajj(){
@@ -71,7 +80,7 @@ export class DriverProfilePageComponent implements OnInit {
 
   pickUpDriverRequest() : DriverRequest {
     return {
-      driverId: 6,
+      driverId: this.driver.id,          
       newName: this.driver.name,
       newSurname: this.driver.surname,
       newProfilePicture: '2.png',
@@ -79,7 +88,7 @@ export class DriverProfilePageComponent implements OnInit {
       newEmail: this.driver.email,
       newAddress: this.driver.address,
       
-      vehicleId: 1,
+      vehicleId: this.vehicle._id,
       newModel: this.vehicle.model,
       newVehicleName: this.vehicle.vehicleType,
       newRegPlates: this.vehicle.licenseNumber,

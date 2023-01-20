@@ -76,6 +76,8 @@ export class MapComponent implements AfterViewInit {
     }));
   }
 
+ 
+
 
   route(departure: string, destination: string): void {
     let kilometers:number = 0;

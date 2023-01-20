@@ -19,7 +19,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { DriverProfilePageComponent } from './driver-profile-page/driver-profile-page.component';
 import { FormsModule } from '@angular/forms';
-
+import { ActiveButtonComponent } from './active-button/active-button.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 @NgModule({
   declarations: [
     DriverHomePageComponent,
@@ -27,7 +28,8 @@ import { FormsModule } from '@angular/forms';
     DriverNavbarComponent,
     DriverProfileComponent,
     CarProfileComponent,
-    DriverProfilePageComponent
+    DriverProfilePageComponent,
+    ActiveButtonComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +45,8 @@ import { FormsModule } from '@angular/forms';
     MatOptionModule,
     MatSelectModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    MatSlideToggleModule
  
   ]
 })

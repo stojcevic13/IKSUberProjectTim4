@@ -53,7 +53,9 @@ mat-card {
     color:rgb(196, 146, 53);
 
 }
-
+mat-error{
+  color:rgb(196, 146, 53);
+}
 #image{
   float:left;
 }
