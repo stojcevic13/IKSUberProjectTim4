@@ -29,9 +29,14 @@
         </mat-form-field>
 
         <div id="buttons">
-            <button mat-raised-button id="changeBtn"><span>CHANGE PASSWORD</span></button>
+            <button (click)="changingPassword()" mat-raised-button id="changeBtn"><span>CHANGE PASSWORD</span></button>
             <button (click)="updatePassenger()" mat-raised-button id="saveBtn"><span>SAVE CHANGES</span></button>
         </div>
+
+        <change-password 
+            (showWindow)="update($event)"
+            *ngIf="showChangePassword">
+        </change-password>
 
     </mat-card-content>
 </mat-card>

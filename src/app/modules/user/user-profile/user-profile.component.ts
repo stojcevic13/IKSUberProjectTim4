@@ -10,6 +10,9 @@ import { UserService } from '../../security/user.service';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent {
+
+  showChangePassword: boolean = false;
+
   constructor(
     private userService: UserService,
     private passengerService: PassengerService,  
@@ -44,6 +47,16 @@ export class UserProfileComponent {
   updatePassenger() {
     this.passengerService.updatePassenger(this.passenger).subscribe();
     alert("Changes successfully updated.")
+  }
+
+  changingPassword() {
+    this.showChangePassword = true;
+    // new ChangePasswordComponent();
+  }
+
+
+  update(show: boolean) {
+    this.showChangePassword = show;
   }
 
 

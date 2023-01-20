@@ -36,7 +36,6 @@ export class ChangePasswordComponent implements OnInit {
 
   changePassword() {
     this.changePasswordService.changePassword(this.id, this.changePasswordDTO).subscribe();
-    alert("Lozinka promijenjena");
     /*
     if (this.driver.password === this.previousPassword) {
       this.driver.password = this.newPassword;
