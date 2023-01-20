@@ -11,6 +11,8 @@ import { SupportChatComponent } from './modules/user/support-chat/support-chat.c
 import { DriverHomePageComponent } from './modules/driver/driver-home-page/driver-home-page.component';
 import { DriverProfilePageComponent } from './modules/driver/driver-profile-page/driver-profile-page.component';
 import { PassengerRideHistoryComponent } from './modules/passenger/passenger-ride-history/passenger-ride-history.component';
+import { AdminHomePageComponent } from './modules/admin/admin-home-page/admin-home-page.component';
+import { CreateDriverComponent } from './modules/admin/create-driver/create-driver.component';
 const routes: Routes = [
 
   // UNREGISTERED USER COMPONENTS
@@ -28,8 +30,12 @@ const routes: Routes = [
   {path: 'driverHome', component:DriverHomePageComponent}, 
   {path: 'driverProfile/:driverId', component:DriverProfilePageComponent},
 
-
+  // ADMIN COMPONENTS
+  {path: 'adminHome', component:AdminHomePageComponent},
+  {path:'createDriver', component:CreateDriverComponent},
   {path: 'support', component:SupportChatComponent},
+
+
 ];
 
 @NgModule({
@@ -38,4 +44,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 export const routingComponents = [UnregisteredHomeComponent, FooterComponent, LoginComponent, NavbarComponent, PassengerHomeComponent,
-   RegistrationComponent, UserProfileComponent, PassengerRideHistoryComponent];
+   RegistrationComponent, UserProfileComponent, PassengerRideHistoryComponent, AdminHomePageComponent, CreateDriverComponent];

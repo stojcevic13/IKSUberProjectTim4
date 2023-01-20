@@ -17,8 +17,14 @@
         <a id="driver-profile-page" mat-button (click)="driverProfileClicked()" [ngStyle]="{'color': currentClicked == 'driverProfile'? 'orange' : 'white' }" color="white" routerLink="/driverProfile/6" >PROFILE</a> 
         <a id="driver-history" mat-button (click)="driverHistoryClicked()" [ngStyle]="{'color': currentClicked == 'driverHistory'? 'orange' : 'white' }" color="white" >HISTORY</a>
         <a id="driver-reports"  mat-button (click)="driverReportsClicked()" [ngStyle]="{'color': currentClicked == 'driverReports'? 'orange' : 'white' }" color="white" >REPORTS</a>
-
     </div>
+    <div *ngIf="role=='ADMIN'">
+        <a id="admin-home-page"  mat-button (click)="adminHomeClicked()" [ngStyle]="{'color': currentClicked == 'adminHome'? 'orange' : 'white' }" color="white" routerLink="/adminHome" >HOME</a>
+        <a id="admin-create-driver" mat-button (click)="adminCreateDriverClicked()" [ngStyle]="{'color': currentClicked == 'createDriver'? 'orange' : 'white' }" color="white" routerLink="/createDriver">CREATE DRIVER</a> 
+        <a id="admin-history" mat-button (click)="driverHistoryClicked()" [ngStyle]="{'color': currentClicked == 'driverHistory'? 'orange' : 'white' }" color="white" >HISTORY</a>
+        <a id="admin-reports"  mat-button (click)="driverReportsClicked()" [ngStyle]="{'color': currentClicked == 'driverReports'? 'orange' : 'white' }" color="white" >REPORTS</a>
+        <a id="admin-notification"  mat-button (click)="driverReportsClicked()" [ngStyle]="{'color': currentClicked == 'driverReports'? 'orange' : 'white' }" color="white" >NOTIFICATION</a></div>
+        
         <a *ngIf="role == 'passenger' || role == 'driver'" id="support" mat-button (click)="supportClicked()" [ngStyle]="{'color': currentClicked == 'support'? 'orange' : 'white' }" color="white" routerLink="/support">SUPPORT</a>
         <a *ngIf="role != 'unregistered'" mat-button (click)="logoutClicked()" color="white" id="logoutBtn" routerLink="">LOGOUT</a>
 
