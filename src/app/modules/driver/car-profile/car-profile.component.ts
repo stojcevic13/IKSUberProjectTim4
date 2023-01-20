@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Vehicle } from 'src/app/services/driver.service';
 
-interface CarType {
+export interface CarType {
   value: string;
   viewValue: string;
 }

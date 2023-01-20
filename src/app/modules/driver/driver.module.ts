@@ -21,6 +21,8 @@ import { DriverProfilePageComponent } from './driver-profile-page/driver-profile
 import { FormsModule } from '@angular/forms';
 import { ActiveButtonComponent } from './active-button/active-button.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { DeclineReasonComponent } from './decline-reason/decline-reason.component';
+
 @NgModule({
   declarations: [
     DriverHomePageComponent,
@@ -29,7 +31,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     DriverProfileComponent,
     CarProfileComponent,
     DriverProfilePageComponent,
-    ActiveButtonComponent
+    ActiveButtonComponent,
+    DeclineReasonComponent,
+
   ],
   imports: [
     CommonModule,
@@ -48,6 +52,10 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     FormsModule,
     MatSlideToggleModule
  
+  ],
+  exports:[
+    CarProfileComponent,
+    DriverProfileComponent
   ]
 })
 export class DriverModule { }

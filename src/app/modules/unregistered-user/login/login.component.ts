@@ -33,6 +33,8 @@ export class LoginComponent {
           this.router.navigate(['driverHome']);
         }else if(user.role.toString() == "PASSENGER"){
          this.router.navigate(['passengerHome']);
+        }else if(user.role.toString() == "ADMIN"){
+          this.router.navigate(['adminHome']);
         }
       }) 
     ));

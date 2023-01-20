@@ -90,4 +90,11 @@ export class NavbarComponent implements OnInit{
     this.currentClicked = "logout"
   }
 
+  adminHomeClicked(){
+    this.currentClicked="adminHome";
+  }
+
+  adminCreateDriverClicked(){
+    this.currentClicked = "createDriver";
+  }
 }

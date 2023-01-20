@@ -17,13 +17,14 @@ import { UnregisteredUserModule } from './modules/unregistered-user/unregistered
 import { MapService } from './modules/map/map.service';
 import { DriverModule } from './modules/driver/driver.module';
 import { UserModule } from './modules/user/user.module';
-
+import { AdminModule } from './modules/admin/admin.module';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+ 
   ],
   imports: [
     BrowserModule,
@@ -38,7 +39,7 @@ import { UserModule } from './modules/user/user.module';
     UnregisteredUserModule,
     DriverModule,
     UserModule,
-
+    AdminModule
   ],
   providers: [
     {
