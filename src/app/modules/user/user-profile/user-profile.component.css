@@ -63,3 +63,9 @@ mat-form-field {
     background-color: #DDDDDD;
     float: right;
  }
+
+ change-password {
+    position: fixed;
+    bottom: 250px;
+    right: 650px;
+}
