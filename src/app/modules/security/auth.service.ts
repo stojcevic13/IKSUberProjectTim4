@@ -6,13 +6,15 @@ import { of } from 'rxjs/internal/observable/of';
 import { Observable } from 'rxjs';
 import { UserService } from './user.service';
 import { environment } from 'src/enviroments/environment';
+import { Subject } from 'rxjs';
 
 
-
-type TokenDTO = { accessToken: string, refreshToken?: string }
+export type TokenDTO = { accessToken: string, refreshToken?: string }
 
 @Injectable()
 export class AuthService {
+  private roleSubject = new Subject<string>();
+  role$ = this.roleSubject.asObservable();
   constructor(
     private router: Router,
     private http: HttpClient,
@@ -38,8 +40,11 @@ export class AuthService {
         console.log(`Login success. Token ${JSON.stringify(res)}`);
         this.accessToken = res;
         localStorage.setItem("jwt", res.accessToken)
+      
         return this.accessToken;
       }));
+
+
   }
 
   logout() {
@@ -57,4 +62,11 @@ export class AuthService {
     return this.accessToken?.accessToken;
   }
 
+
+
+  /*
+  setUser(): void {
+    this.user$.next(this.getRole());
+  }
+  */
 }

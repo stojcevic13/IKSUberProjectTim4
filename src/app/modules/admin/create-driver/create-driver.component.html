@@ -1,0 +1,86 @@
+
+<div id="page">
+    <div id="profile">
+        <mat-card>
+            <mat-card-content>
+                <div id="up-container">
+                    <img src="../../../assets/images/cat.JPG" id="profilePicture">
+                    <button mat-mini-fab id="updatePic"><mat-icon>link</mat-icon> </button>
+                    <div id="up-fields">
+                        <mat-form-field>
+                            <mat-label>Name</mat-label>
+                            <input matInput placeholder="Name" name="name">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Last name</mat-label>
+                            <input matInput placeholder="Last Name" name="surname"  required>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <mat-form-field class="largerMargine">
+                    <mat-label>Address</mat-label>
+                    <input matInput placeholder="Address" name="address" required>
+                </mat-form-field>
+                <mat-form-field class="largerMargine">
+                    <mat-label>Phone</mat-label>
+                    <input matInput placeholder="Phone" name="telephoneNumber"  required>
+                </mat-form-field>
+                <mat-form-field class="largerMargine">
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="Email" name="email" required>
+                </mat-form-field>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div id="car">
+        <mat-card>
+            <mat-card-content>
+                <div id="picture">
+                    <img src="../../../assets/images/car.jpg" id="carPicture">
+                    <!-- <button mat-mini-fab id="updatePic"><mat-icon>link</mat-icon> </button> -->
+                </div>
+
+                <div id="carInfo">
+                    <div id="leftInfo">
+                        <mat-form-field>
+                            <mat-label>Model</mat-label>
+                            <input  matInput placeholder="Model" name="model"required>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Registration number</mat-label>
+                            <input  matInput placeholder="Registration number" name="regNumber" required>
+                        </mat-form-field>
+                    </div>
+            
+                    <div id="rightInfo">
+                        <mat-form-field appearance="fill" id="select">
+                            <mat-label>Car type</mat-label>
+                            <mat-select>
+                                <mat-option *ngFor="let type of carTypes" [value]="type.value">
+                                    {{type.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <section>
+                            <mat-checkbox class="example-margin"> Baby </mat-checkbox>
+                            <br>
+                            <mat-checkbox class="example-margin"> Pet </mat-checkbox>  
+                        </section>            
+                    </div>
+                </div>
+
+            </mat-card-content>
+            <!-- <div id="end-button">
+                
+            </div> -->
+        </mat-card>
+    </div>
+
+</div>
+<mat-card id="createCard">
+    <div id="createDiv">
+        <button  id="createBtn"><span>CREATE DRIVER</span></button>
+    </div>
+</mat-card>

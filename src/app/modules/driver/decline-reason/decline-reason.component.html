@@ -1,0 +1,8 @@
+<mat-card *ngIf="show">
+    <span> Please enter your reason for ride cancelling:</span>
+    <mat-form-field appearance="fill">
+        <mat-label>Reason</mat-label>
+        <textarea matInput></textarea>
+    </mat-form-field>
+    <button mat-button id="sendBtn" (click)="hide()"> SEND </button>
+</mat-card>

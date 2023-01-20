@@ -17,6 +17,7 @@ import {MatButtonModule} from '@angular/material/button';
 import{MatInputModule} from '@angular/material/input';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { UserModule } from '../user/user.module';
+
 @NgModule({
   declarations: [
     UnregisteredHomeComponent,
@@ -39,6 +40,7 @@ import { UserModule } from '../user/user.module';
     MatInputModule,
     FlexLayoutModule,
     UserModule
+    
   ],
   providers: [
   ],

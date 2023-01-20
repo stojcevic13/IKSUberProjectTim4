@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DriverService } from 'src/app/services/driver.service';
 import { Driver } from 'src/app/services/driver.service';
+import { DeclineReasonComponent } from '../decline-reason/decline-reason.component';
+import { DriverNextRidesComponent } from '../driver-next-rides/driver-next-rides.component';
 
 @Component({
   selector: 'driver-home-page',
@@ -9,6 +11,9 @@ import { Driver } from 'src/app/services/driver.service';
   styleUrls: ['./driver-home-page.component.css']
 })
 export class DriverHomePageComponent implements OnInit  {
+  @ViewChild(DriverNextRidesComponent) inviteFriendComponent: any;
+  @ViewChild(DeclineReasonComponent) declineReasonComponent:any; 
+  showDecline:boolean=false;
   driver: Driver = {
     id: 0,
     name: '',
@@ -31,5 +36,10 @@ export class DriverHomePageComponent implements OnInit  {
         .getDriver(+params['driverId'])
         .subscribe((driver) => (this.driver = driver));
     });
+  }
+
+  showDeclineReasonComponent(){
+    this.showDecline = this.inviteFriendComponent.decline;
+    this.declineReasonComponent.show = this.inviteFriendComponent.decline;
   }
 }
