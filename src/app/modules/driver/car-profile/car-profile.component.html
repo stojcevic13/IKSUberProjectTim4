@@ -9,11 +9,11 @@
             <div id="leftInfo">
                 <mat-form-field>
                     <mat-label>Model</mat-label>
-                    <input (change)="enableRequest()" matInput placeholder="Model" name="model" required>
+                    <input (change)="enableRequest()" matInput placeholder="Model" name="model" [(ngModel)]="vehicle.model" required>
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label>Registration number</mat-label>
-                    <input (change)="enableRequest()" matInput placeholder="Registration number" name="regNumber" required>
+                    <input (change)="enableRequest()" matInput placeholder="Registration number" name="regNumber" [(ngModel)]="vehicle.licenseNumber" required>
                 </mat-form-field>
             </div>
     

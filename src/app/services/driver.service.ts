@@ -49,7 +49,7 @@ export interface Driver {
 }
 
 export interface Vehicle {
-  _id: number;
+  id: number;
   driverId: number;
   vehicleType: string;
   model: string;

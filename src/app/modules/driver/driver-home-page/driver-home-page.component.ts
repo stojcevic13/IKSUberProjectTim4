@@ -33,11 +33,6 @@ export class DriverHomePageComponent implements OnInit  {
   ) {}
 
   ngOnInit(): void {
-    // this.route.params.subscribe((params) => {
-    //   this.driverService
-    //     .getDriver(+params['driverId'])
-    //     .subscribe((driver) => (this.driver = driver));
-    // });
 
     this.userService.getUser().subscribe((user) => (
       this.driverService.getDriver(user.user.id).subscribe((driver)=> (this.driver = driver))));
