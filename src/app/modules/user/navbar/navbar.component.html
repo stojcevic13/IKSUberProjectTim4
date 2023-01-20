@@ -1,6 +1,7 @@
 <mat-toolbar color="primary" class="mat-elevation-z5">
     <span class="logo">easy<span class="orangeLogo">GO</span></span>
     <div class="spacer"></div>
+
     <div *ngIf="role == 'unregistered'">
         <a id=" "  mat-button (click)="unregHomeClicked()" [ngStyle]="{'color': currentClicked == 'unregHome'? 'orange' : 'white' }" color="white" routerLink="" >HOME</a>
         <a id="login"  mat-button (click)="loginClicked()" [ngStyle]="{'color': currentClicked == 'login'? 'orange' : 'white' }" color="white" routerLink="/login" >LOGIN</a> 
@@ -24,7 +25,8 @@
         <a id="admin-history" mat-button (click)="driverHistoryClicked()" [ngStyle]="{'color': currentClicked == 'driverHistory'? 'orange' : 'white' }" color="white" >HISTORY</a>
         <a id="admin-reports"  mat-button (click)="driverReportsClicked()" [ngStyle]="{'color': currentClicked == 'driverReports'? 'orange' : 'white' }" color="white" >REPORTS</a>
         <a id="admin-notification"  mat-button (click)="driverReportsClicked()" [ngStyle]="{'color': currentClicked == 'driverReports'? 'orange' : 'white' }" color="white" >NOTIFICATION</a></div>
-        
+
+
         <a *ngIf="role == 'passenger' || role == 'driver'" id="support" mat-button (click)="supportClicked()" [ngStyle]="{'color': currentClicked == 'support'? 'orange' : 'white' }" color="white" routerLink="/support">SUPPORT</a>
         <a *ngIf="role != 'unregistered'" mat-button (click)="logoutClicked()" color="white" id="logoutBtn" routerLink="">LOGOUT</a>
 

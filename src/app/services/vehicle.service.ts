@@ -39,3 +39,10 @@ export interface LocationVehicle{
   latitude:number,
   longitude:number
 }
+
+export enum VehicleName {
+  STANDARD,
+  LUXURY,
+  VAN
+}
+

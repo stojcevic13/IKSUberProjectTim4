@@ -9,7 +9,8 @@
     </div>
 
     <div fxFlex="30%">
-        <app-reg-form [friends]="friends" (emitter)="showInviteFriendsComponent()"></app-reg-form>
+        <app-reg-form *ngIf="!activeRide" [friends]="friends" [passenger]="passenger" (emitter)="showInviteFriendsComponent()"></app-reg-form>
+        <app-panic *ngIf="activeRide"></app-panic>
     </div>
 
 </div>

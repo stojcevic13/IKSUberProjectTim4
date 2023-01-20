@@ -37,3 +37,8 @@ export interface Passenger {
   address:string;
   email:string;
 }
+
+export interface PassengerRideDTO {
+  id: number;
+  email: string;
+}
