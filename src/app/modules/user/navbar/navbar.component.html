@@ -9,7 +9,7 @@
     </div>
     <div  *ngIf="role == 'PASSENGER'">    
         <a id="passenger-home"   mat-button (click)="passengerHomeClicked()" [ngStyle]="{'color': currentClicked == 'passengerHome'? 'orange' : 'white' }" color="white" routerLink="/passengerHome" >HOME</a>
-        <a id="passenger-profile"  mat-button (click)="passengerProfileClicked()" [ngStyle]="{'color': currentClicked == 'passengerProfile'? 'orange' : 'white' }" color="white" routerLink="/user-profile/3" >PROFILE</a> 
+        <a id="passenger-profile"  mat-button (click)="passengerProfileClicked()" [ngStyle]="{'color': currentClicked == 'passengerProfile'? 'orange' : 'white' }" color="white" routerLink="/user-profile" >PROFILE</a> 
         <a id="passenger-history"  mat-button (click)="passengerHistoryClicked()" [ngStyle]="{'color': currentClicked == 'passengerHistory'? 'orange' : 'white' }" color="white" routerLink="passenger/rideHistory">HISTORY</a>
         <a id="passenger-reports"  mat-button (click)="passengerReportsClicked()" [ngStyle]="{'color': currentClicked == 'passengerReports'? 'orange' : 'white' }" color="white" >REPORTS</a>
     </div>

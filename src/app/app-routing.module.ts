@@ -22,8 +22,8 @@ const routes: Routes = [
 
 
   // PASSENGER COMPONENTS
-  {path: 'passengerHome/:passengerId', component:PassengerHomeComponent}, 
-  {path: 'user-profile/:passengerId', component:UserProfileComponent},
+  {path: 'passengerHome', component:PassengerHomeComponent}, 
+  {path: 'user-profile', component:UserProfileComponent},
   {path: 'passenger/rideHistory', component:PassengerRideHistoryComponent},
 
   // DRIVER COMPONENTS

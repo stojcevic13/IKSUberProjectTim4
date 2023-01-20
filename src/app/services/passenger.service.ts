@@ -33,6 +33,7 @@ export interface Passenger {
   id: number;
   name: string;
   surname:string;
+  profilePicture:string;
   telephoneNumber:string;
   address:string;
   email:string;

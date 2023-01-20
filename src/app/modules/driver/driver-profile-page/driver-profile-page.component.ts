@@ -51,8 +51,7 @@ export class DriverProfilePageComponent implements OnInit {
 */
       this.userService.getUser().subscribe((user) => (
         this.driverService.getDriver(user.user.id).subscribe((driver)=> (this.driver = driver)),
-        this.driverService.getDriverVehicle(user.user.id).subscribe((vehicle)=> (this.vehicle = vehicle)),
-        this.printajj()
+        this.driverService.getDriverVehicle(user.user.id).subscribe((vehicle)=> (this.vehicle = vehicle))
         ));
         
     /*  this.driverService

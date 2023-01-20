@@ -44,11 +44,12 @@ export class RegFormComponent {
     id: 0,
     name: '',
     surname: '',
+    profilePicture: '',
     telephoneNumber: '',
     address: '',
     email: ''
   };
-
+  
   
   carTypes: CarType[] = [
     {value: 'LUXURY', viewValue: 'LUXURY'},
