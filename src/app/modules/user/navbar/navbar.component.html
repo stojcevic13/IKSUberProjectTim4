@@ -15,7 +15,7 @@
     </div>
     <div *ngIf="role=='DRIVER'">
         <a id="driver-home-page"  mat-button (click)="driverHomeClicked()" [ngStyle]="{'color': currentClicked == 'driverHome'? 'orange' : 'white' }" color="white" routerLink="/driverHome" >HOME</a>
-        <a id="driver-profile-page" mat-button (click)="driverProfileClicked()" [ngStyle]="{'color': currentClicked == 'driverProfile'? 'orange' : 'white' }" color="white" routerLink="/driverProfile/6" >PROFILE</a> 
+        <a id="driver-profile-page" mat-button (click)="driverProfileClicked()" [ngStyle]="{'color': currentClicked == 'driverProfile'? 'orange' : 'white' }" color="white" routerLink="/driverProfile" >PROFILE</a> 
         <a id="driver-history" mat-button (click)="driverHistoryClicked()" [ngStyle]="{'color': currentClicked == 'driverHistory'? 'orange' : 'white' }" color="white" >HISTORY</a>
         <a id="driver-reports"  mat-button (click)="driverReportsClicked()" [ngStyle]="{'color': currentClicked == 'driverReports'? 'orange' : 'white' }" color="white" >REPORTS</a>
     </div>
