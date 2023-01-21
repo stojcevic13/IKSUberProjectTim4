@@ -65,3 +65,34 @@ mat-chip{
 #buttons{
     margin-top: 20px;
 }
+
+#inputButtonContainer{
+  display: flex;
+  flex-direction: row;
+}
+
+#startLocationDone{
+  background-color: #E39D5C;
+  color: white;
+  width:50px;
+  height:100%;
+  margin-top:5px;
+  margin-left: 15px;
+  border:none;
+  padding:8px;
+  border-radius: 5px;
+  box-shadow: 10px;
+}
+
+#startLocationNotDone{
+  background-color: #E39D5C;
+  color: white;
+  width:50px;
+  height:100%;
+  margin-top:5px;
+  margin-left: 15px;
+  border:none;
+  padding:8px;
+  border-radius: 5px;
+  box-shadow: 10px;
+}

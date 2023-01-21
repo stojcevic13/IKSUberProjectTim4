@@ -17,7 +17,7 @@ export class PassengerService {
 
 
   getAll():Observable<Passenger[]>{
-    return this.http.get<Passenger[]>(environment.apiHost + 'api/passenger/all');
+    return this.http.get<Passenger[]>(environment.apiHost + 'api/passenger');
   }
 
   getPassenger(passengerId: number): Observable<Passenger> {

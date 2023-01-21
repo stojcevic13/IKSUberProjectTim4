@@ -22,8 +22,8 @@ export class DriverRequestService {
 
 
   // TODO: Trebace kasnije da se dobave svi zahtjevi, kad dodjemo do admina
-  getAll():Observable<DriverRequest[]>{
-    return this.http.get<DriverRequest[]>(environment.apiHost + 'api/driver-request/all');
+  getAll():Observable<DriverRequestResult>{
+    return this.http.get<DriverRequestResult>(environment.apiHost + 'api/driver/driver-request');
   }
 
   getDriverRequestById(driverRequestId: number): Observable<DriverRequest> {
@@ -38,6 +38,10 @@ export class DriverRequestService {
 
 
 
+}
+export interface DriverRequestResult{
+  total:number,
+  results:DriverRequest[]
 }
 
 export interface DriverRequest {

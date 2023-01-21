@@ -31,14 +31,6 @@ export class RideServiceService {
   }
 
 
-  // private value$ = new BehaviorSubject<any>({});
-  // selectedValue$ = this.value$.asObservable(); 
-
-  // constructor(private http : HttpClient) {}
-  // setValue(test: string) {
-  //   this.value$.next(test);
-  // }
-
   createRide(ride: RideDTORequest): Observable<RideDTORequest> {
     const url: string = environment.apiHost + 'api/ride/create-example';
     return this.http.post<RideDTORequest>(url, ride);

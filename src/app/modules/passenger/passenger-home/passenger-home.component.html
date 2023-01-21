@@ -1,7 +1,7 @@
 <div   fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap.xs="0" class="container">
     <div class="overlaying" fxFlex="70%">
         <div class="map" fxFlex="80%">
-            <app-map></app-map>
+            <app-map (emitter)="pinToGetLocation($event)"></app-map>
         </div>
     </div>
     <div *ngIf="invitedFriends" class="inviteFriends">
