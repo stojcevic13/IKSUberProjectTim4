@@ -1,16 +1,20 @@
 <mat-card>
     <mat-card-content>
         <form class="form">
+            <div id="inputButtonContainer">
             <mat-form-field class="example-full-width">
                 <mat-label>Start destination</mat-label>
-                <input matInput id="startLocation" placeholder="Ex. Trg Slobode 4">
+                <input matInput id="startLocation" placeholder="Ex. Trg Slobode 4"  [(ngModel)]="departure" name="departure">
                 <mat-icon matSuffix color="primary">flag</mat-icon>
             </mat-form-field>
+            <button (click)="setUnchosenStartLocation()" *ngIf="startLocationChosen" id="startLocationDone"><mat-icon>highlight_off</mat-icon></button>
+            <button (click)="setChosenStartLocation()" *ngIf="!startLocationChosen" id="startLocationNotDone"><mat-icon>done_outline</mat-icon></button>   
+            </div>
             <mat-form-field class="example-full-width">
                 <mat-label>Final destination</mat-label>
-                <input matInput id="endLocation" placeholder="Ex. Narodni Front 4">
+                <input matInput id="endLocation" placeholder="Ex. Narodni Front 4" [(ngModel)]="destination" name="destination">
                 <mat-icon matSuffix color="primary">flag</mat-icon>
-            </mat-form-field>
+            </mat-form-field> 
         </form>
 
     <button (click)="inviteFriends()" mat-raised-button id="inviteBtn"><span>INVITE FRIENDS</span></button>
@@ -18,10 +22,7 @@
     <div *ngFor="let f of friends" class="friend">
         <mat-chip *ngIf="f.invited" color="accent">{{f.passenger.name}} {{f.passenger.surname}}<mat-icon matChipRemove (click)="uninviteFriend(f)">cancel</mat-icon></mat-chip>
     </div>
-    <!-- <mat-chip color="accent">Ana <mat-icon matChipRemove>cancel</mat-icon></mat-chip>
-    <mat-chip color="accent">Marko <mat-icon matChipRemove>cancel</mat-icon></mat-chip>
-    <mat-chip color="accent">Vlada <mat-icon matChipRemove>cancel</mat-icon></mat-chip> -->
-
+    
     <mat-form-field appearance="fill" id="select">
         <mat-label>Car type</mat-label>
         <mat-select [(ngModel)]="ride.vehicleType">
