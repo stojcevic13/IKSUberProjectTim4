@@ -1,7 +1,9 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Driver, DriverService } from 'src/app/services/driver.service';
 import { SharedService } from 'src/app/services/shared.service';
 import { AuthService, TokenDTO } from '../../security/auth.service';
 import { UserService } from '../../security/user.service';
+import { WorkingHoursDTO, WorkingHoursService } from '../../security/working-hours.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,16 +14,36 @@ export class NavbarComponent implements OnInit{
   currentClicked = "passengerHome";
   role:string = 'unregistered';
 
+  driver: Driver = {
+    id: 0,
+    name: '',
+    surname:'',
+    telephoneNumber:'',
+    address:'',
+    email:''
+  }
 
-  constructor(private sharedService: SharedService){}
+  workingHour: WorkingHoursDTO = {
+    
+  }
+
+
+  constructor(private sharedService: SharedService, private userService: UserService, private driverService: DriverService, private workingHoursService: WorkingHoursService){}
 
 
   ngOnInit() {
     this.sharedService.currentRole.subscribe((role) => {
       this.role = role;
-      console.log(this.role);
-  });
-}
+      if (this.role.toString() === "DRIVER") {
+          this.userService.getUser().subscribe((user) => {
+            this.driverService.getDriver(user.user.id).subscribe((driver) => {
+              this.driver = driver
+            })
+            this.workingHoursService.create(user.user.id, {start: new Date()}).subscribe((workingHour) => {this.workingHour = workingHour})
+          })
+      }
+    });
+  }
 
 
   unregHomeClicked() {
@@ -86,6 +108,9 @@ export class NavbarComponent implements OnInit{
   }
 
   logoutClicked() {
+    if (this.role.toString() === "DRIVER") {
+      this.workingHoursService.update(Number(this.workingHour.id), {end: new Date()}).subscribe();
+    }
     this.role = "unregistered"
     this.currentClicked = "logout"
   }
