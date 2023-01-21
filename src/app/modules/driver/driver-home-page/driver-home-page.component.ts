@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DriverService } from 'src/app/services/driver.service';
 import { Driver } from 'src/app/services/driver.service';
+import { UserService } from '../../security/user.service';
 import { DeclineReasonComponent } from '../decline-reason/decline-reason.component';
 import { DriverNextRidesComponent } from '../driver-next-rides/driver-next-rides.component';
 
@@ -20,22 +21,21 @@ export class DriverHomePageComponent implements OnInit  {
     surname: '',
     telephoneNumber:'',
     address:'',
-    email:'',
-    password:''
+    email:''
   }
 
   
   constructor(
     private route: ActivatedRoute,
-    private driverService: DriverService
+    private driverService: DriverService,
+    private userService:UserService
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      this.driverService
-        .getDriver(+params['driverId'])
-        .subscribe((driver) => (this.driver = driver));
-    });
+
+    this.userService.getUser().subscribe((user) => (
+      this.driverService.getDriver(user.user.id).subscribe((driver)=> (this.driver = driver))));
+
   }
 
   showDeclineReasonComponent(){

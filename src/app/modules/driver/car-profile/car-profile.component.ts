@@ -18,7 +18,7 @@ export class CarProfileComponent {
   constructor() {}
 
   @Input() vehicle: Vehicle = {
-    _id: 0,
+    id: 0,
     driverId: 0,
     vehicleType: '',
     model: '',

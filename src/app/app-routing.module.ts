@@ -22,13 +22,13 @@ const routes: Routes = [
 
 
   // PASSENGER COMPONENTS
-  {path: 'passengerHome/:passengerId', component:PassengerHomeComponent}, 
-  {path: 'user-profile/:passengerId', component:UserProfileComponent},
+  {path: 'passengerHome', component:PassengerHomeComponent}, 
+  {path: 'user-profile', component:UserProfileComponent},
   {path: 'passenger/rideHistory', component:PassengerRideHistoryComponent},
 
   // DRIVER COMPONENTS
-  {path: 'driverHome/:driverId', component:DriverHomePageComponent}, 
-  {path: 'driverProfile/:driverId', component:DriverProfilePageComponent},
+  {path: 'driverHome', component:DriverHomePageComponent}, 
+  {path: 'driverProfile', component:DriverProfilePageComponent},
 
   // ADMIN COMPONENTS
   {path: 'adminHome', component:AdminHomePageComponent},

@@ -18,11 +18,10 @@ export class DriverProfilePageComponent implements OnInit {
     telephoneNumber:'',
     address:'',
     email:'',
-    password: ''
   }
 
   vehicle: Vehicle = {
-    _id: 0,
+    id: 0,
     driverId: 0,
     vehicleType: '',
     model: '',
@@ -52,9 +51,8 @@ export class DriverProfilePageComponent implements OnInit {
       this.userService.getUser().subscribe((user) => (
         this.driverService.getDriver(user.user.id).subscribe((driver)=> (this.driver = driver)),
         this.driverService.getDriverVehicle(user.user.id).subscribe((vehicle)=> (this.vehicle = vehicle))
-
         ));
-
+        
     /*  this.driverService
         .getDriverVehicle(+params['driverId'])
         .subscribe((vehicle) => (this.vehicle = vehicle));
@@ -88,7 +86,7 @@ export class DriverProfilePageComponent implements OnInit {
       newEmail: this.driver.email,
       newAddress: this.driver.address,
       
-      vehicleId: this.vehicle._id,
+      vehicleId: this.vehicle.id,
       newModel: this.vehicle.model,
       newVehicleName: this.vehicle.vehicleType,
       newRegPlates: this.vehicle.licenseNumber,

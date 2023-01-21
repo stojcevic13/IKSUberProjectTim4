@@ -21,8 +21,7 @@ export class RidePopupComponent{
     surname: '',
     telephoneNumber: '',
     address: '',
-    email: '',
-    password: ''
+    email: ''
   }
   reviews:Review[] = [];
   ride: Ride = {

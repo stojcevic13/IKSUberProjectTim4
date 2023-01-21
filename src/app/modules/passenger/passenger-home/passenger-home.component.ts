@@ -5,7 +5,9 @@ import { ActivatedRoute } from '@angular/router';
 import { PassengerService, Passenger } from 'src/app/services/passenger.service';
 import { RideDTOResponse, RideServiceService, RideStatus } from 'src/app/services/ride-service.service';
 import { LoginComponent } from '../../unregistered-user/login/login.component';
+import { UserService } from '../../security/user.service';
 import { MapComponent } from '../../map/map/map.component';
+
 
 
 @Component({
@@ -15,11 +17,16 @@ import { MapComponent } from '../../map/map/map.component';
 })
 export class PassengerHomeComponent {
 
-  constructor(private passengerService: PassengerService, private rideService: RideServiceService,  private route: ActivatedRoute) {}
+  constructor(
+    private userService: UserService,
+    private passengerService: PassengerService, 
+    private rideService: RideServiceService,  
+    private route: ActivatedRoute) {}
   passenger:Passenger = {
     id: 0,
     name: '',
     surname: '',
+    profilePicture: '',
     telephoneNumber: '',
     address: '',
     email: ''
@@ -39,7 +46,18 @@ export class PassengerHomeComponent {
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
+
+    this.userService.getUser().subscribe((user) => (
+      this.passengerService.getPassenger(user.user.id).subscribe((passenger)=> (this.passenger = passenger)),
+      this.rideService.getByPassengerId(user.user.id).subscribe((passengerRides) => {
+        (this.passengerRides = passengerRides)
+        this.checkRides();
+      })
+      ));
+
+      /* Ne dobavljamo vise korisnike tako sto saljemo preko routerLink-a nego kad imamo poseban endpoint koji dobavlja 
+         trenutnog korisnika daj da ga iskoristimo, bar se meni cini da je ovako lakse. */
+      /*
       this.passengerService
         .getPassenger(+params['passengerId'])
         .subscribe((passenger) => (this.passenger = passenger));
@@ -50,7 +68,8 @@ export class PassengerHomeComponent {
           (this.passengerRides = passengerRides)
           this.checkRides();
         });
-    });
+      */
+
   }
 
   getFriends(){

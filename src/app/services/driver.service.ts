@@ -45,11 +45,10 @@ export interface Driver {
   telephoneNumber:string;
   address:string;
   email:string;
-  password:string;
 }
 
 export interface Vehicle {
-  _id: number;
+  id: number;
   driverId: number;
   vehicleType: string;
   model: string;
