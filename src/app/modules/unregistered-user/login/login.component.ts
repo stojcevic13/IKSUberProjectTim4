@@ -38,12 +38,7 @@ export class LoginComponent {
         this.sharedService.currentRole.next(user.role.toString());
         this.roleEmitter.emit(user.role.toString());
         if(user.role.toString() == "DRIVER"){
-<<<<<<< Updated upstream
-          this.router.navigate(['driverHome/' + user.user.id]);
-=======
-          // this.workingHoursService.create(user.user.id, {start: new Date()}).subscribe((w) => {this.workingHours = w});
           this.router.navigate(['driverHome']);
->>>>>>> Stashed changes
         }else if(user.role.toString() == "PASSENGER"){
          this.router.navigate(['passengerHome/' + user.user.id]);
         }else if(user.role.toString() == "ADMIN"){
