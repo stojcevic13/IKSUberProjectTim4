@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/enviroments/environment';
+import { WorkingHoursDTO } from '../modules/security/working-hours.service';
 
 @Injectable({
   providedIn: 'root'
@@ -42,9 +43,11 @@ export interface Driver {
   id: number;
   name: string;
   surname:string;
+  profilePicture:string;
   telephoneNumber:string;
   address:string;
   email:string;
+  workingHour?:WorkingHoursDTO
 }
 
 export interface Vehicle {

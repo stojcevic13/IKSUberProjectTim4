@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/modules/security/auth.service';
 import { Role, UserService } from '../../security/user.service';
 import { EventEmitter } from '@angular/core';
 import { SharedService } from 'src/app/services/shared.service';
+import { WorkingHoursDTO, WorkingHoursService } from '../../security/working-hours.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,12 +16,19 @@ export class LoginComponent {
     private router: Router,
     private authService: AuthService,
     private userService: UserService,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private workingHoursService: WorkingHoursService
   ) {
   }
 
   email: string = "";       
   password: string = "";
+
+  // workingHours: WorkingHoursDTO = {
+  //   id: 0,
+  //   start: new Date(),
+  //   end: new Date()
+  // }
 
   login() {
     console.log(this.email, this.password);
@@ -30,9 +38,9 @@ export class LoginComponent {
         this.sharedService.currentRole.next(user.role.toString());
         this.roleEmitter.emit(user.role.toString());
         if(user.role.toString() == "DRIVER"){
-          this.router.navigate(['driverHome/' + user.user.id]);
+          this.router.navigate(['driverHome']);
         }else if(user.role.toString() == "PASSENGER"){
-         this.router.navigate(['passengerHome/' + user.user.id]);
+         this.router.navigate(['passengerHome']);
         }else if(user.role.toString() == "ADMIN"){
           this.router.navigate(['adminHome']);
         }
