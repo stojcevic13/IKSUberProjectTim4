@@ -50,6 +50,5 @@ export class UnregFormComponent {
     }else{
       this.destination =  startLocation;
     }
-
   }
 }

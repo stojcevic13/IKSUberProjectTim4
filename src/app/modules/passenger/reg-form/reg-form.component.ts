@@ -20,7 +20,9 @@ interface CarType {
 export class RegFormComponent {
 
   futureOrder: boolean = false;
-
+  startLocationChosen:boolean = false;
+  departure: string = "";       
+  destination: string = "";
   ride : RideDTORequest = {
     passengers: [],
     locations: [],     // Na IKS-u imamo samo 2 tacke, a na ISS-u treba da podrzimo rad sa vise tacaka pa zato ide lista routes.
@@ -111,5 +113,22 @@ export class RegFormComponent {
 
   hideFutureOrder() {
     this.futureOrder = false;
+  }
+
+  
+  setChosenStartLocation(){
+    this.startLocationChosen = true;
+  }
+
+  setUnchosenStartLocation(){
+    this.startLocationChosen = false;
+  }
+
+  setStartAndEndLocation(startLocation:string){
+    if(!this.startLocationChosen){
+      this.departure=startLocation;
+    }else{
+      this.destination =  startLocation;
+    }
   }
 }

@@ -12,7 +12,7 @@ import { DriverHomePageComponent } from './modules/driver/driver-home-page/drive
 import { DriverProfilePageComponent } from './modules/driver/driver-profile-page/driver-profile-page.component';
 import { PassengerRideHistoryComponent } from './modules/passenger/passenger-ride-history/passenger-ride-history.component';
 import { AdminHomePageComponent } from './modules/admin/admin-home-page/admin-home-page.component';
-import { CreateDriverComponent } from './modules/admin/create-driver/create-driver.component';
+import { AdminDriverPageComponent } from './modules/admin/admin-driver-page/admin-driver-page.component';
 const routes: Routes = [
 
   // UNREGISTERED USER COMPONENTS
@@ -32,7 +32,7 @@ const routes: Routes = [
 
   // ADMIN COMPONENTS
   {path: 'adminHome', component:AdminHomePageComponent},
-  {path:'createDriver', component:CreateDriverComponent},
+  {path:'adminDriver', component:AdminDriverPageComponent},
   {path: 'support', component:SupportChatComponent},
 
 
@@ -44,4 +44,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 export const routingComponents = [UnregisteredHomeComponent, FooterComponent, LoginComponent, NavbarComponent, PassengerHomeComponent,
-   RegistrationComponent, UserProfileComponent, PassengerRideHistoryComponent, AdminHomePageComponent, CreateDriverComponent];
+   RegistrationComponent, UserProfileComponent, PassengerRideHistoryComponent, AdminHomePageComponent,  AdminDriverPageComponent];

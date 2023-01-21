@@ -13,10 +13,20 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { MatTableModule } from '@angular/material/table';
+import { AdminDriverPageComponent } from './admin-driver-page/admin-driver-page.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import { ValidateChangesComponent } from './validate-changes/validate-changes.component';
+import { MatListModule } from '@angular/material/list';
+import { ChangesComponent } from './changes/changes.component';
+
 @NgModule({
   declarations: [
     AdminHomePageComponent,
-    CreateDriverComponent
+    CreateDriverComponent,
+    AdminDriverPageComponent,
+    ValidateChangesComponent,
+    ChangesComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +40,10 @@ import { FormsModule } from '@angular/forms';
     MatOptionModule,
     MatSelectModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    MatTableModule,
+    MatTabsModule,
+    MatListModule
   ]
 })
 export class AdminModule { }

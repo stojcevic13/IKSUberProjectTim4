@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PassengerService, Passenger } from 'src/app/services/passenger.service';
 import { RideDTOResponse, RideServiceService, RideStatus } from 'src/app/services/ride-service.service';
 import { LoginComponent } from '../../unregistered-user/login/login.component';
+import { MapComponent } from '../../map/map/map.component';
 
 
 @Component({
@@ -29,6 +30,7 @@ export class PassengerHomeComponent {
 
   @ViewChild(RegFormComponent) regFormComponent: any; 
   @ViewChild(InviteFriendComponent) inviteFriendComponent: any; 
+  @ViewChild(MapComponent) mapComponent: any;
   invitedFriends:boolean = false;
   friends:friend[] =[];
   showInviteFriendsComponent(){
@@ -63,6 +65,10 @@ export class PassengerHomeComponent {
       if (Number(RideStatus[ride.status]) === RideStatus.ACTIVE) 
         this.activeRide = true;
     }
+  }
+
+  pinToGetLocation(location:Array<string>){
+    this.regFormComponent.setStartAndEndLocation(location);
   }
 
 
