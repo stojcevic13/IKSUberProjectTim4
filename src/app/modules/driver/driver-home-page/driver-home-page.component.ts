@@ -20,6 +20,7 @@ export class DriverHomePageComponent implements OnInit {
     id: 0,
     name: '',
     surname: '',
+    profilePicture: '',
     telephoneNumber:'',
     address:'',
     email:''

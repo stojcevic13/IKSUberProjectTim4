@@ -17,6 +17,7 @@ export class ActiveButtonComponent implements OnInit {
     id: 0,
     name: '',
     surname:'',
+    profilePicture: '',
     telephoneNumber:'',
     address:'',
     email:''
