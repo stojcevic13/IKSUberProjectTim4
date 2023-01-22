@@ -26,10 +26,19 @@ span{
 
 #inviteBtn{
     background-color: #E39D5C;
+    margin: 20px 0px;
+}
+
+#favoriteRoutes {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#favoriteOption {
+  font-size: 13px;
 }
 
 #select{
-
     margin-top: 20px;
 }
 
