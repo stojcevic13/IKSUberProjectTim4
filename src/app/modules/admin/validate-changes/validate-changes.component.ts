@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { DriverRequest, DriverRequestService } from 'src/app/services/driver-request.service';
 import { Driver, DriverService } from 'src/app/services/driver.service';
+import { ChangesComponent } from '../changes/changes.component';
 
 @Component({
   selector: 'app-validate-changes',
@@ -9,9 +10,9 @@ import { Driver, DriverService } from 'src/app/services/driver.service';
 })
 export class ValidateChangesComponent implements OnInit {
 
-  showReq:boolean = false;
   requests: DriverRequest[] = [];
   driver!:Driver;
+  @ViewChild(ChangesComponent) changesComponent:any; 
   constructor(private driverRequestService:DriverRequestService, private driverService:DriverService){
 
   }
@@ -32,9 +33,16 @@ export class ValidateChangesComponent implements OnInit {
   }
 
 
-  showRequest(){
-    console.log("cao");
-    this.showReq = true;
+  showRequest(request:DriverRequest){
+    this.changesComponent.show=true;
+    this.changesComponent.setDriverRequest(request);
+    }
+  
+
+
+  deleteRequest(request:DriverRequest){
+    this.driverRequestService.deleteDriverRequest(request).subscribe();
+    this.requests = this.requests.filter(req => req !== request);
   }
   
 }

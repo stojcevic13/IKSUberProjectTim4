@@ -30,9 +30,9 @@ export class LoginComponent {
         this.sharedService.currentRole.next(user.role.toString());
         this.roleEmitter.emit(user.role.toString());
         if(user.role.toString() == "DRIVER"){
-          this.router.navigate(['driverHome/' + user.user.id]);
+          this.router.navigate(['driverHome']);
         }else if(user.role.toString() == "PASSENGER"){
-         this.router.navigate(['passengerHome/' + user.user.id]);
+         this.router.navigate(['passengerHome']);
         }else if(user.role.toString() == "ADMIN"){
           this.router.navigate(['adminHome']);
         }
