@@ -76,7 +76,9 @@ export class RegFormComponent implements OnInit {
     passengers: [],
     vehicleType: VehicleName.STANDARD,
     babyTransport: false,
-    petTransport: false
+    petTransport: false,
+    kilometers: 0,
+    estimatedTimeInMinutes: 0
   };
 
   favoriteOrder: boolean = false;
@@ -109,13 +111,19 @@ export class RegFormComponent implements OnInit {
   }
   a : number = 0;
   orderRide() {
+    // ZNAM DA JE KOD UZASAN / I KNOW THE CODE IS TERRIBLE / Я знаю, код ужасен
     if (this.favoriteOrder) {
       this.ride.locations = this.selectedFavoriteRoute.locations;
       this.ride.passengers = this.selectedFavoriteRoute.passengers;
       this.ride.startTime = new Date();
       if (this.futureOrder && this.futureTime != '') {
-        this.ride.startTime.setHours(Number(this.futureTime.split(":")[0]));
-        this.ride.startTime.setMinutes(Number(this.futureTime.split(":")[1]));  
+        this.ride.startTime = new Date(this.futureTime);
+        let now = new Date();
+        let fiveHoursFromNow = new Date(now.getTime() + 5*60*60*1000);
+        if (this.ride.startTime > fiveHoursFromNow || this.ride.startTime < now) {
+          alert("Future ride can be ordered just in next 5 hours.");
+          return;
+      }
       }
     } 
     else {
@@ -124,8 +132,15 @@ export class RegFormComponent implements OnInit {
       this.ride.passengers.push(this.passenger);
       this.ride.startTime = new Date();
       if (this.futureOrder && this.futureTime != '') {
-        this.ride.startTime.setHours(Number(this.futureTime.split(":")[0]));
-        this.ride.startTime.setMinutes(Number(this.futureTime.split(":")[1]));  
+        if (this.futureOrder && this.futureTime != '') {
+          this.ride.startTime = new Date(this.futureTime);
+          let now = new Date();
+          let fiveHoursFromNow = new Date(now.getTime() + 5*60*60*1000);
+          if (this.ride.startTime > fiveHoursFromNow || this.ride.startTime < now) {
+              alert("Future ride can be ordered just in next 5 hours.");
+              return;
+          }
+        }
       }
       if (this.addToFavorites) {
         this.createFavoriteRoute();
@@ -141,7 +156,9 @@ export class RegFormComponent implements OnInit {
     passengers: [],
     vehicleType: VehicleName.STANDARD,
     babyTransport: false,
-    petTransport: false
+    petTransport: false,
+    kilometers: 0,
+    estimatedTimeInMinutes: 0
   }
   createFavoriteRoute() {
     this.favoriteRoute.favoriteName = "..." // Ne bih da maltretiramo korisnika (i nas) da unosi... naziv omiljene rute. Glupo je sto su to napravili na iss.
@@ -150,7 +167,8 @@ export class RegFormComponent implements OnInit {
     this.favoriteRoute.vehicleType = this.ride.vehicleType;
     this.favoriteRoute.babyTransport = this.ride.babyTransport;
     this.favoriteRoute.petTransport = this.ride.petTransport;
-    // TODO: dodaj jos kilometers i estimatedTime, ali to kad vidimo kako se iz mape dobavlja.
+    this.favoriteRoute.kilometers = 0.8;
+    this.favoriteRoute.estimatedTimeInMinutes = 20;
     this.favoriteRouteService.create(this.favoriteRoute).subscribe();
   }
 

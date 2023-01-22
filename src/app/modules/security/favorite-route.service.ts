@@ -38,4 +38,6 @@ export interface FavoriteRoute {
   vehicleType: VehicleName;
   babyTransport: boolean;
   petTransport: boolean;
+  kilometers: number;
+  estimatedTimeInMinutes: number;
 }

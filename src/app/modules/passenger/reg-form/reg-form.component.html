@@ -52,8 +52,8 @@
     </section>
 
     <div id="futureOrdering" *ngIf="futureOrder">
-        <label for="enterTime">Please enter time: </label>
-        <input id="enterTime" type="time" name="enterTime" [(ngModel)]="futureTime">    
+        <label for="enterTime">Future time:  </label>
+        <input id="enterTime" type="datetime-local" name="enterTime" [(ngModel)]="futureTime">    
         <a (click)="hideFutureOrder()" id="cancelIcon"><mat-icon>cancel</mat-icon></a>
     </div>
 
