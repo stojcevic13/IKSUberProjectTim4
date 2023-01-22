@@ -15,6 +15,10 @@
                     <mat-label>Registration number</mat-label>
                     <input (change)="enableRequest()" matInput placeholder="Registration number" name="regNumber" [(ngModel)]="vehicle.licenseNumber" required>
                 </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Num of seats:</mat-label>
+                    <input (change)="enableRequest()" matInput placeholder="Passenger seats" name="passengerSeats" [(ngModel)]="vehicle.passengerSeats" required>
+                </mat-form-field>
             </div>
     
             <div id="rightInfo">

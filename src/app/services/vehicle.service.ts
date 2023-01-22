@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/enviroments/environment';
+import { Driver, VehicleUpdate } from './driver.service';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,10 @@ export class VehicleService {
     return this.http.get<Vehicle[]>(environment.apiHost + 'api/vehicle/all');
   }
 
+  updateDriversVehicle(driver:Driver, vehicle:VehicleUpdate): Observable<VehicleUpdate> {
+    console.log("cao")
+    return this.http.put<VehicleUpdate>(environment.apiHost + 'api/driver/' + driver.id + '/vehicle' ,vehicle);
+  }
 }
 
 export interface Vehicle{
@@ -29,7 +34,7 @@ export interface Vehicle{
   passengerSeats:number,
   licenseNumber:string,
   model:string,
-  vehicleType:string,
+  vehicleType:VehicleName,
   currentLocation:LocationVehicle,
   available:boolean
 }

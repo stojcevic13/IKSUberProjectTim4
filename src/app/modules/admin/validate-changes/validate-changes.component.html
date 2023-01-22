@@ -5,15 +5,15 @@
         
             <span><mat-icon>account_circle</mat-icon> DRIVER REQUEST</span>
             <span>{{request.newName.toUpperCase() + " " + request.newSurname.toUpperCase()}} </span>
-            <button type="submit" id="seeBtn"  (click)="showRequest()">SEE</button>
-            <button type="submit" id="cancelBtn" >CANCEL</button>
+            <button type="submit" id="seeBtn"  (click)="showRequest(request)">SEE</button>
+            <button type="submit" id="cancelBtn"  (click)="deleteRequest(request)">CANCEL</button>
         </div>
     </div>
 
 </mat-card>
 
 
-<app-changes *ngIf="showReq"></app-changes>
+<app-changes  (closed)="deleteRequest($event)"></app-changes>
 
 
 

@@ -4,6 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/enviroments/environment';
 import { WorkingHoursDTO } from '../modules/security/working-hours.service';
 import { RideDTOResponse } from './ride-service.service';
+import { Location } from '../modules/passenger/passenger-ride-history/passenger-ride-history.component';
+import { VehicleName } from './vehicle.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -42,8 +45,17 @@ export class DriverService {
   }
 
 }
+export interface VehicleUpdate{
+  id:number,
+  vehicleType:VehicleName;
+  model:string;
+  licenseNumber:string;
+  babyTransport:boolean;
+  petTransport:boolean;
+  passengerSeats:number;
 
 
+}
 export interface Driver {
   id: number;
   name: string;
@@ -58,11 +70,13 @@ export interface Driver {
 export interface Vehicle {
   id: number;
   driverId: number;
-  vehicleType: string;
+  vehicleType: VehicleName;
   model: string;
   licenseNumber: string;
   // location:
   passengerSeats: number;
   babyTransport: boolean;
   petTransport: boolean;
+//  available:boolean,
+ // currentLocation:Location
 }
