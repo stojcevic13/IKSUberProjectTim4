@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/modules/security/auth.service';
 import { Role, UserService } from '../../security/user.service';
 import { EventEmitter } from '@angular/core';
 import { SharedService } from 'src/app/services/shared.service';
+import { WorkingHoursDTO, WorkingHoursService } from '../../security/working-hours.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,12 +16,19 @@ export class LoginComponent {
     private router: Router,
     private authService: AuthService,
     private userService: UserService,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private workingHoursService: WorkingHoursService
   ) {
   }
 
   email: string = "";       
   password: string = "";
+
+  // workingHours: WorkingHoursDTO = {
+  //   id: 0,
+  //   start: new Date(),
+  //   end: new Date()
+  // }
 
   login() {
     console.log(this.email, this.password);

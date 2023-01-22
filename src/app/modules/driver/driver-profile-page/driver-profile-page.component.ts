@@ -16,6 +16,7 @@ export class DriverProfilePageComponent implements OnInit {
     id: 0,
     name: '',
     surname: '',
+    profilePicture: '',
     telephoneNumber:'',
     address:'',
     email:'',

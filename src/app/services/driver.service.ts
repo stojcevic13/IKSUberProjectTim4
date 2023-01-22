@@ -5,6 +5,7 @@ import { environment } from 'src/enviroments/environment';
 import { Location } from '../modules/passenger/passenger-ride-history/passenger-ride-history.component';
 import { VehicleName } from './vehicle.service';
 
+import { WorkingHoursDTO } from '../modules/security/working-hours.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -53,9 +54,11 @@ export interface Driver {
   id: number;
   name: string;
   surname:string;
+  profilePicture:string;
   telephoneNumber:string;
   address:string;
   email:string;
+  workingHour?:WorkingHoursDTO
 }
 
 export interface Vehicle {
