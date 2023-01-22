@@ -77,6 +77,7 @@ export class RegFormComponent {
   orderRide() {
     this.ride.locations = this.getLocations();
     this.ride.passengers = this.getPassengersFromFriends();
+    this.ride.passengers.push(this.passenger);
     this.ride.startTime = new Date();
     if (this.futureOrder && this.futureTime != '') {
       this.ride.startTime.setHours(Number(this.futureTime.split(":")[0]));
