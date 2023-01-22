@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Vehicle } from 'src/app/services/driver.service';
+import { VehicleName } from 'src/app/services/vehicle.service';
 
 export interface CarType {
   value: string;
@@ -20,7 +21,7 @@ export class CarProfileComponent {
   @Input() vehicle: Vehicle = {
     id: 0,
     driverId: 0,
-    vehicleType: '',
+    vehicleType: VehicleName.STANDARD,
     model: '',
     licenseNumber: '',
     passengerSeats: 0,

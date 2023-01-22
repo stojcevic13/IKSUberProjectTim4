@@ -1,6 +1,6 @@
 mat-card{
     margin:2em auto;
-    width:45%;
+    width:50%;
 }
 
 span{
@@ -12,24 +12,24 @@ span{
     color:white;
     background-color: #E39D5C;
     border-radius: 5px;
-    font-size:12px;
+    font-size:15px;
     border:none;
-    margin-left:70px;
+    margin-left:100px;
     margin-right:10px;
     height:23px;
-    width:50px;
+    width:60px;
     box-shadow: 0px 1px 1px 1px rgb(200, 200, 198);
 }
 
 
 #cancelBtn{
-    color:rgb(28, 27, 27);
+    color: #7e7e7ef6;
     background-color: #a6a6a697;
     border-color: #504f4e95;
     border-radius: 5px;
     box-shadow: 0px 1px 1px 1px rgb(200, 200, 198);
-    font-size:13px;
-    margin:10px;
+    font-size:15px;
+    margin:15px;
     margin-right: 5px;
     height:23px;
     width:max-content;
