@@ -36,6 +36,11 @@ export class RideServiceService {
     return this.http.post<RideDTORequest>(url, ride);
   }
 
+  rejectRide(rideId: number, rejection: RejectionDTO): Observable<RideDTOResponse> {
+    return this.http.put<RideDTOResponse>(environment.apiHost + 'api/ride/' + rideId + '/cancel', rejection);
+  }
+
+
   getByPassengerId(passengerId: number):Observable<RideDTOResponse[]>{
     return this.http.get<RideDTOResponse[]>(environment.apiHost + 'api/ride/passenger/' + passengerId);
   }

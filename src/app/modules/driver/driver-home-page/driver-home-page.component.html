@@ -14,10 +14,10 @@
             <app-map></app-map>
         </div>
     </div>
-    <driver-next-rides  (emitter)=" showDeclineReasonComponent()" fxFlex="43%" ></driver-next-rides>
+    <driver-next-rides [driver]="driver" [nextRides]="nextRides"  (emitter)=" showDeclineReasonComponent()" (nextRidesEmiter)="selectRide($event)" fxFlex="43%" ></driver-next-rides>
 </div>
 <!-- <div fxlayout="column" fxLayoutAlign="space-evenly center" style="background-color: red;">
     
 </div> -->
-
-<app-decline-reason *ngIf="showDecline"  id="declineComponent" ></app-decline-reason>
+<!-- (closed)="deleteRide($event)"  -->
+<app-decline-reason [driver]="driver" [selectedRide]="selectedRide" *ngIf="showDecline"  id="declineComponent" ></app-decline-reason>

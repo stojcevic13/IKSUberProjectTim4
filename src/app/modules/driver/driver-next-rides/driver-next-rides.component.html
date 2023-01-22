@@ -1,13 +1,37 @@
 <mat-card>
     <div id="next-rides-title">NEXT RIDES</div>
 
-    <div *ngFor="let r of rides" class="ride">
+    <table *ngIf="nextRides.length > 0">
+        <thead>
+          <tr>
+            <th>Row number</th>
+            <th>Start time</th>
+            <th>Departure address</th>
+            <th>Destination address</th>
+            <th>GO</th>
+            <th>CANCEL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let r of nextRides">
+            <td>R{{r.id}}</td>
+            <td>{{ getTimeStr(r.startTime)}}</td>
+            <td>{{r.locations[0].departure.address}}</td>
+            <td>{{r.locations[0].destination.address}}</td>
+            <td><button mat-raised-button (click)="goClick()" id="goBtn">GO</button></td>
+            <td><button mat-raised-button (click)="cancelClick(r)" id="cancelBtn">CANCEL <mat-icon>cancel</mat-icon> </button></td>
+          </tr>
+        </tbody>
+      </table>
+      
+
+    <!-- <div *ngFor="let r of nextRides" class="RideDTOResponse">
         <span class="rideDescription">R{{r.id}}</span>
-        <span class="rideDescription">{{r.startPoint}}</span>
-        <span class="rideDescription">{{r.endPoint}}</span>
-        <button mat-raised-button id="goBtn">GO</button>
-        <button mat-raised-button (click)=" cancelClick()" id="cancelBtn">CANCEL <mat-icon>cancel</mat-icon> </button>    
-    </div>
+        <span class="rideDescription">{{r.locations[0].departure.address}}</span>
+        <span class="rideDescription">{{r.locations[0].destination.address}}</span>
+        <button mat-raised-button (click)="goClick()" id="goBtn">GO</button>
+        <button mat-raised-button (click)=" cancelClick(r)" id="cancelBtn">CANCEL <mat-icon>cancel</mat-icon> </button>    
+    </div> -->
 
 </mat-card>
 
