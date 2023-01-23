@@ -15,12 +15,7 @@
             </tr>
             <tr>
                 <td> <span id="name"> DRIVER: </span></td>
-                <td><span id="data">{{driver.email.toUpperCase()}} </span></td>
-            </tr>
-
-            <tr>
-                <td> <span id="name"></span></td>
-                <td><span id="data">{{driver.name.toUpperCase() + " " + driver.surname.toUpperCase()}} </span></td>
+                <td><span id="data">{{ride.driver.email.toUpperCase()}} </span></td>
             </tr>
 
             <tr>
@@ -31,15 +26,20 @@
                 <td> <span id="name"> PRICE: </span></td>
                 <td><span id="data">{{ride.totalCost + "DIN"}} </span></td>
             </tr>
-            <tr>
+        
+            <tr *ngIf="reviewsExist">
                 <td><span id="name"> REVIEWS:</span></td>
             </tr>
             <tr *ngFor="let r of reviews">
                 <td> <span id="rating">BY {{r.passenger.name.toUpperCase() + " " + r.passenger.surname.toUpperCase()}}: </span></td>
                 <td> <span id="dataRating"> {{r.rating + "/5 "}} {{"'" + r.comment.toUpperCase() + "'"}}</span></td>
             </tr>
-           
-        </table> 
+        </table>
+        <div *ngIf="!gradedByThisUser" id="gradeDiv"> 
+            <input name="grade" placeholder="Grade(1-5)" id="grading">
+            <input name="comment" placeholder="Comment" id="grading">
+            <button id="gradeButton" type="submit">GRADE</button>
+        </div>
     </div>
     <span class = "buttons">
     <button mat-stroked-button id="now"> ORDER NOW </button>

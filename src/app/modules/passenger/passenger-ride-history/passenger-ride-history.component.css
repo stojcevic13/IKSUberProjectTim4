@@ -9,3 +9,16 @@
 table{
     padding-bottom: 200px;
 }
+
+
+#favouriteBtn{
+    background-color: white;
+    border:none;
+    margin-left: 20px;
+}
+
+#notFavouriteBtn{
+    background-color: white;
+    border:none;
+    margin-left: 20px;
+}
