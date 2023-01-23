@@ -30,6 +30,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RidePopupComponent } from './ride-popup/ride-popup.component';
 import { MatListModule } from '@angular/material/list';
+import { RemarkComponent } from './remark/remark.component';
 @NgModule({
   declarations: [
     InviteFriendComponent,
@@ -38,7 +39,8 @@ import { MatListModule } from '@angular/material/list';
     PassengerRideHistoryComponent,
     RideRequestComponent,
     EndRideComponent,
-    RidePopupComponent
+    RidePopupComponent,
+    RemarkComponent
   ],
   imports: [
     CommonModule,

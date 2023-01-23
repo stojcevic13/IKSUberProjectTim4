@@ -36,6 +36,23 @@ export class RideServiceService {
     return this.http.post<RideDTORequest>(url, ride);
   }
 
+  rejectRide(rideId: number, rejection: RejectionDTO): Observable<RideDTOResponse> {
+    return this.http.put<RideDTOResponse>(environment.apiHost + 'api/ride/' + rideId + '/cancel', rejection);
+  }
+
+  startRide(rideId: number): Observable<RideDTOResponse> {
+    return this.http.put<RideDTOResponse>(environment.apiHost + 'api/ride/' + rideId + '/start', null);
+  }
+  
+  panicRide(rideId: number, panic: Panic): Observable<RideDTOResponse> {
+    return this.http.put<RideDTOResponse>(environment.apiHost + 'api/ride/' + rideId + '/panic-ride', panic);
+  }
+
+  finishRide(rideId: number): Observable<RideDTOResponse> {
+    return this.http.put<RideDTOResponse>(environment.apiHost + 'api/ride/' + rideId + '/end', null);
+  }
+
+
   getByPassengerId(passengerId: number):Observable<RideDTOResponse[]>{
     return this.http.get<RideDTOResponse[]>(environment.apiHost + 'api/ride/passenger/' + passengerId);
   }
@@ -67,7 +84,7 @@ export interface RideDTOResponse {
   driver: DriverRideDTO;
   estimatedTimeInMinutes: number;
   status: RideStatus;
-  rejection: RejectionDTO;
+  rejection?: RejectionDTO;
   babyTransport: boolean;
   petTransport: boolean;
   vehicleType: VehicleName;
@@ -83,6 +100,13 @@ export interface DriverRideDTO {
 export interface RejectionDTO {
   reason: string;
   timeOfRejection: Date;
+}
+
+export interface Panic {
+  userId: number;
+  ride: RideDTOResponse;
+  time: Date;
+  reason: string;
 }
 
 export enum RideStatus {

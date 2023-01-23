@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/enviroments/environment';
+import { WorkingHoursDTO } from '../modules/security/working-hours.service';
+import { RideDTOResponse } from './ride-service.service';
 import { Location } from '../modules/passenger/passenger-ride-history/passenger-ride-history.component';
 import { VehicleName } from './vehicle.service';
 
-import { WorkingHoursDTO } from '../modules/security/working-hours.service';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -36,6 +38,10 @@ export class DriverService {
 
   updateDriver(driver: Driver): Observable<Driver> {
     return this.http.put<Driver>(environment.apiHost + 'api/driver/' + driver.id, driver);
+  }
+
+  getDriverNextRides(driverId: number):Observable<RideDTOResponse[]>{
+    return this.http.get<RideDTOResponse[]>(environment.apiHost + 'api/driver/' + driverId + '/next-rides/');
   }
 
 }

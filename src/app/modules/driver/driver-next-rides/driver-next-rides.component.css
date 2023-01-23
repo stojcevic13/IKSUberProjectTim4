@@ -19,7 +19,9 @@ span{
     height:60px;
     border-radius: 40px;
 }
-
+td {
+    padding-right: 5px;
+}
 .ride:hover{
     background-color: rgba(192, 192, 192, 0.15);
 }

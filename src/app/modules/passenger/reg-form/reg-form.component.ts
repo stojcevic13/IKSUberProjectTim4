@@ -123,7 +123,7 @@ export class RegFormComponent implements OnInit {
         if (this.ride.startTime > fiveHoursFromNow || this.ride.startTime < now) {
           alert("Future ride can be ordered just in next 5 hours.");
           return;
-      }
+        }
       }
     } 
     else {

@@ -14,10 +14,22 @@
             <app-map></app-map>
         </div>
     </div>
-    <driver-next-rides  (emitter)=" showDeclineReasonComponent()" fxFlex="43%" ></driver-next-rides>
+
+    <!-- OVAJ DIV KOJI PRIKAZUJE DUGMAD U TOKU VOZNJE NEKA BUDE PORED MAPE JER NIJE PREVELIK -->
+    <div *ngIf="rideInProgress" id="activeRideButtons">
+        <app-panic [userId]="driver.id" [driver]="driver" [activeRide]="activeRide" (rideNotInProggress)="rideNotInProggress($event)" ></app-panic>
+        <app-finish-ride [driver]="driver" [activeRide]="activeRide" (rideNotInProggress)="rideNotInProggress($event)"></app-finish-ride>
+    </div>
+
+    <driver-next-rides *ngIf="!rideInProgress" [driver]="driver" [nextRides]="nextRides"
+          (emitter)=" showDeclineReasonComponent()"
+          (nextRidesEmiter)="selectRide($event)" 
+          (activeRideEmiter)="activateRide($event)" fxFlex="43%" >
+    </driver-next-rides>
+
 </div>
 <!-- <div fxlayout="column" fxLayoutAlign="space-evenly center" style="background-color: red;">
-    
-</div> -->
 
-<app-decline-reason *ngIf="showDecline"  id="declineComponent" ></app-decline-reason>
+</div> -->
+<!-- (closed)="deleteRide($event)"  -->
+<app-decline-reason [driver]="driver" [selectedRide]="selectedRide" *ngIf="showDecline"  id="declineComponent" ></app-decline-reason>

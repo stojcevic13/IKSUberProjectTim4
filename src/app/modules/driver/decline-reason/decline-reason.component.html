@@ -2,7 +2,7 @@
     <span> Please enter your reason for ride cancelling:</span>
     <mat-form-field appearance="fill">
         <mat-label>Reason</mat-label>
-        <textarea matInput></textarea>
+        <textarea matInput [(ngModel)]="rejection.reason"></textarea>
     </mat-form-field>
     <button mat-button id="sendBtn" (click)="hide()"> SEND </button>
 </mat-card>

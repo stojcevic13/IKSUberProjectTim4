@@ -1,21 +1,16 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Driver } from 'src/app/services/driver.service';
-import { RideServiceService, RideDTOResponse, Panic } from 'src/app/services/ride-service.service';
+import { RideDTOResponse, RideServiceService } from 'src/app/services/ride-service.service';
 import { RideStatus, VehicleName } from '../../passenger/passenger-ride-history/passenger-ride-history.component';
-import { LoginComponent } from '../../unregistered-user/login/login.component';
 
 @Component({
-  selector: 'app-panic',
-  templateUrl: './panic.component.html',
-  styleUrls: ['./panic.component.css']
+  selector: 'app-finish-ride',
+  templateUrl: './finish-ride.component.html',
+  styleUrls: ['./finish-ride.component.css']
 })
-export class PanicComponent {
+export class FinishRideComponent {
 
   constructor(private rideService: RideServiceService) {};
-
-  panicShow: boolean = false;
-
-  @Input() userId: number = 0;
 
   @Input() driver: Driver = {
     id: 0,
@@ -44,27 +39,9 @@ export class PanicComponent {
 
   @Output() rideNotInProggress = new EventEmitter<boolean>();
 
-  panic: Panic = {
-    userId: 0,
-    ride: this.activeRide,
-    time: new Date(),
-    reason: ''
-  }
-
-  panicRide() {
-    this.panicShow = true;
-
-  }
-
-  sendPanic() {
-    this.panic.userId = this.userId;
-    this.panic.ride = this.activeRide;
-    this.panic.time = new Date();
-        
-    this.rideService.panicRide(this.activeRide.id, this.panic).subscribe();
+  finishRide() {
+    this.rideService.finishRide(this.activeRide.id).subscribe();
     this.rideNotInProggress.emit(false);
-
-    this.panicShow = false;
   }
 
 }

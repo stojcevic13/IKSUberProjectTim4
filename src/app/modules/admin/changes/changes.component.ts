@@ -19,6 +19,7 @@ export class ChangesComponent {
     id: 0,
     name: '',
     surname: '',
+    profilePicture: '',
     telephoneNumber: '',
     address: '',
     email: ''
