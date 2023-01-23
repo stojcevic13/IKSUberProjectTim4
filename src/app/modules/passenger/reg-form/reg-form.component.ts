@@ -1,10 +1,12 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms'
 import { friend } from '../invite-friend/invite-friend.component';
 import { PassengerService, Passenger } from 'src/app/services/passenger.service';
 import { RideServiceService, RideDTORequest, RouteDTO } from 'src/app/services/ride-service.service';
 import { LocationVehicle, VehicleName } from 'src/app/services/vehicle.service';
 import { ThisReceiver } from '@angular/compiler';
+import { FavoriteRoute, FavoriteRouteService } from '../../security/favorite-route.service';
+import { UserService } from '../../security/user.service';
 
 interface CarType {
   value: string;
@@ -17,7 +19,7 @@ interface CarType {
   styleUrls: ['./reg-form.component.css']
 })
 
-export class RegFormComponent {
+export class RegFormComponent implements OnInit {
 
   futureOrder: boolean = false;
   startLocationChosen:boolean = false;
@@ -40,7 +42,21 @@ export class RegFormComponent {
   @Output() emitter: EventEmitter<Boolean> = new EventEmitter<Boolean>();
   @Input() friends!:friend[];
 
-  constructor(private passengerService: PassengerService, private rideService: RideServiceService) {}
+  constructor(
+    private userService: UserService,
+    private passengerService: PassengerService, 
+    private rideService: RideServiceService,
+    private favoriteRouteService: FavoriteRouteService) {}
+
+  ngOnInit(): void {
+
+    this.userService.getUser().subscribe((user) => {
+      this.favoriteRouteService.getPassengerFavorites(user.user.id).subscribe((favoriteRoutes) => {
+        this.favoriteRoutes = favoriteRoutes;
+      });
+
+    })
+  }
   
   @Input() passenger:Passenger = {
     id: 0,
@@ -51,7 +67,27 @@ export class RegFormComponent {
     address: '',
     email: ''
   };
-  
+
+  favoriteRoutes: FavoriteRoute[] = [];
+
+  selectedFavoriteRoute: FavoriteRoute = {
+    favoriteName: '',
+    locations: [],
+    passengers: [],
+    vehicleType: VehicleName.STANDARD,
+    babyTransport: false,
+    petTransport: false,
+    kilometers: 0,
+    estimatedTimeInMinutes: 0
+  };
+
+  favoriteOrder: boolean = false;
+  addToFavorites: boolean = false;
+
+  printState() {
+    console.log(this.addToFavorites);
+    
+  }
   
   carTypes: CarType[] = [
     {value: 'LUXURY', viewValue: 'LUXURY'},
@@ -75,15 +111,65 @@ export class RegFormComponent {
   }
   a : number = 0;
   orderRide() {
-    this.ride.locations = this.getLocations();
-    this.ride.passengers = this.getPassengersFromFriends();
-    this.ride.startTime = new Date();
-    if (this.futureOrder && this.futureTime != '') {
-      this.ride.startTime.setHours(Number(this.futureTime.split(":")[0]));
-      this.ride.startTime.setMinutes(Number(this.futureTime.split(":")[1]));  
+    // ZNAM DA JE KOD UZASAN / I KNOW THE CODE IS TERRIBLE / Я знаю, код ужасен
+    if (this.favoriteOrder) {
+      this.ride.locations = this.selectedFavoriteRoute.locations;
+      this.ride.passengers = this.selectedFavoriteRoute.passengers;
+      this.ride.startTime = new Date();
+      if (this.futureOrder && this.futureTime != '') {
+        this.ride.startTime = new Date(this.futureTime);
+        let now = new Date();
+        let fiveHoursFromNow = new Date(now.getTime() + 5*60*60*1000);
+        if (this.ride.startTime > fiveHoursFromNow || this.ride.startTime < now) {
+          alert("Future ride can be ordered just in next 5 hours.");
+          return;
+      }
+      }
+    } 
+    else {
+      this.ride.locations = this.getLocations();
+      this.ride.passengers = this.getPassengersFromFriends();
+      this.ride.passengers.push(this.passenger);
+      this.ride.startTime = new Date();
+      if (this.futureOrder && this.futureTime != '') {
+        if (this.futureOrder && this.futureTime != '') {
+          this.ride.startTime = new Date(this.futureTime);
+          let now = new Date();
+          let fiveHoursFromNow = new Date(now.getTime() + 5*60*60*1000);
+          if (this.ride.startTime > fiveHoursFromNow || this.ride.startTime < now) {
+              alert("Future ride can be ordered just in next 5 hours.");
+              return;
+          }
+        }
+      }
+      if (this.addToFavorites) {
+        this.createFavoriteRoute();
+      }
     }
-    this.rideService.createRide(this.ride).subscribe();
-    alert("Ride successfully ordered!")
+      this.rideService.createRide(this.ride).subscribe();
+      alert("Ride successfully ordered!");
+  }
+
+  favoriteRoute: FavoriteRoute = {
+    favoriteName: '',
+    locations: [],
+    passengers: [],
+    vehicleType: VehicleName.STANDARD,
+    babyTransport: false,
+    petTransport: false,
+    kilometers: 0,
+    estimatedTimeInMinutes: 0
+  }
+  createFavoriteRoute() {
+    this.favoriteRoute.favoriteName = "..." // Ne bih da maltretiramo korisnika (i nas) da unosi... naziv omiljene rute. Glupo je sto su to napravili na iss.
+    this.favoriteRoute.locations = this.ride.locations;
+    this.favoriteRoute.passengers.push(this.passenger);
+    this.favoriteRoute.vehicleType = this.ride.vehicleType;
+    this.favoriteRoute.babyTransport = this.ride.babyTransport;
+    this.favoriteRoute.petTransport = this.ride.petTransport;
+    this.favoriteRoute.kilometers = 0.8;
+    this.favoriteRoute.estimatedTimeInMinutes = 20;
+    this.favoriteRouteService.create(this.favoriteRoute).subscribe();
   }
 
   getLocations() : RouteDTO[] {

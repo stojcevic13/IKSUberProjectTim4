@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, OnInit} from '@angular/core';
+import { Component, EventEmitter, Output, Input, OnInit} from '@angular/core';
 import { PassengerService, Passenger } from 'src/app/services/passenger.service';
 
 export interface friend {
@@ -22,6 +22,16 @@ export class InviteFriendComponent implements OnInit {
   invited = false;
   invitedFriends: friend[] = [];
 
+  @Input() passenger: Passenger = {
+    id: 0,
+    name: '',
+    surname: '',
+    profilePicture: '',
+    telephoneNumber: '',
+    address: '',
+    email: ''
+  }
+
 
   // friends: friend[] = [
   //   { id: 1, name: "Mirko", surname: "Ivanic", invited: false },
@@ -35,16 +45,16 @@ export class InviteFriendComponent implements OnInit {
 
   createFriends() {
     for (let p of this.passengers) {
-      this.friends.push({passenger: p, invited: false});
+      if (this.passenger.id != p.id)
+        this.friends.push({passenger: p, invited: false});
     }
   }
 
   ngOnInit(): void {
-    this.passengerService
-      .getAll()
-      .subscribe((passengers) => {
+    console.log("USAO U INVITE FRIENDS");
+    
+    this.passengerService.getAll().subscribe((passengers) => {
         (this.passengers = passengers)
-      
         this.createFriends();
       });
 

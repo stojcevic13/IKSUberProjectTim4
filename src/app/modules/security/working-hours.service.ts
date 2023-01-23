@@ -17,7 +17,6 @@ export class WorkingHoursService {
   }
 
   create(driverId: number, WorkingHoursDTO: WorkingHoursDTO): Observable<WorkingHoursDTO> {
-    console.log("usao");
     return this.http.post<WorkingHoursDTO>(environment.apiHost + 'api/driver/' + driverId + "/working-hour", WorkingHoursDTO);
   }
 

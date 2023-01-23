@@ -32,7 +32,7 @@ export class RideServiceService {
 
 
   createRide(ride: RideDTORequest): Observable<RideDTORequest> {
-    const url: string = environment.apiHost + 'api/ride/create-example';
+    const url: string = environment.apiHost + 'api/ride';
     return this.http.post<RideDTORequest>(url, ride);
   }
 

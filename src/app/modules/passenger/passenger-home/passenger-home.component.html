@@ -5,7 +5,7 @@
         </div>
     </div>
     <div *ngIf="invitedFriends" class="inviteFriends">
-        <invite-friend (emitter)="getFriends()"></invite-friend>
+        <invite-friend [passenger]="passenger" (emitter)="getFriends()"></invite-friend>
     </div>
 
     <div fxFlex="30%">
