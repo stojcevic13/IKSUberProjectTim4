@@ -1,0 +1,14 @@
+mat-card {
+    max-width: 200px;
+    height:140px;
+    margin-top: 100px;
+    margin-left: 10px;
+}
+
+#finishRideBtn {
+    height: 100%;   
+    margin: 20px; 
+    background-color: #E39D5C;
+    color: white;
+    font-size: 35px;
+}

@@ -44,4 +44,14 @@ export class UserService {
     getUser(): Observable<User> {
         return this.http.get<User>(environment.apiHost + 'api/user/me');
     }
+
+    remarkUser(userId: number, remark: Remark): Observable<Remark> {
+        return this.http.post<Remark>(environment.apiHost + 'api/user/' + userId + '/note', remark);
+    }
+}
+
+export interface Remark {
+    message: string;
+    date: Date;
+    userId: number;
 }

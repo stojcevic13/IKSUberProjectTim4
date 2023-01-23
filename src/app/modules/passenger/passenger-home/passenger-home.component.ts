@@ -3,10 +3,12 @@ import { friend, InviteFriendComponent } from '../invite-friend/invite-friend.co
 import { RegFormComponent } from '../reg-form/reg-form.component';
 import { ActivatedRoute } from '@angular/router';
 import { PassengerService, Passenger } from 'src/app/services/passenger.service';
-import { RideDTOResponse, RideServiceService, RideStatus } from 'src/app/services/ride-service.service';
+import { DriverRideDTO, RideDTOResponse, RideServiceService, RideStatus } from 'src/app/services/ride-service.service';
 import { LoginComponent } from '../../unregistered-user/login/login.component';
 import { UserService } from '../../security/user.service';
 import { MapComponent } from '../../map/map/map.component';
+import { VehicleName } from 'src/app/services/vehicle.service';
+import { Driver } from 'src/app/services/driver.service';
 
 
 
@@ -31,8 +33,26 @@ export class PassengerHomeComponent {
     address: '',
     email: ''
   };
+  activeDriver: DriverRideDTO = {
+    id: 0,
+    email: ''
+  }
 
-  activeRide: boolean = false;
+  rideInProgress: boolean = false;
+  activeRide: RideDTOResponse = {
+    id: 0,
+    startTime: new Date(),
+    endTime: new Date(),
+    totalCost: 0,
+    driver: this.activeDriver,
+    estimatedTimeInMinutes: 0,
+    status: RideStatus.PENDING,
+    babyTransport: false,
+    petTransport: false,
+    vehicleType: VehicleName.STANDARD,
+    passengers: [],
+    locations: []
+  }
   passengerRides: RideDTOResponse[] = [];
 
   @ViewChild(RegFormComponent) regFormComponent: any; 
@@ -54,22 +74,6 @@ export class PassengerHomeComponent {
         this.checkRides();
       })
       ));
-
-      /* Ne dobavljamo vise korisnike tako sto saljemo preko routerLink-a nego kad imamo poseban endpoint koji dobavlja 
-         trenutnog korisnika daj da ga iskoristimo, bar se meni cini da je ovako lakse. */
-      /*
-      this.passengerService
-        .getPassenger(+params['passengerId'])
-        .subscribe((passenger) => (this.passenger = passenger));
-      
-      this.rideService
-        .getByPassengerId(+params['passengerId'])
-        .subscribe((passengerRides) => {
-          (this.passengerRides = passengerRides)
-          this.checkRides();
-        });
-      */
-
   }
 
   getFriends(){
@@ -79,16 +83,27 @@ export class PassengerHomeComponent {
 
   checkRides() {
     for (let ride of this.passengerRides) {
-      if (Number(RideStatus[ride.status]) === RideStatus.ACCEPTED) 
-        alert("You have ride at " + ride.startTime)
-      if (Number(RideStatus[ride.status]) === RideStatus.ACTIVE) 
-        this.activeRide = true;
+      if (Number(RideStatus[ride.status]) === RideStatus.ACCEPTED || Number(RideStatus[ride.status]) === RideStatus.PENDING) 
+        alert("You have ride at " + this.getTimeStr(ride.startTime))
+      if (Number(RideStatus[ride.status]) === RideStatus.ACTIVE) {
+        this.activeRide = ride;
+        this.activeDriver = ride.driver;
+        this.rideInProgress = true;
+      }
+
     }
+  }
+
+  rideNotInProggress(value: boolean) { 
+    this.rideInProgress = false;
   }
 
   pinToGetLocation(location:Array<string>){
     this.regFormComponent.setStartAndEndLocation(location);
   }
 
-
+  getTimeStr(datetime: Date){
+    let str: string[] = datetime.toString().split(",");
+    return `${str[2]}. ${str[1]}. ${str[0]}. - ${str[3]}:${str[4]}`;
+  }
 }

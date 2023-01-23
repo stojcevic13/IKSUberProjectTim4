@@ -22,6 +22,7 @@ import { FormsModule } from '@angular/forms';
 import { ActiveButtonComponent } from './active-button/active-button.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { DeclineReasonComponent } from './decline-reason/decline-reason.component';
+import { FinishRideComponent } from './finish-ride/finish-ride.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { DeclineReasonComponent } from './decline-reason/decline-reason.componen
     DriverProfilePageComponent,
     ActiveButtonComponent,
     DeclineReasonComponent,
+    FinishRideComponent,
 
   ],
   imports: [

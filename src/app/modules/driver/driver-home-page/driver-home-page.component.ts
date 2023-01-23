@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DriverService } from 'src/app/services/driver.service';
 import { Driver } from 'src/app/services/driver.service';
-import { RejectionDTO, RideDTOResponse, RideStatus } from 'src/app/services/ride-service.service';
+import { RejectionDTO, RideDTOResponse, RideServiceService, RideStatus } from 'src/app/services/ride-service.service';
 import { VehicleName } from '../../passenger/passenger-ride-history/passenger-ride-history.component';
 import { UserService } from '../../security/user.service';
 import { WorkingHoursDTO } from '../../security/working-hours.service';
@@ -18,6 +18,8 @@ export class DriverHomePageComponent implements OnInit {
   @ViewChild(DriverNextRidesComponent) inviteFriendComponent: any;
   @ViewChild(DeclineReasonComponent) declineReasonComponent:any; 
   showDecline:boolean=false;
+  rideInProgress:boolean=false;
+
   driver: Driver = {
     id: 0,
     name: '',
@@ -50,11 +52,28 @@ export class DriverHomePageComponent implements OnInit {
     passengers: [],
     locations: []
   }
+
+  activeRide: RideDTOResponse = {
+    id: 0,
+    startTime: new Date(),
+    endTime: new Date(),
+    totalCost: 0,
+    driver: this.driver,
+    estimatedTimeInMinutes: 0,
+    status: RideStatus.PENDING,
+    rejection: this.rejection,
+    babyTransport: false,
+    petTransport: false,
+    vehicleType: VehicleName.STANDARD,
+    passengers: [],
+    locations: []
+  }
   
   constructor(
     private route: ActivatedRoute,
     private driverService: DriverService,
-    private userService:UserService
+    private userService: UserService,
+    private rideService: RideServiceService
   ) {}
 
   ngOnInit(): void {
@@ -70,28 +89,27 @@ export class DriverHomePageComponent implements OnInit {
     this.selectedRide = r;
   }
 
+  activateRide(r: RideDTOResponse){
+    this.activeRide = r;
+    this.rideService.startRide(r.id).subscribe();
+    this.rideInProgress = true;
+    for (let i = 0; i < this.nextRides.length; i++) {
+      if (this.nextRides[i].id === this.activeRide.id)
+        this.nextRides.splice(i, 1);
+    }
+  }
+
+  rideNotInProggress(value: boolean) { 
+    this.rideInProgress = false;
+  }
+
   showDeclineReasonComponent(){
     for (let i = 0; i < this.nextRides.length; i++) {
       if (this.nextRides[i].id === this.selectedRide.id)
         this.nextRides.splice(i, 1);
     }
     this.showDecline = this.inviteFriendComponent.decline;
-    //this.nextRides.pop(); // mozda prije ili subscribe staviti...
     this.declineReasonComponent.show = this.inviteFriendComponent.decline;
-
-
-    // .subscribe(
-    //   this.driverService.getDriverNextRides(this.driver.id).subscribe((nextRides) => { this.nextRides = nextRides; })
-    // );
-
   }
-  
-  // deleteRide(ride:RideDTOResponse){
-  //   console.log(this.nextRides);
-    
-  //   // this.driverRequestService.deleteDriverRequest(request).subscribe();
-  //   this.driverService.getDriverNextRides(this.driver.id).subscribe();
-  //   this.nextRides = this.nextRides.filter(req => req !== ride);
-  // }
 
 }

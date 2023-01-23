@@ -55,6 +55,8 @@ export class DriverNextRidesComponent {
 
   @Output() emitter: EventEmitter<Boolean> = new EventEmitter<Boolean>();
   @Output() nextRidesEmiter: EventEmitter<RideDTOResponse> = new EventEmitter<RideDTOResponse>();
+  @Output() activeRideEmiter: EventEmitter<RideDTOResponse> = new EventEmitter<RideDTOResponse>();
+  
   rides: ride[] = [
     {id: 1, startPoint: "NEMANJE NEDOVICA 26", endPoint: "LUKE VILDOZE 1"},
     {id: 2, startPoint: "NEMANJE NEDOVICA 26", endPoint: "LUKE VILDOZE 1"},
@@ -72,8 +74,8 @@ export class DriverNextRidesComponent {
     this.emitter.emit(this.decline);
   }
 
-  goClick(){
-    
+  goClick(r: RideDTOResponse){
+    this.activeRideEmiter.emit(r);
   }
 
   sendSelectedRide(r: RideDTOResponse) {

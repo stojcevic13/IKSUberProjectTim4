@@ -1,3 +1,12 @@
 <mat-card>
-    <button mat-raised-button id="panicBtn"><span>PANIC</span></button>
+    <button (click)="panicRide()" mat-raised-button id="panicBtn"><span>PANIC</span></button>
+</mat-card>
+
+<mat-card *ngIf="panicShow" id="panicReason">
+    <span id="panicReasonSpan"> What's wrong? </span>
+    <mat-form-field appearance="fill">
+        <mat-label>Reason</mat-label>
+        <textarea matInput [(ngModel)]="panic.reason"></textarea>
+    </mat-form-field>
+    <button mat-button id="sendPanicBtn" (click)="sendPanic()"> SEND </button>
 </mat-card>

@@ -18,7 +18,7 @@
             <td>{{ getTimeStr(r.startTime)}}</td>
             <td>{{r.locations[0].departure.address}}</td>
             <td>{{r.locations[0].destination.address}}</td>
-            <td><button mat-raised-button (click)="goClick()" id="goBtn">GO</button></td>
+            <td><button mat-raised-button (click)="goClick(r)" id="goBtn">GO</button></td>
             <td><button mat-raised-button (click)="cancelClick(r)" id="cancelBtn">CANCEL <mat-icon>cancel</mat-icon> </button></td>
           </tr>
         </tbody>
