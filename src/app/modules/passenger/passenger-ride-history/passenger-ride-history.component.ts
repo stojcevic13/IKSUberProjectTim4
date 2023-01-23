@@ -51,7 +51,7 @@ export class PassengerRideHistoryComponent implements OnInit, AfterViewInit{
   ngOnInit(): void {
     this.userService.getUser().subscribe((user) => (
       this.passengerService.getPassenger(user.user.id).subscribe((passenger)=> ( 
-        this.rideService.getAll(passenger.id).subscribe({                   
+        this.rideService.getPassengerRideHistory(passenger.id).subscribe({                   
         next: (res) => {
           this.rides= res;
           this.dataSource = new MatTableDataSource<Ride>(this.rides);
