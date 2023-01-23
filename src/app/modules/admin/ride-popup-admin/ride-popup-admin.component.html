@@ -14,6 +14,10 @@
                     <td><span id="data">{{ride.destination.split(",")[0].toUpperCase()}} </span></td>
                 </tr>
                 <tr>
+                    <td> <span id="name"> DRIVER: </span></td>
+                    <td><span id="data">{{ride.driver.email.toUpperCase()}} </span></td>
+                </tr>
+                <tr>
                     <td> <span id="name"> PASSENGERS: </span></td>
                 </tr>
                 <tr *ngFor="let p of ride.passengers; let i = index">

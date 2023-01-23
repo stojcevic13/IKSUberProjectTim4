@@ -123,4 +123,8 @@ export class NavbarComponent implements OnInit{
   adminCreateDriverClicked(){
     this.currentClicked = "createDriver";
   }
+
+  adminHistoryClicked(){
+    this.currentClicked = "adminHistory";
+  }
 }

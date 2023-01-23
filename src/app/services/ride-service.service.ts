@@ -29,6 +29,9 @@ export class RideServiceService {
     return this.http.get<Ride[]>(environment.apiHost + 'api/ride/driver/' + driverId + '/rideHistory');
   }
 
+  getAllRides():Observable<Ride[]>{
+    return this.http.get<Ride[]>(environment.apiHost + 'api/ride/all');
+  }
   getRide(rideId: number): Observable<Ride> {
     return this.http.get<Ride>(environment.apiHost + 'api/ride/' + rideId);
   }

@@ -19,6 +19,16 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { ValidateChangesComponent } from './validate-changes/validate-changes.component';
 import { MatListModule } from '@angular/material/list';
 import { ChangesComponent } from './changes/changes.component';
+import { AdminRideHistoryComponent } from './admin-ride-history/admin-ride-history.component';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RidePopupAdminComponent } from './ride-popup-admin/ride-popup-admin.component';
+import { FlexLayoutModule } from "@angular/flex-layout";
+
+
+
 
 @NgModule({
   declarations: [
@@ -26,7 +36,9 @@ import { ChangesComponent } from './changes/changes.component';
     CreateDriverComponent,
     AdminDriverPageComponent,
     ValidateChangesComponent,
-    ChangesComponent
+    ChangesComponent,
+    AdminRideHistoryComponent,
+    RidePopupAdminComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +55,15 @@ import { ChangesComponent } from './changes/changes.component';
     FormsModule,
     MatTableModule,
     MatTabsModule,
-    MatListModule
-  ]
+    MatListModule,
+    MatSortModule,
+    MatPaginatorModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    FlexLayoutModule,
+
+  ],
+
+  exports:[AdminRideHistoryComponent]
 })
 export class AdminModule { }

@@ -22,7 +22,7 @@
     <div *ngIf="role=='ADMIN'">
         <a id="admin-home-page"  mat-button (click)="adminHomeClicked()" [ngStyle]="{'color': currentClicked == 'adminHome'? 'orange' : 'white' }" color="white" routerLink="/adminHome" >HOME</a>
         <a id="adminDriver" mat-button (click)="adminCreateDriverClicked()" [ngStyle]="{'color': currentClicked == 'createDriver'? 'orange' : 'white' }" color="white" routerLink="/adminDriver">DRIVER</a> 
-        <a id="admin-history" mat-button (click)="driverHistoryClicked()" [ngStyle]="{'color': currentClicked == 'driverHistory'? 'orange' : 'white' }" color="white" >HISTORY</a>
+        <a id="admin-history" mat-button (click)="adminHistoryClicked()" [ngStyle]="{'color': currentClicked == 'adminHistory'? 'orange' : 'white' }" color="white" routerLink="admin/rideHistory" >HISTORY</a>
         <a id="admin-reports"  mat-button (click)="driverReportsClicked()" [ngStyle]="{'color': currentClicked == 'driverReports'? 'orange' : 'white' }" color="white" >REPORTS</a>
         <a id="admin-notification"  mat-button (click)="driverReportsClicked()" [ngStyle]="{'color': currentClicked == 'driverReports'? 'orange' : 'white' }" color="white" >NOTIFICATION</a></div>
 
