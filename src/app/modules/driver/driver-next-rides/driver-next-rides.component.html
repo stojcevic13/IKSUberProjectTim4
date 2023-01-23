@@ -4,21 +4,21 @@
     <table *ngIf="nextRides.length > 0">
         <thead>
           <tr>
-            <th>Row number</th>
-            <th>Start time</th>
-            <th>Departure address</th>
-            <th>Destination address</th>
+          
+            <th>START</th>
+            <th>DEPARTURE</th>
+            <th>DESTINATION</th>
             <th>GO</th>
             <th>CANCEL</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let r of nextRides">
-            <td>R{{r.id}}</td>
-            <td>{{ getTimeStr(r.startTime)}}</td>
-            <td>{{r.locations[0].departure.address}}</td>
-            <td>{{r.locations[0].destination.address}}</td>
-            <td><button mat-raised-button (click)="goClick(r)" id="goBtn">GO</button></td>
+         
+            <td id="startTime">{{ getTimeStr(r.startTime)}}</td>
+            <td>{{r.locations[0].departure.address.split(",")[0]}}</td>
+            <td>{{r.locations[0].destination.address.split(",")[0]}}</td>
+            <td><button (click)="goClick(r)" id="goBtn">GO</button></td>
             <td><button mat-raised-button (click)="cancelClick(r)" id="cancelBtn">CANCEL <mat-icon>cancel</mat-icon> </button></td>
           </tr>
         </tbody>

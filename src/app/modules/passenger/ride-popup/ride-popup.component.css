@@ -100,3 +100,21 @@ table{
   #reviews{
     width:100%;
   }
+
+  #gradeButton{
+    background-color: #e39d5ce3;
+    color:white; 
+    margin-left: 23px;
+    margin-top: 5px;
+    border:none;
+    box-shadow: 0px 1px 1px 1px rgb(170, 167, 163);
+  }
+
+  #grading{
+    width:20%;
+    margin-left:10px;
+  }
+
+  #gradeDiv{
+    margin-left: 33px;
+  }

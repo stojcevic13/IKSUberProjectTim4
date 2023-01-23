@@ -2,7 +2,7 @@ import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '
 import { ActivatedRoute } from '@angular/router';
 import { forkJoin, Observable } from 'rxjs';
 import { Driver, DriverService } from 'src/app/services/driver.service';
-import { RideServiceService } from 'src/app/services/ride-service.service';
+import { DriverRideDTO, RideServiceService } from 'src/app/services/ride-service.service';
 import { MapComponent } from '../../map/map/map.component';
 import { Review, Ride, VehicleName } from '../passenger-ride-history/passenger-ride-history.component';
 import {RideStatus} from '../passenger-ride-history/passenger-ride-history.component'
@@ -15,13 +15,8 @@ import {RideStatus} from '../passenger-ride-history/passenger-ride-history.compo
 export class RidePopupComponent{
   @ViewChild(MapComponent) mapComponent: any;
   starRating = 0;
-  driver: Driver = {
+  driver: DriverRideDTO= {
     id: 0,
-    name: '',
-    surname: '',
-    profilePicture: '',
-    telephoneNumber: '',
-    address: '',
     email: ''
   }
   reviews:Review[] = [];
@@ -30,7 +25,7 @@ export class RidePopupComponent{
     startTime: new Date(),
     endTime: new Date(),
     totalCost: 0,
-    driver: this.driver, 
+    driver: this.driver,
     estimatedTimeInMinutes:0,
     status:RideStatus.PENDING,
     babyTransport:false,
@@ -42,26 +37,44 @@ export class RidePopupComponent{
     destination: " ",
     reviews:[]
   };
+  reviewsExist:boolean = false;
+  gradedByThisUser:boolean = false;
   show: boolean = false;
+  showGrading:boolean = false;
   constructor(private rideService: RideServiceService, private driverService:DriverService, private route: ActivatedRoute,private changeDetectorRef: ChangeDetectorRef){
   
 
   }
 
-  set(rideId:number){
+  set(rideId:number, loggedPassengerId:number){
+    this.gradedByThisUser = false;
     this.show = true;
     this.changeDetectorRef.detectChanges();
     forkJoin([
       this.rideService.getRide(rideId),
     ]).subscribe((ride) => {
       this.ride = ride[0];
-      this.driverService.getDriver(this.ride.driver.id).subscribe((driver) => (this.driver = driver)); 
       this.mapComponent.route(ride[0].departure, ride[0].destination);
       this.reviews = this.ride.reviews;
-      console.log(this.reviews);
-    }) 
-  }
+      if(this.reviews.length > 0){
+        this.reviewsExist = true;
+      }else{
+        this.reviewsExist = false;
+      }
+      var r;
+      for(r of this.reviews){
+        if (r.passenger.id == loggedPassengerId){
+          this.gradedByThisUser = true;
+        } 
+      }
+    });
 
+
+  }
+  grade(){
+    this.showGrading = true;
+  }
+  
   close(){
     this.show = false;
   }
