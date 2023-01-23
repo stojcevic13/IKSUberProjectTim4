@@ -39,6 +39,10 @@ export class DriverService {
   updateDriver(driver: Driver): Observable<Driver> {
     return this.http.put<Driver>(environment.apiHost + 'api/driver/' + driver.id, driver);
   }
+  
+  createDriver(driverRequest: DriverCreate): Observable<DriverCreate> {
+    return this.http.post<DriverCreate>(environment.apiHost + 'api/driver', driverRequest);
+  }
 
   getDriverNextRides(driverId: number):Observable<RideDTOResponse[]>{
     return this.http.get<RideDTOResponse[]>(environment.apiHost + 'api/driver/' + driverId + '/next-rides/');
@@ -54,7 +58,6 @@ export interface VehicleUpdate{
   petTransport:boolean;
   passengerSeats:number;
 
-
 }
 export interface Driver {
   id: number;
@@ -65,6 +68,16 @@ export interface Driver {
   address:string;
   email:string;
   workingHour?:WorkingHoursDTO
+}
+
+export interface DriverCreate {
+  id:number;
+  name: string;
+  surname:string;
+  telephoneNumber:string;
+  address:string;
+  email:string;
+  password:string;
 }
 
 export interface Vehicle {

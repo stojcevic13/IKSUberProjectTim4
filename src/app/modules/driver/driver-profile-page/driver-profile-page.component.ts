@@ -55,7 +55,6 @@ export class DriverProfilePageComponent implements OnInit {
   disabledRequest: boolean = true;
 
   constructor(
-    private route: ActivatedRoute,
     private driverService: DriverService,
     private driverRequestService: DriverRequestService,
     private userService:UserService
