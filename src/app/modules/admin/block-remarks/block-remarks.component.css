@@ -1,0 +1,101 @@
+mat-card{
+    max-width: 500px;
+    background-color: white;
+    min-height: 220px;
+    max-height: 600px;
+    position: fixed;
+    top:55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    border:black;
+    box-shadow: 0px 6px 51px 8px rgb(122, 119, 115);
+    padding-bottom: 20px;
+}
+
+#noRemarks{
+    margin-top: 20px;
+    margin-left:20px;
+    color:rgba(0, 0, 0, 0.596);
+    font-size:large;
+}
+#divNoRemarks{
+    margin-top: 30px;
+}
+
+#hasRemarks{
+    margin-top: 30px;
+}
+#addRemarkBtn{
+    background-color: #E39D5C;
+    color:white;
+    border-radius: 5px;
+    border:none;
+    font-size:15px;
+    width:30%;
+    margin: 0 auto;
+    margin-left: 30px;
+}
+
+#remarkInput{
+    margin-top:20px;
+    margin-left:20px;
+    padding-left: 5px;
+    font-size: 15px;
+    height:30px;
+    width:55%;
+}
+
+#blockBtn{
+    background-color: #191818cb;
+    color:white;
+    border-radius: 5px;
+    border:none;
+    font-size:17px;
+    width:30%;
+    margin-left:20px;
+    padding:5px;
+    box-shadow: 0px 1px 1px 1px rgb(170, 167, 163);
+    margin-top: 30px;
+}
+
+#okBtn{
+    background-color: #E39D5C;
+    color:white;
+    border-radius: 5px;
+    border:none;
+    font-size:17px;
+    width:15%;
+    float: right;
+    margin-right: 20px;
+    padding:5px;
+    box-shadow: 0px 1px 1px 1px rgb(170, 167, 163);
+    margin-top: 30px;
+}
+
+#unblockBtn{
+    background-color: #19181841;
+    color:white;
+    border-radius: 5px;
+    border:none;
+    font-size:17px;
+    width:30%;
+    margin-left:20px;
+    padding:5px;
+    box-shadow: 0px 1px 1px 1px rgb(170, 167, 163);
+    margin-top: 30px;
+
+}
+
+#remarksTitle{
+    margin-top: 20px;
+    margin-left:20px;
+    color:rgba(0, 0, 0, 0.596);
+    font-size:large;
+}
+
+#r{
+    margin-left:20px;
+    color:rgba(0, 0, 0, 0.596);
+    font-size:large;
+}

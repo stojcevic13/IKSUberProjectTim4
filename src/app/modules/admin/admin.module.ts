@@ -26,6 +26,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RidePopupAdminComponent } from './ride-popup-admin/ride-popup-admin.component';
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { AllUsersComponent } from './all-users/all-users.component';
+import { BlockRemarksComponent } from './block-remarks/block-remarks.component';
 
 
 
@@ -38,7 +40,9 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     ValidateChangesComponent,
     ChangesComponent,
     AdminRideHistoryComponent,
-    RidePopupAdminComponent
+    RidePopupAdminComponent,
+    AllUsersComponent,
+    BlockRemarksComponent
   ],
   imports: [
     CommonModule,

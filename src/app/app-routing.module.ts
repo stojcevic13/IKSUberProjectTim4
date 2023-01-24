@@ -36,7 +36,7 @@ const routes: Routes = [
   // ADMIN COMPONENTS
   {path:'admin/rideHistory', component:AdminRideHistoryComponent},
   {path: 'adminHome', component:AdminHomePageComponent},
-  {path:'adminDriver', component:AdminDriverPageComponent},
+  {path:'users', component:AdminDriverPageComponent},
   {path: 'support', component:SupportChatComponent}
 
 
