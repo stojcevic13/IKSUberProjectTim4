@@ -23,6 +23,13 @@ import { ActiveButtonComponent } from './active-button/active-button.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { DeclineReasonComponent } from './decline-reason/decline-reason.component';
 import { FinishRideComponent } from './finish-ride/finish-ride.component';
+import { DriverRideHistoryComponent } from './driver-ride-history/driver-ride-history.component';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RidePopupDriverComponent } from './ride-popup-driver/ride-popup-driver.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +42,8 @@ import { FinishRideComponent } from './finish-ride/finish-ride.component';
     ActiveButtonComponent,
     DeclineReasonComponent,
     FinishRideComponent,
+    DriverRideHistoryComponent,
+    RidePopupDriverComponent,
 
   ],
   imports: [
@@ -52,7 +61,13 @@ import { FinishRideComponent } from './finish-ride/finish-ride.component';
     MatSelectModule,
     MatInputModule,
     FormsModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatTableModule,
+    BrowserModule,
+    BrowserAnimationsModule
+
  
   ],
   exports:[

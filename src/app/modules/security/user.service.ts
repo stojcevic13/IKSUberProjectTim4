@@ -5,7 +5,7 @@ import { environment } from 'src/enviroments/environment';
 import { Driver } from 'src/app/services/driver.service';
 import { Passenger } from 'src/app/services/passenger.service';
 
-type UserDTO = {
+export type UserDTO = {
     id: number,
     name: string,
     surname: string,
@@ -13,6 +13,8 @@ type UserDTO = {
     telephoneNumber: string,
     email: string,
     address?: string,
+    blocked:boolean,
+    role:Role
 }
 
 export enum Role{
@@ -48,10 +50,39 @@ export class UserService {
     remarkUser(userId: number, remark: Remark): Observable<Remark> {
         return this.http.post<Remark>(environment.apiHost + 'api/user/' + userId + '/note', remark);
     }
+
+    getUserRemarks(userId:number):Observable<UserRemarkResult>{
+        return this.http.get<UserRemarkResult>(environment.apiHost + "api/user/" + userId + "/note");
+    }
+    getAll():Observable<Passenger[]>{
+        return this.http.get<Passenger[]>(environment.apiHost + 'api/passenger');
+      }
+
+    getAllUsers():Observable<UserResult>{
+        return this.http.get<UserResult>(environment.apiHost + 'api/user');
+    }
+
+    blockUser(userId:number,userDTO:UserDTO):Observable<UserDTO>{
+        return this.http.put<UserDTO>(environment.apiHost + "api/user/" + userId + '/block', userDTO);
+    }
+    unblockUser(userId:number,userDTO:UserDTO):Observable<UserDTO>{
+        return this.http.put<UserDTO>(environment.apiHost + "api/user/" + userId + '/unblock', userDTO);
+    }
 }
 
+export interface UserRemarkResult{
+    total:number,
+    results:Remark[]
+}
+
+
+export interface UserResult{
+    total:number,
+    results:UserDTO[]
+  }
 export interface Remark {
     message: string;
     date: Date;
     userId: number;
 }
+
