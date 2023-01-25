@@ -3,7 +3,7 @@
     <div class="spacer"></div>
 
     <div *ngIf="role == 'unregistered'">
-        <a id=" "  mat-button (click)="unregHomeClicked()" [ngStyle]="{'color': currentClicked == 'unregHome'? 'orange' : 'white' }" color="white" routerLink="" >HOME</a>
+        <a id=" "  mat-button (click)="unregHomeClicked()" [ngStyle]="{'color': currentClicked == 'unregisteredHome'? 'orange' : 'white' }" color="white" routerLink="" >HOME</a>
         <a id="login"  mat-button (click)="loginClicked()" [ngStyle]="{'color': currentClicked == 'login'? 'orange' : 'white' }" color="white" routerLink="/login" >LOGIN</a> 
         <a id="registration"  mat-button (click)="registrationClicked()" [ngStyle]="{'color': currentClicked == 'registration'? 'orange' : 'white' }" color="white" routerLink="/registration" >SIGN UP</a>
     </div>

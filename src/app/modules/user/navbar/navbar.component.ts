@@ -11,7 +11,7 @@ import { WorkingHoursDTO, WorkingHoursService } from '../../security/working-hou
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit{
-  currentClicked = "passengerHome";
+  currentClicked = "unregisteredHome";
   role:string = 'unregistered';
 
   driver: Driver = {
@@ -35,6 +35,8 @@ export class NavbarComponent implements OnInit{
   ngOnInit() {
     this.sharedService.currentRole.subscribe((role) => {
       this.role = role;
+      this.currentClicked = role.toLowerCase() + "Home";
+
       if (this.role.toString() === "DRIVER") {
           this.userService.getUser().subscribe((user) => {
             this.driverService.getDriver(user.user.id).subscribe((driver) => {
@@ -48,7 +50,7 @@ export class NavbarComponent implements OnInit{
 
 
   unregHomeClicked() {
-    this.currentClicked = "unregHome";
+    this.currentClicked = "unregisteredHome";
     this.role  = "unregistered";
   }
   loginClicked() { 
@@ -113,7 +115,7 @@ export class NavbarComponent implements OnInit{
       this.workingHoursService.update(Number(this.workingHour.id), {end: new Date()}).subscribe();
     }
     this.role = "unregistered"
-    this.currentClicked = "logout"
+    this.currentClicked = "unregisteredHome"
   }
 
   adminHomeClicked(){
