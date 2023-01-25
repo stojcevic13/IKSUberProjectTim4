@@ -67,6 +67,8 @@ export interface Driver {
   telephoneNumber:string;
   address:string;
   email:string;
+  active: boolean;
+  blocked: boolean;
   workingHour?:WorkingHoursDTO
 }
 

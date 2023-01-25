@@ -27,7 +27,9 @@ export class DriverNextRidesComponent {
     profilePicture: '',
     telephoneNumber: '',
     address: '',
-    email: ''
+    email: '',
+    active: false,
+    blocked: false
   };
 
   rejection: RejectionDTO = {
@@ -83,9 +85,7 @@ export class DriverNextRidesComponent {
   }
 
   getTimeStr(datetime: Date){
-    // console.log(datetime);
     let str: string[] = datetime.toString().split(",");
-  //  return`${str[2]}. ${str[1]}. ${str[0]}. - ${str[3]}:${str[4]}`
-    return `${str[3]}:${str[4]}`
-}
+    return `${str[2]}. ${str[1]}. ${str[0]}. - ${str[3]}:${str[4]}`;
+  }
 }

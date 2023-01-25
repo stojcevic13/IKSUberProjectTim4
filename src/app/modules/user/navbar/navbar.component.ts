@@ -17,11 +17,13 @@ export class NavbarComponent implements OnInit{
   driver: Driver = {
     id: 0,
     name: '',
-    surname:'',
+    surname: '',
     profilePicture: '',
-    telephoneNumber:'',
-    address:'',
-    email:''
+    telephoneNumber: '',
+    address: '',
+    email: '',
+    active: false,
+    blocked: false
   }
 
   workingHour: WorkingHoursDTO = {

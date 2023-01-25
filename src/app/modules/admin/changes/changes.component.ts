@@ -22,7 +22,9 @@ export class ChangesComponent {
     profilePicture: '',
     telephoneNumber: '',
     address: '',
-    email: ''
+    email: '',
+    active: false,
+    blocked: false
   };
 
   vehicle: VehicleUpdate = {

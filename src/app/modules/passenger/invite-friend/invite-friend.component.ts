@@ -29,7 +29,9 @@ export class InviteFriendComponent implements OnInit {
     profilePicture: '',
     telephoneNumber: '',
     address: '',
-    email: ''
+    email: '',
+    active: false,
+    blocked: false
   }
 
 
@@ -45,7 +47,7 @@ export class InviteFriendComponent implements OnInit {
 
   createFriends() {
     for (let p of this.passengers) {
-      if (this.passenger.id != p.id)
+      if (this.passenger.id != p.id && !p.blocked)
         this.friends.push({passenger: p, invited: false});
     }
   }
@@ -57,11 +59,6 @@ export class InviteFriendComponent implements OnInit {
         (this.passengers = passengers)
         this.createFriends();
       });
-
-    // console.log("Usao");
-    // console.log(this.passengers);  
-    // this.createFriends();
-
   };
 
 

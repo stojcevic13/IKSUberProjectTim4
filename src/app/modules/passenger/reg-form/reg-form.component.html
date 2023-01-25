@@ -58,8 +58,8 @@
     </div>
 
     <div id="buttons">
-        <button (click)="orderRide()" mat-stroked-button id="goBtn"><span>GO! </span></button>
-        <button (click)="showFutureOrder()" mat-stroked-button id="laterBtn"><span>BOOK FOR LATER </span></button>
+        <button [disabled]="passenger.blocked" (click)="orderRide()" mat-stroked-button id="goBtn"><span>GO! </span></button>
+        <button [disabled]="passenger.blocked" (click)="showFutureOrder()" mat-stroked-button id="laterBtn"><span>BOOK FOR LATER </span></button>
     </div>
     </mat-card-content>
 </mat-card>

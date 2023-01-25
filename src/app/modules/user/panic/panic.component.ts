@@ -22,9 +22,11 @@ export class PanicComponent {
     name: '',
     surname: '',
     profilePicture: '',
-    telephoneNumber:'',
-    address:'',
-    email:''
+    telephoneNumber: '',
+    address: '',
+    email: '',
+    active: false,
+    blocked: false
   }
 
   @Input() activeRide: RideDTOResponse = {

@@ -25,9 +25,11 @@ export class DriverHomePageComponent implements OnInit {
     name: '',
     surname: '',
     profilePicture: '',
-    telephoneNumber:'',
-    address:'',
-    email:''
+    telephoneNumber: '',
+    address: '',
+    email: '',
+    active: false,
+    blocked: false
   }
   nextRides: RideDTOResponse[] = [];
 

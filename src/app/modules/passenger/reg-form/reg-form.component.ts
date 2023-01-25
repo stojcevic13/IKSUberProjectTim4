@@ -65,7 +65,9 @@ export class RegFormComponent implements OnInit {
     profilePicture: '',
     telephoneNumber: '',
     address: '',
-    email: ''
+    email: '',
+    active: false,
+    blocked: false
   };
 
   favoriteRoutes: FavoriteRoute[] = [];
