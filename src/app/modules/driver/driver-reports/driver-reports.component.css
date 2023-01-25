@@ -1,0 +1,32 @@
+#firstGraph{
+    width:60%;
+    margin:0 auto;
+}
+
+#datePicker{
+    width:30%;
+    margin-top:40px;
+    margin-left:300px;
+    color: #E39D5C;
+}
+
+#confirmBtn{
+    margin-left: 50px;
+    background-color: #E39D5C;
+    color:white;
+}
+
+#averageAndsum{
+    margin-left:300px;
+}
+
+#sum{
+    margin-left: 30px;
+}
+input{
+    color: #E39D5C;
+}
+
+#data{
+    color:#E39D5C;
+}
