@@ -29,6 +29,11 @@ export class RideServiceService {
     return this.http.get<Ride[]>(environment.apiHost + 'api/ride/driver/' + driverId + '/rideHistory');
   }
 
+
+  getDriverRidesByDate(startDate: string, endDate: string, driverId:number):Observable<Ride[]> {
+    return this.http.get<Ride[]>(environment.apiHost + 'api/ride/driver/' + driverId + '/' + startDate + '/' + endDate);
+  }
+
   getAllRides():Observable<Ride[]>{
     return this.http.get<Ride[]>(environment.apiHost + 'api/ride/all');
   }

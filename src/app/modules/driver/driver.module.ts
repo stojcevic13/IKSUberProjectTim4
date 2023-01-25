@@ -30,6 +30,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RidePopupDriverComponent } from './ride-popup-driver/ride-popup-driver.component';
+import { DriverReportsComponent } from './driver-reports/driver-reports.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -44,6 +48,7 @@ import { RidePopupDriverComponent } from './ride-popup-driver/ride-popup-driver.
     FinishRideComponent,
     DriverRideHistoryComponent,
     RidePopupDriverComponent,
+    DriverReportsComponent,
 
   ],
   imports: [
@@ -66,7 +71,10 @@ import { RidePopupDriverComponent } from './ride-popup-driver/ride-popup-driver.
     MatPaginatorModule,
     MatTableModule,
     BrowserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    ReactiveFormsModule
 
  
   ],
