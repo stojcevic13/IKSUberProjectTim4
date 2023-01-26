@@ -38,8 +38,8 @@
       <th mat-header-cell *matHeaderCellDef>FAVOURITE</th>
       <td mat-cell *matCellDef="let element" > 
         
-        <button id="favouriteBtn"><mat-icon>favorite</mat-icon></button>
-        <!-- <button id="notFavouriteBtn"><mat-icon>favorite_border</mat-icon></button>    KADA NIJE FAVOURITE, PRAZNO SRCE-->
+        <button *ngIf="isFavourite(element)" (click)="removeFromFavourites(element)" id="favouriteBtn"><mat-icon>favorite</mat-icon></button>
+        <button *ngIf="!isFavourite(element)" (click)="addToFavourites(element)" id="notFavouriteBtn"><mat-icon>favorite_border</mat-icon></button>    
       </td>
     </ng-container>
 

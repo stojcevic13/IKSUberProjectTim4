@@ -5,7 +5,7 @@ import { Passenger, PassengerRideDTO } from './passenger.service';
 import { environment } from 'src/enviroments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
 // import { environment } from 'src/enviroments/environment';
-import { Ride } from '../modules/passenger/passenger-ride-history/passenger-ride-history.component';
+import { Ride, Route } from '../modules/passenger/passenger-ride-history/passenger-ride-history.component';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +34,10 @@ export class RideServiceService {
   }
   getRide(rideId: number): Observable<Ride> {
     return this.http.get<Ride>(environment.apiHost + 'api/ride/' + rideId);
+  }
+
+  addToFavourites(passengerId: number, ride: Ride): Observable<FavouriteRoute> {
+    return this.http.post<FavouriteRoute>(environment.apiHost + 'api/ride/favorites/' + passengerId + '/', ride);
   }
 
 
@@ -70,7 +74,7 @@ export interface RideDTORequest {
   babyTransport: boolean;
   petTransport: boolean;
   passengers: Passenger[];
-  locations: RouteDTO[];
+  locations: Route[];
   vehicleType: VehicleName;
   startTime: Date;
   estimatedTime: number;
@@ -123,5 +127,17 @@ export enum RideStatus {
   ACTIVE,
   FINISHED,
   REJECTED
+}
+
+export interface FavouriteRoute {
+  id?: number;
+  favouriteName: string;
+  locations: RouteDTO[];
+  passengers: PassengerRideDTO[];
+  vehicleType: VehicleName;
+  babyTransport: boolean;
+  petTransport: boolean;
+  estimatedTimeInMinutes: number;
+  kilometers: number;
 }
 
