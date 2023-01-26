@@ -5,6 +5,6 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class SharedService {
-  currentRole: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  currentRole: BehaviorSubject<string> = new BehaviorSubject<string>("unregistered");
   constructor() {}
 }

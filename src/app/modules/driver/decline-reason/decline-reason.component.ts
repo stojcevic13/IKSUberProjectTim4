@@ -24,9 +24,11 @@ export class DeclineReasonComponent implements OnInit {
     name: '',
     surname: '',
     profilePicture: '',
-    telephoneNumber:'',
-    address:'',
-    email:''
+    telephoneNumber: '',
+    address: '',
+    email: '',
+    active: false,
+    blocked: false
   }
 
   rejection: RejectionDTO = {
@@ -41,6 +43,7 @@ export class DeclineReasonComponent implements OnInit {
     totalCost: 0,
     driver: this.driver,
     estimatedTimeInMinutes: 0,
+    kilometers: 0,
     status: RideStatus.PENDING,
     rejection: this.rejection,
     babyTransport: false,

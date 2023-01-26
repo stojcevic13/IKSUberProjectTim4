@@ -31,7 +31,9 @@ export class PassengerHomeComponent {
     profilePicture: '',
     telephoneNumber: '',
     address: '',
-    email: ''
+    email: '',
+    active: false,
+    blocked: false
   };
   activeDriver: DriverRideDTO = {
     id: 0,
@@ -46,6 +48,7 @@ export class PassengerHomeComponent {
     totalCost: 0,
     driver: this.activeDriver,
     estimatedTimeInMinutes: 0,
+    kilometers: 0,
     status: RideStatus.PENDING,
     babyTransport: false,
     petTransport: false,

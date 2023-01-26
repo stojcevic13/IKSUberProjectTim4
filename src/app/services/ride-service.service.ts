@@ -5,8 +5,9 @@ import { Passenger, PassengerRideDTO } from './passenger.service';
 import { environment } from 'src/enviroments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
 // import { environment } from 'src/enviroments/environment';
-import { Ride } from '../modules/passenger/passenger-ride-history/passenger-ride-history.component';
+import { Ride, Route } from '../modules/passenger/passenger-ride-history/passenger-ride-history.component';
 import { Role } from '../modules/security/user.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -57,6 +58,10 @@ export class RideServiceService {
     return this.http.get<Ride>(environment.apiHost + 'api/ride/' + rideId);
   }
 
+  addToFavourites(passengerId: number, ride: Ride): Observable<FavouriteRoute> {
+    return this.http.post<FavouriteRoute>(environment.apiHost + 'api/ride/favorites/' + passengerId + '/', ride);
+  }
+
 
   createRide(ride: RideDTORequest): Observable<RideDTORequest> {
     const url: string = environment.apiHost + 'api/ride';
@@ -91,7 +96,7 @@ export interface RideDTORequest {
   babyTransport: boolean;
   petTransport: boolean;
   passengers: Passenger[];
-  locations: RouteDTO[];
+  locations: Route[];
   vehicleType: VehicleName;
   startTime: Date;
   estimatedTime: number;
@@ -111,6 +116,7 @@ export interface RideDTOResponse {
   totalCost: number;
   driver: DriverRideDTO;
   estimatedTimeInMinutes: number;
+  kilometers: number;
   status: RideStatus;
   rejection?: RejectionDTO;
   babyTransport: boolean;
@@ -144,5 +150,17 @@ export enum RideStatus {
   ACTIVE,
   FINISHED,
   REJECTED
+}
+
+export interface FavouriteRoute {
+  id?: number;
+  favouriteName: string;
+  locations: RouteDTO[];
+  passengers: PassengerRideDTO[];
+  vehicleType: VehicleName;
+  babyTransport: boolean;
+  petTransport: boolean;
+  estimatedTimeInMinutes: number;
+  kilometers: number;
 }
 

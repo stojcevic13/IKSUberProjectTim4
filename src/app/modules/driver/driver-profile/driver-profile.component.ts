@@ -26,7 +26,9 @@ export class DriverProfileComponent {
     profilePicture: '',
     telephoneNumber: '',
     address: '',
-    email: ''
+    email: '',
+    active: false,
+    blocked: false
   };
 
   @Output() disabledValue = new EventEmitter<boolean>();

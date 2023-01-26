@@ -17,9 +17,11 @@ export class FinishRideComponent {
     name: '',
     surname: '',
     profilePicture: '',
-    telephoneNumber:'',
-    address:'',
-    email:''
+    telephoneNumber: '',
+    address: '',
+    email: '',
+    active: false,
+    blocked: false
   }
 
   @Input() activeRide: RideDTOResponse = {
@@ -29,6 +31,7 @@ export class FinishRideComponent {
     totalCost: 0,
     driver: this.driver,
     estimatedTimeInMinutes: 0,
+    kilometers: 0,
     status: RideStatus.PENDING,
     babyTransport: false,
     petTransport: false,

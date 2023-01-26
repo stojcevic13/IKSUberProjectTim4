@@ -33,7 +33,7 @@
                 </tr>
                 <tr *ngFor="let r of reviews">
                     <td> <span id="rating">BY {{r.passenger.name.toUpperCase() + " " + r.passenger.surname.toUpperCase()}}: </span></td>
-                    <td> <span id="dataRating"> {{r.rating + "/5 "}} {{"'" + r.comment.toUpperCase() + "'"}}</span></td>
+                    <td> <span id="dataRating"> {{r.driverGrade + "/5 "}} {{r.vehicleGrade + "/5 "}} {{"'" + r.comment.toUpperCase() + "'"}}</span></td>
                 </tr>
             </table>
         

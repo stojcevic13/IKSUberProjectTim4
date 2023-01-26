@@ -17,9 +17,11 @@ export class DriverProfilePageComponent implements OnInit {
     name: '',
     surname: '',
     profilePicture: '',
-    telephoneNumber:'',
-    address:'',
-    email:'',
+    telephoneNumber: '',
+    address: '',
+    email: '',
+    active: false,
+    blocked: false
   }
 
   vehicle: Vehicle = {

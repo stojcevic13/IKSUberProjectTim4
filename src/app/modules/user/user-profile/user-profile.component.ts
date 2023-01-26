@@ -26,7 +26,9 @@ export class UserProfileComponent {
     profilePicture: '',
     telephoneNumber: '',
     address: '',
-    email: ''
+    email: '',
+    active: false,
+    blocked: false
   };
 
   ngOnInit(): void {

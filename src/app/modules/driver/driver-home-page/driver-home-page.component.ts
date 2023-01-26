@@ -25,9 +25,11 @@ export class DriverHomePageComponent implements OnInit {
     name: '',
     surname: '',
     profilePicture: '',
-    telephoneNumber:'',
-    address:'',
-    email:''
+    telephoneNumber: '',
+    address: '',
+    email: '',
+    active: false,
+    blocked: false
   }
   nextRides: RideDTOResponse[] = [];
 
@@ -44,6 +46,7 @@ export class DriverHomePageComponent implements OnInit {
     totalCost: 0,
     driver: this.driver,
     estimatedTimeInMinutes: 0,
+    kilometers: 0,
     status: RideStatus.PENDING,
     rejection: this.rejection,
     babyTransport: false,
@@ -60,6 +63,7 @@ export class DriverHomePageComponent implements OnInit {
     totalCost: 0,
     driver: this.driver,
     estimatedTimeInMinutes: 0,
+    kilometers: 0,
     status: RideStatus.PENDING,
     rejection: this.rejection,
     babyTransport: false,

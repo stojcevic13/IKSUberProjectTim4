@@ -5,6 +5,7 @@ import { environment } from 'src/enviroments/environment';
 import { RouteDTO } from 'src/app/services/ride-service.service';
 import { VehicleName } from 'src/app/services/vehicle.service';
 import { Passenger } from 'src/app/services/passenger.service';
+import { Route } from '../passenger/passenger-ride-history/passenger-ride-history.component';
 
 
 @Injectable({
@@ -24,6 +25,10 @@ export class FavoriteRouteService {
     return this.http.post<FavoriteRoute>(environment.apiHost + 'api/ride/favorites', favoriteRoute);
   }
 
+  delete(rideId: number, passengerId: number): Observable<void> {
+    return this.http.delete<void>(environment.apiHost + 'api/ride/favorites/' + rideId + '/' + passengerId);
+  }
+
   getPassengerFavorites(passengerId: number): Observable<FavoriteRoute[]> {
     return this.http.get<FavoriteRoute[]>(environment.apiHost + 'api/ride/' + passengerId + '/favorites');
   }
@@ -33,7 +38,7 @@ export class FavoriteRouteService {
 export interface FavoriteRoute {
   id?: number;
   favoriteName: string;
-  locations: RouteDTO[];
+  locations: Route[];
   passengers: Passenger[];
   vehicleType: VehicleName;
   babyTransport: boolean;

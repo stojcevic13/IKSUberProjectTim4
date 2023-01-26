@@ -11,16 +11,23 @@ import { WorkingHoursDTO, WorkingHoursService } from '../../security/working-hou
 })
 export class ActiveButtonComponent implements OnInit {
 
-  constructor(private sharedService: SharedService, private userService: UserService, private driverService: DriverService, private workingHoursService: WorkingHoursService){}
+  constructor(
+    private sharedService: SharedService, 
+    private userService: UserService, 
+    private driverService: DriverService, 
+    private workingHoursService: WorkingHoursService
+    ){}
 
   driver: Driver = {
     id: 0,
     name: '',
-    surname:'',
+    surname: '',
     profilePicture: '',
-    telephoneNumber:'',
-    address:'',
-    email:''
+    telephoneNumber: '',
+    address: '',
+    email: '',
+    active: false,
+    blocked: false
   }
 
   workingHour: WorkingHoursDTO = {
