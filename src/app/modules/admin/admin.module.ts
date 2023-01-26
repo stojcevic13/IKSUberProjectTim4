@@ -28,9 +28,11 @@ import { RidePopupAdminComponent } from './ride-popup-admin/ride-popup-admin.com
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { AllUsersComponent } from './all-users/all-users.component';
 import { BlockRemarksComponent } from './block-remarks/block-remarks.component';
-
-
-
+import { AdminReportsComponent } from './admin-reports/admin-reports.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { BlockRemarksComponent } from './block-remarks/block-remarks.component';
     AdminRideHistoryComponent,
     RidePopupAdminComponent,
     AllUsersComponent,
-    BlockRemarksComponent
+    BlockRemarksComponent,
+    AdminReportsComponent
   ],
   imports: [
     CommonModule,
@@ -65,7 +68,10 @@ import { BlockRemarksComponent } from './block-remarks/block-remarks.component';
     BrowserModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
-
+    ReactiveFormsModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatRadioModule
   ],
 
   exports:[AdminRideHistoryComponent]

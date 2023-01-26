@@ -31,7 +31,7 @@ export class NavbarComponent implements OnInit{
   }
 
 
-  constructor(private sharedService: SharedService, private userService: UserService, private driverService: DriverService, private workingHoursService: WorkingHoursService){}
+  constructor(private authService:AuthService, private sharedService: SharedService, private userService: UserService, private driverService: DriverService, private workingHoursService: WorkingHoursService){}
 
 
   ngOnInit() {
@@ -117,6 +117,7 @@ export class NavbarComponent implements OnInit{
       this.workingHoursService.update(Number(this.workingHour.id), {end: new Date()}).subscribe();
     }
     this.role = "unregistered"
+    this.authService.logout();
     this.currentClicked = "unregisteredHome"
   }
 
@@ -130,5 +131,8 @@ export class NavbarComponent implements OnInit{
 
   adminHistoryClicked(){
     this.currentClicked = "adminHistory";
+  }
+  adminReportsClicked(){
+    this.currentClicked = "adminReports";
   }
 }

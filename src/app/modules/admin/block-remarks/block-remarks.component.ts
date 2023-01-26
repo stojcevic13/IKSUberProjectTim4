@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Remark, UserDTO, UserService } from '../../security/user.service';
 
@@ -21,6 +22,11 @@ export class BlockRemarksComponent {
     userId: 0
   }
 
+  handleError(error: HttpErrorResponse) {
+    console.log(error);
+    alert("An error occurred: " + error.error.message);
+  }
+  
 
   close(){
     this.show = false;
@@ -36,15 +42,25 @@ export class BlockRemarksComponent {
           this.hasRemarks= true;
         }
         this.isUserBlocked = user.blocked;
-
-      }}
-
-    );
+      },
+      error: (error) => {
+        console.error(error);
+        this.handleError(error);
+      }
+    });
   }
 
   block(userId:number){
     this.show=false;
-    this.userService.blockUser(userId, this.user).subscribe();
+    this.userService.blockUser(userId, this.user).subscribe(
+      res => {
+        console.log(res);
+      },
+      error => {
+        console.error(error);
+        this.handleError(error);
+      }
+    );
     const blocking = {
       userId:userId,
       blocked:true
@@ -54,7 +70,15 @@ export class BlockRemarksComponent {
 
   unblock(userId:number){
     this.show=false;
-    this.userService.unblockUser(userId, this.user).subscribe();
+    this.userService.unblockUser(userId, this.user).subscribe(
+      res => {
+        console.log(res);
+      },
+      error => {
+        console.error(error);
+        this.handleError(error);
+      }
+    );
     const blocking = {
       userId:userId,
       blocked:false
@@ -66,7 +90,16 @@ export class BlockRemarksComponent {
     this.show = false;
     this.remark.userId = userId;
     this.remark.date = new Date();
-    this.userService.remarkUser(userId, this.remark).subscribe();
+    this.userService.remarkUser(userId, this.remark).subscribe(
+      res => {
+        console.log(res);
+        alert("User remarked successfully");
+      },
+      error => {
+        console.error(error);
+        this.handleError(error);
+      }
+    );
     this.remark.message = '';
   }
 }

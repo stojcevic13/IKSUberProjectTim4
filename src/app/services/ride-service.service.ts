@@ -6,6 +6,8 @@ import { environment } from 'src/enviroments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
 // import { environment } from 'src/enviroments/environment';
 import { Ride, Route } from '../modules/passenger/passenger-ride-history/passenger-ride-history.component';
+import { Role } from '../modules/security/user.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +29,26 @@ export class RideServiceService {
 
   getDriverRideHistory(driverId: number):Observable<Ride[]>{
     return this.http.get<Ride[]>(environment.apiHost + 'api/ride/driver/' + driverId + '/rideHistory');
+  }
+
+  getAllRidesByDateAndRole(startDate:string, endDate:string, userId:number, role:Role):Observable<Ride[]>{
+    if(role.toString()=='DRIVER'){
+      return this.http.get<Ride[]>(environment.apiHost + 'api/ride/driver/' + userId + '/' + startDate + '/' + endDate);
+    }else{
+      return this.http.get<Ride[]>(environment.apiHost + 'api/ride/passenger/' + userId + '/' + startDate + '/' + endDate);
+    }
+  }
+
+  getDriverRidesByDate(startDate: string, endDate: string, driverId:number):Observable<Ride[]> {
+    return this.http.get<Ride[]>(environment.apiHost + 'api/ride/driver/' + driverId + '/' + startDate + '/' + endDate);
+  }  
+  
+  getPassengerRidesByDate(startDate: string, endDate: string, passengerId:number):Observable<Ride[]> {
+    return this.http.get<Ride[]>(environment.apiHost + 'api/ride/passenger/' + passengerId + '/' + startDate + '/' + endDate);
+  }
+    
+  getAllRidesByDate(startDate: string, endDate: string):Observable<Ride[]> {
+    return this.http.get<Ride[]>(environment.apiHost + 'api/ride/' + startDate + '/' + endDate);
   }
 
   getAllRides():Observable<Ride[]>{

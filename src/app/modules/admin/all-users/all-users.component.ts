@@ -1,4 +1,5 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -32,13 +33,13 @@ export class AllUsersComponent {
         this.users= res.results;
         this.dataSource = new MatTableDataSource<UserDTO>(this.users);
         this.dataSource.paginator = this.paginator;
-
-      }}
-
-    );
-
-    
-  }
+      },
+      error: (error) => {
+        console.error(error);
+        this.handleError(error);
+      }
+    });
+}
 
   onCloseChild(blocking:Blocking){
     let userToUpdate = this.dataSource.data.find(x=> x.id===blocking.userId);
@@ -49,6 +50,12 @@ export class AllUsersComponent {
     }
 
   }
+
+  handleError(error: HttpErrorResponse) {
+    console.log(error);
+    alert("An error occurred: " + error.error.message);
+  }
+  
   
   showPopup(user:UserDTO){
     this.popup = true;

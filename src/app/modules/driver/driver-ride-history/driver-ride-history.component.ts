@@ -1,4 +1,5 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { HttpErrorResponse } from '@angular/common/http';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
@@ -44,20 +45,40 @@ constructor(
     this.dataSource.sort = this.sort;
   }
 
+  handleError(error: HttpErrorResponse) {
+    console.log(error);
+    alert("An error occurred: " + error.error.message);
+  }
+
 ngOnInit(): void {
-  this.userService.getUser().subscribe((user) => (
-    this.driverService.getDriver(user.user.id).subscribe((driver)=> ( 
-      this.rideService.getDriverRideHistory(driver.id).subscribe({                   
-      next: (res) => {
-        this.rides= res;
-        this.dataSource = new MatTableDataSource<Ride>(this.rides);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-      }
-    })
-    ))
-       )
-  );
+  this.userService.getUser().subscribe(
+    (user) => {
+        this.driverService.getDriver(user.user.id).subscribe(
+        (driver)=> { 
+            this.rideService.getDriverRideHistory(driver.id).subscribe({                   
+                next: (res) => {
+                    this.rides= res;
+                    this.dataSource = new MatTableDataSource<Ride>(this.rides);
+                    this.dataSource.paginator = this.paginator;
+                    this.dataSource.sort = this.sort;
+                },
+                error: (error) => {
+                    console.error(error);
+                    this.handleError(error);
+                }
+            });
+        },
+        (error) => {
+            console.error(error);
+            this.handleError(error);
+        });
+    },
+    (error) => {
+        console.error(error);
+        this.handleError(error);
+    }
+);
+
 
 }
 
