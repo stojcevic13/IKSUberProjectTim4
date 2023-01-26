@@ -1,4 +1,6 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { catchError, switchMap, throwError } from 'rxjs';
 import { Driver, DriverService } from 'src/app/services/driver.service';
 import { VehicleName, VehicleService } from 'src/app/services/vehicle.service';
 import { CarType } from '../../driver/car-profile/car-profile.component';
@@ -34,6 +36,10 @@ export class CreateDriverComponent {
   petTransport:boolean = false;
   babyTransport:boolean = false;
 
+  handleError(error: HttpErrorResponse) {
+    console.log(error);
+    alert("An error occurred: " + error.error.message);
+  }
   createDriver(){
    
     
@@ -56,7 +62,21 @@ export class CreateDriverComponent {
       vehicleType: this.vehicleType,
     }
 
-    this.driverService.createDriver(driver).subscribe((driverRes)=>  this.vehicleSerive.createVehicle(vehicle, driverRes).subscribe());
+    this.driverService.createDriver(driver)
+    .pipe(
+      switchMap(driverRes => 
+        this.vehicleSerive.createVehicle(vehicle, driverRes)
+        .pipe(catchError(error => {
+            this.handleError(error);
+            return throwError(error);
+        }))
+      )
+    )
+    .subscribe(() => {
+      alert('Driver and vehicle created successfully');
+    }, (error) => {
+      this.handleError(error);
+    });
   
     this.model.nativeElement.value = "";
     this.address.nativeElement.value = "";

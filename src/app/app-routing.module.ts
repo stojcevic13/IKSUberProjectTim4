@@ -16,6 +16,8 @@ import { AdminDriverPageComponent } from './modules/admin/admin-driver-page/admi
 import { DriverRideHistoryComponent } from './modules/driver/driver-ride-history/driver-ride-history.component';
 import { AdminRideHistoryComponent } from './modules/admin/admin-ride-history/admin-ride-history.component';
 import { DriverReportsComponent } from './modules/driver/driver-reports/driver-reports.component';
+import { PassengerReportsComponent } from './modules/passenger/passenger-reports/passenger-reports.component';
+import { AdminReportsComponent } from './modules/admin/admin-reports/admin-reports.component';
 const routes: Routes = [
 
   // UNREGISTERED USER COMPONENTS
@@ -28,6 +30,7 @@ const routes: Routes = [
   {path: 'passengerHome', component:PassengerHomeComponent}, 
   {path: 'user-profile', component:UserProfileComponent},
   {path: 'passenger/rideHistory', component:PassengerRideHistoryComponent},
+  {path: 'passengerReports', component:PassengerReportsComponent},
 
   // DRIVER COMPONENTS
   {path: 'driverHome', component:DriverHomePageComponent}, 
@@ -39,7 +42,8 @@ const routes: Routes = [
   {path:'admin/rideHistory', component:AdminRideHistoryComponent},
   {path: 'adminHome', component:AdminHomePageComponent},
   {path:'users', component:AdminDriverPageComponent},
-  {path: 'support', component:SupportChatComponent}
+  {path: 'support', component:SupportChatComponent},
+  {path:'adminReports', component:AdminReportsComponent}
   
 
 ];
@@ -49,5 +53,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [UnregisteredHomeComponent, FooterComponent, LoginComponent, NavbarComponent, PassengerHomeComponent,
-   RegistrationComponent, UserProfileComponent, PassengerRideHistoryComponent,DriverReportsComponent, AdminHomePageComponent,DriverRideHistoryComponent,AdminRideHistoryComponent,  AdminDriverPageComponent];
+export const routingComponents = [UnregisteredHomeComponent, FooterComponent, LoginComponent, NavbarComponent,AdminReportsComponent, PassengerHomeComponent,
+   RegistrationComponent, UserProfileComponent, PassengerRideHistoryComponent,DriverReportsComponent,PassengerReportsComponent, AdminHomePageComponent,DriverRideHistoryComponent,AdminRideHistoryComponent,  AdminDriverPageComponent];

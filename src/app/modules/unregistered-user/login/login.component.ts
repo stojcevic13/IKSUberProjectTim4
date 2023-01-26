@@ -5,6 +5,7 @@ import { Role, UserService } from '../../security/user.service';
 import { EventEmitter } from '@angular/core';
 import { SharedService } from 'src/app/services/shared.service';
 import { WorkingHoursDTO, WorkingHoursService } from '../../security/working-hours.service';
+import { HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -30,6 +31,11 @@ export class LoginComponent {
   //   end: new Date()
   // }
 
+  handleError(error: HttpErrorResponse) {
+    console.log(error);
+    alert("An error occurred: " + error.error.message);
+  }
+
   login() {
     console.log(this.email, this.password);
     
@@ -45,15 +51,11 @@ export class LoginComponent {
           this.router.navigate(['adminHome']);
         }
       }) 
-    ));
-    
-
-    
-    
-    
-    
-
-    
+    ),
+    (error) => {
+      this.handleError(error);
+    }
+    );  
 
   }
 }

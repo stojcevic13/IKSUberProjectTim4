@@ -1,0 +1,21 @@
+<form [formGroup]="form">
+    <mat-form-field appearance="fill" id="datePicker">
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [rangePicker]="picker" formGroupName="daterange">
+                <input matStartDate placeholder="Start date" formControlName="start" #start>
+                <input matEndDate formControlName="end" placeholder="End date" #end>
+        </mat-date-range-input>
+        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+      <mat-form-field appearance="fill" id="email">
+        <mat-label>USERS EMAIL</mat-label>
+        <input  matInput id="data" #email>
+    </mat-form-field>
+    <button mat-raised-button id="confirmBtn" (click)="onSubmit()">CONFIRM</button>
+</form>
+
+    <div id="firstGraph">
+        <canvas id="ridesPerDay"></canvas>
+    </div>

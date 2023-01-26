@@ -31,7 +31,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RidePopupComponent } from './ride-popup/ride-popup.component';
 import { MatListModule } from '@angular/material/list';
 import { RemarkComponent } from './remark/remark.component';
-
+import { PassengerReportsComponent } from './passenger-reports/passenger-reports.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     InviteFriendComponent,
@@ -41,7 +44,8 @@ import { RemarkComponent } from './remark/remark.component';
     RideRequestComponent,
     EndRideComponent,
     RidePopupComponent,
-    RemarkComponent
+    RemarkComponent,
+    PassengerReportsComponent
 
   ],
   imports: [
@@ -64,6 +68,9 @@ import { RemarkComponent } from './remark/remark.component';
     BrowserModule,
     BrowserAnimationsModule,
     MatListModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    ReactiveFormsModule
 
   ],
   providers: [

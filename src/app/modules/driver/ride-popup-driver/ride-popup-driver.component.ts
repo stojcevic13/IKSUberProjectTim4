@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { forkJoin } from 'rxjs';
@@ -39,18 +40,28 @@ export class RidePopupDriverComponent {
   show: boolean = false;
   constructor(private rideService: RideServiceService, private driverService:DriverService, private route: ActivatedRoute,private changeDetectorRef: ChangeDetectorRef){
   }
-
+  handleError(error: HttpErrorResponse) {
+    console.log(error);
+    alert("An error occurred: " + error.error.message);
+  }
   set(rideId:number){
     this.show = true;
     this.changeDetectorRef.detectChanges();
     forkJoin([
       this.rideService.getRide(rideId),
-    ]).subscribe((ride) => {
-      this.ride = ride[0];
-      this.mapComponent.route(ride[0].departure, ride[0].destination);
-      this.reviews = this.ride.reviews;
-      console.log(this.ride.passengers);
-    });
+    ]).subscribe(
+      (ride) => {
+        this.ride = ride[0];
+        this.mapComponent.route(ride[0].departure, ride[0].destination);
+        this.reviews = this.ride.reviews;
+        console.log(this.ride.passengers);
+      },
+      (error) => {
+        console.error(error);
+        this.handleError(error);
+      }
+    );
+    
   }
   close(){
     this.show = false;

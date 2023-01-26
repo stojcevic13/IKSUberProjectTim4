@@ -24,3 +24,35 @@
         <input  matInput  #sumRidesPerDay id="data">
     </mat-form-field>
 </span> 
+
+
+<div id="secondGraph">
+    <canvas id="earningsPerDay"></canvas>
+</div>
+<span id="averageAndsum" *ngIf="show">
+    <mat-form-field appearance="fill">
+    <mat-label>AVERAGE</mat-label>
+    <input  matInput  #averageEarningsPerDay id="data">
+    </mat-form-field>
+    <mat-form-field appearance="fill" id="sum">
+        <mat-label>SUM</mat-label>
+        <input  matInput  #sumEarningsPerDay id="data">
+    </mat-form-field>
+</span> 
+
+
+<div id="thirdGraph">
+    <canvas id="kilometersPerDay"></canvas>
+</div>
+<span id="averageAndsum" *ngIf="show">
+    <mat-form-field appearance="fill">
+    <mat-label>AVERAGE</mat-label>
+    <input  matInput  #averageKilometersPerDay id="data">
+    </mat-form-field>
+    <mat-form-field appearance="fill" id="sum">
+        <mat-label>SUM</mat-label>
+        <input  matInput  #sumKilometersPerDay id="data">
+    </mat-form-field>
+</span> 
+<br>
+<button mat-raised-button *ngIf="show" id="printBtn">PRINT TO PDF</button>
