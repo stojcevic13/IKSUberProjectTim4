@@ -2,8 +2,9 @@ import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '
 import { ActivatedRoute } from '@angular/router';
 import { forkJoin, Observable } from 'rxjs';
 import { Driver, DriverService } from 'src/app/services/driver.service';
-import { DriverRideDTO, RideServiceService } from 'src/app/services/ride-service.service';
+import { DriverRideDTO, RideDTORequest, RideServiceService } from 'src/app/services/ride-service.service';
 import { MapComponent } from '../../map/map/map.component';
+import { ReviewDTORequest, ReviewService } from '../../security/review.service';
 import { Review, Ride, VehicleName } from '../passenger-ride-history/passenger-ride-history.component';
 import {RideStatus} from '../passenger-ride-history/passenger-ride-history.component'
 
@@ -14,6 +15,7 @@ import {RideStatus} from '../passenger-ride-history/passenger-ride-history.compo
 })
 export class RidePopupComponent{
   @ViewChild(MapComponent) mapComponent: any;
+  passengerId = 0;
   starRating = 0;
   driver: DriverRideDTO= {
     id: 0,
@@ -39,14 +41,28 @@ export class RidePopupComponent{
   };
   reviewsExist:boolean = false;
   gradedByThisUser:boolean = false;
+  passThreeDays:boolean = false;
   show: boolean = false;
   showGrading:boolean = false;
-  constructor(private rideService: RideServiceService, private driverService:DriverService, private route: ActivatedRoute,private changeDetectorRef: ChangeDetectorRef){
+  newReview: ReviewDTORequest = {
+    driverGrade: 0,
+    vehicleGrade: 0,
+    comment: ''
+  } 
+  futureOrder: boolean = false;
+  futureTime: Date = new Date();
+  constructor(
+    private reviewService: ReviewService,
+    private rideService: RideServiceService, 
+    private driverService:DriverService, 
+    private route: ActivatedRoute,
+    private changeDetectorRef: ChangeDetectorRef){
   
 
   }
 
   set(rideId:number, loggedPassengerId:number){
+    this.passengerId = loggedPassengerId;
     this.gradedByThisUser = false;
     this.show = true;
     this.changeDetectorRef.detectChanges();
@@ -66,6 +82,7 @@ export class RidePopupComponent{
         if (r.passenger.id == loggedPassengerId){
           this.gradedByThisUser = true;
         } 
+        this.isPassThreeDays(this.ride.endTime);
       }
     });
 
@@ -74,6 +91,68 @@ export class RidePopupComponent{
   grade(){
     this.showGrading = true;
   }
+
+  gradeRide(){
+    console.log("GRADING");
+    this.reviewService.create(this.ride.id, this.passengerId, this.newReview).subscribe();
+    alert("Reviewed successfully!");
+  }
+
+  isPassThreeDays(date: Date) {
+    const currentDate = new Date();
+    const threeDaysAgo = new Date();
+    threeDaysAgo.setDate(currentDate.getDate() - 3); 
+
+    let str: string[] = date.toString().split(",");
+    const date2 = new Date(Number(str[0]), Number(str[1])-1, Number(str[2]), Number(str[3]), Number(str[4]), Number(str[5]));
+
+    this.passThreeDays = (date2 < threeDaysAgo);  
+  }
+
+  orderForNow(){
+    this.orderNewRide(new Date());
+  }
+
+  showFutureOrder(){
+    this.futureOrder = true;
+  }
+
+  hideFutureOrder(){
+    this.futureOrder = false;
+  }
+
+  orderForFuture(){
+    if (this.validFutureTime())
+      this.orderNewRide(this.futureTime);
+  }
+
+  validFutureTime(): boolean {
+    let now = new Date();
+    let fiveHoursFromNow = new Date(now.getTime() + 5*60*60*1000);
+    if (this.futureTime > fiveHoursFromNow || this.futureTime < now) {
+        alert("Future ride can be ordered just in next 5 hours.");
+        return false;
+    }
+    return true;
+  }
+
+  orderNewRide(time: Date) : RideDTORequest {
+    const rideDTORequest: RideDTORequest = {
+      babyTransport: this.ride.babyTransport,
+      petTransport: this.ride.petTransport,
+      passengers: this.ride.passengers,
+      locations: this.ride.locations,
+      vehicleType: this.ride.vehicleType,
+      startTime: time,
+      estimatedTime: this.ride.estimatedTimeInMinutes,
+      kilometers: 0.8
+    }
+    this.rideService.createRide(rideDTORequest).subscribe();
+    alert("Ride successfully ordered!");
+    return rideDTORequest;
+  }
+
+
   
   close(){
     this.show = false;

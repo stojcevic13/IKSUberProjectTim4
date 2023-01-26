@@ -37,6 +37,8 @@ export interface Passenger {
   telephoneNumber:string;
   address:string;
   email:string;
+  active: boolean;
+  blocked: boolean;
 }
 
 export interface PassengerRideDTO {

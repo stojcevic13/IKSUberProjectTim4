@@ -65,7 +65,9 @@ export class RegFormComponent implements OnInit {
     profilePicture: '',
     telephoneNumber: '',
     address: '',
-    email: ''
+    email: '',
+    active: false,
+    blocked: false
   };
 
   favoriteRoutes: FavoriteRoute[] = [];
@@ -146,8 +148,12 @@ export class RegFormComponent implements OnInit {
         this.createFavoriteRoute();
       }
     }
-      this.rideService.createRide(this.ride).subscribe();
-      alert("Ride successfully ordered!");
+      this.rideService.createRide(this.ride).subscribe((res) => {
+        alert("Ride successfully ordered!");
+      }, (error) => {
+        alert("An error occured: " + error.error.message);
+      });
+      // alert("Ride successfully ordered!");
   }
 
   favoriteRoute: FavoriteRoute = {
@@ -169,7 +175,13 @@ export class RegFormComponent implements OnInit {
     this.favoriteRoute.petTransport = this.ride.petTransport;
     this.favoriteRoute.kilometers = 0.8;
     this.favoriteRoute.estimatedTimeInMinutes = 20;
-    this.favoriteRouteService.create(this.favoriteRoute).subscribe();
+
+    this.favoriteRouteService.create(this.favoriteRoute).subscribe((res) => {
+      alert("Successfully added to favourite routes!");
+    }, (error) => {
+      alert("An error occured: " + error.error.message);
+    });
+
   }
 
   getLocations() : RouteDTO[] {

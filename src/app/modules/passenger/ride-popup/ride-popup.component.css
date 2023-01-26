@@ -1,8 +1,8 @@
-mat-card{
+mat-card {
     max-width: 500px;
     background-color: white;
     min-height: 580px;
-    max-height: 650px;
+    max-height: 750px;
     position: fixed;
     top:55%;
     left: 50%;
@@ -101,7 +101,7 @@ table{
     width:100%;
   }
 
-  #gradeButton{
+  .smallOrangeButton{
     background-color: #e39d5ce3;
     color:white; 
     margin-left: 23px;
@@ -110,9 +110,16 @@ table{
     box-shadow: 0px 1px 1px 1px rgb(170, 167, 163);
   }
 
-  #grading{
-    width:20%;
-    margin-left:10px;
+  .smallOrangeButton:hover {
+    cursor: pointer;
+  }
+
+  .grading{
+    width:33%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    
   }
 
   #gradeDiv{
