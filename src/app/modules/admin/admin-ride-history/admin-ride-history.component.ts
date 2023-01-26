@@ -1,8 +1,10 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { catchError, throwError } from 'rxjs';
 import { DriverService } from 'src/app/services/driver.service';
 import { RideServiceService } from 'src/app/services/ride-service.service';
 import { Ride } from '../../passenger/passenger-ride-history/passenger-ride-history.component';
@@ -44,14 +46,24 @@ constructor(
 
 ngOnInit(): void {
 
-      this.rideService.getAllRides().subscribe({                   
-      next: (res) => {
-        this.rides= res;
-        this.dataSource = new MatTableDataSource<Ride>(this.rides);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
- 
-      }});
+  this.rideService.getAllRides()
+  .pipe(catchError(error => {
+    this.handleError(error);
+    return throwError(error);
+  }))
+  .subscribe({
+    next: (res) => {
+      this.rides= res;
+      this.dataSource = new MatTableDataSource<Ride>(this.rides);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    },
+    error: (error) => this.handleError(error)
+  });
+}
+handleError(error: HttpErrorResponse) {
+  console.log(error);
+  alert("An error occurred: " + error.error.message);
 }
 
 announceSortChange(sortState: Sort) {

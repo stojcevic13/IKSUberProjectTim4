@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PassengerService } from 'src/app/services/passenger.service';
@@ -45,8 +46,21 @@ export class UserProfileComponent {
 
 
   updatePassenger() {
-    this.passengerService.updatePassenger(this.passenger).subscribe();
-    alert("Changes successfully updated.")
+    this.passengerService.updatePassenger(this.passenger).subscribe((res)=>
+    {
+      alert("Changes successfully updated.");
+    },
+    (error) => {
+      console.error(error);
+      this.handleError(error);
+    }
+    );
+  }
+
+
+  handleError(error: HttpErrorResponse) {
+    console.log(error);
+    alert("An error occurred: " + error.error.message);
   }
 
   changingPassword() {

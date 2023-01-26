@@ -42,6 +42,9 @@ export class UserService {
         this.value$.next(test);
     }
 
+    getUserByEmail(email:string):Observable<UserDTO> {
+        return this.http.get<UserDTO>(environment.apiHost + 'api/user/' + email);
+    }
 
     getUser(): Observable<User> {
         return this.http.get<User>(environment.apiHost + 'api/user/me');
