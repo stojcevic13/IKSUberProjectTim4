@@ -48,7 +48,7 @@ export class UserProfileComponent {
   updatePassenger() {
     this.passengerService.updatePassenger(this.passenger).subscribe((res)=>
     {
-      alert("Changes successfully updated.");
+     alert("Changes successfully updated."); 
     },
     (error) => {
       console.error(error);
