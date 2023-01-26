@@ -94,6 +94,7 @@ export interface RideDTOResponse {
   totalCost: number;
   driver: DriverRideDTO;
   estimatedTimeInMinutes: number;
+  kilometers: number;
   status: RideStatus;
   rejection?: RejectionDTO;
   babyTransport: boolean;

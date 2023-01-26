@@ -193,7 +193,8 @@ export interface Route{
 
 export interface Review{
   id:number,
-  rating:number,
+  driverGrade:number;
+  vehicleGrade:number;
   comment:string;
   passenger: Passenger
 }

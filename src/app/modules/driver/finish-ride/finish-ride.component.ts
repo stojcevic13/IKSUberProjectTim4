@@ -31,6 +31,7 @@ export class FinishRideComponent {
     totalCost: 0,
     driver: this.driver,
     estimatedTimeInMinutes: 0,
+    kilometers: 0,
     status: RideStatus.PENDING,
     babyTransport: false,
     petTransport: false,

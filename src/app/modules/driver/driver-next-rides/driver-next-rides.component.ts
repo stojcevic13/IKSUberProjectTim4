@@ -44,6 +44,7 @@ export class DriverNextRidesComponent {
     totalCost: 0,
     driver: this.driver,
     estimatedTimeInMinutes: 0,
+    kilometers: 0,
     status: RideStatus.PENDING,
     rejection: this.rejection,
     babyTransport: false,
