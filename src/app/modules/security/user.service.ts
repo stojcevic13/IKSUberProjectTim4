@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/enviroments/environment';
 import { Driver } from 'src/app/services/driver.service';
 import { Passenger } from 'src/app/services/passenger.service';
+import { StarRatingModule } from 'angular-star-rating';
 
 export type UserDTO = {
     id: number,
@@ -71,6 +72,14 @@ export class UserService {
     unblockUser(userId:number,userDTO:UserDTO):Observable<UserDTO>{
         return this.http.put<UserDTO>(environment.apiHost + "api/user/" + userId + '/unblock', userDTO);
     }
+    
+    postPassenger(passengerDTO:PassengerPost):Observable<PassengerPost>{
+        return this.http.post<PassengerPost>(environment.apiHost + "api/passenger", passengerDTO);
+    }
+
+    activatePassenger(activationId:number){
+        return this.http.get(environment.apiHost + "api/passenger/activate/" + activationId);
+    }
 }
 
 export interface UserRemarkResult{
@@ -89,3 +98,12 @@ export interface Remark {
     userId: number;
 }
 
+export interface PassengerPost{
+    name:string,
+    surname:string,
+    password:string,
+    email:string,
+    telephoneNumber:string,
+    confirmPassword:string,
+    address:string
+}

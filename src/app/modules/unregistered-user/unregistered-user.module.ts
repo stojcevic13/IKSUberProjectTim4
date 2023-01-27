@@ -17,6 +17,7 @@ import {MatButtonModule} from '@angular/material/button';
 import{MatInputModule} from '@angular/material/input';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { UserModule } from '../user/user.module';
+import { ActivationPageComponent } from './activation-page/activation-page.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { UserModule } from '../user/user.module';
     UnregInfoComponent,
     UnregNavbarComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    ActivationPageComponent
   ],
   imports: [
     CommonModule,

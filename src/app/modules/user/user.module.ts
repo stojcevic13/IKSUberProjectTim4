@@ -15,6 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+
 @NgModule({
   declarations: [
     FooterComponent,
@@ -23,7 +24,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     PanicComponent,
     SupportChatComponent,
     UserProfileComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+
   ],
   imports: [
     CommonModule,

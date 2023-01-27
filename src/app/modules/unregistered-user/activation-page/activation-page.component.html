@@ -1,0 +1,9 @@
+
+<div id="act">
+    <mat-form-field id="formField">
+        <mat-label>Please enter your activation ID so that we can confirm your email</mat-label>
+        <input matInput placeholder="Activation ID" [(ngModel)] = "activationId">
+    </mat-form-field>
+    <br>
+    <button mat-raised-button id="confirmBtn" (click)="submit()">CONFIRM</button>
+</div>
