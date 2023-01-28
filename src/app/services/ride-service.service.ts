@@ -63,9 +63,9 @@ export class RideServiceService {
   }
 
 
-  createRide(ride: RideDTORequest): Observable<RideDTORequest> {
+  createRide(ride: RideDTORequest): Observable<RideDTOResponse> {
     const url: string = environment.apiHost + 'api/ride';
-    return this.http.post<RideDTORequest>(url, ride);
+    return this.http.post<RideDTOResponse>(url, ride);
   }
 
   rejectRide(rideId: number, rejection: RejectionDTO): Observable<RideDTOResponse> {

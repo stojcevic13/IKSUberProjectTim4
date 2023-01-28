@@ -3,7 +3,7 @@
         <mat-checkbox class="example-margin" [(ngModel)]="favoriteOrder"> Order by favorite routes </mat-checkbox>
         <mat-form-field appearance="fill" id="favoriteRoutes">
             <mat-label>Favorite routes: </mat-label>
-            <mat-select [disabled]="!favoriteOrder" [(ngModel)]="selectedFavoriteRoute">
+            <mat-select [disabled]="!favoriteOrder" [(ngModel)]="selectedFavoriteRoute" (ngModelChange)="onFavoriteSelected()">
                 <mat-option id="favoriteOption" *ngFor="let favorite of favoriteRoutes" [value]="favorite">
                     {{favorite.locations[0].departure.address}} - {{favorite.locations[0].destination.address}}
                 </mat-option>
@@ -38,7 +38,7 @@
     
     <mat-form-field appearance="fill" id="select">
         <mat-label>Car type</mat-label>
-        <mat-select [disabled]="favoriteOrder" [(ngModel)]="ride.vehicleType">
+        <mat-select [disabled]="favoriteOrder" [(ngModel)]="ride.vehicleType" (ngModelChange)="onVehicleSelected()">
             <mat-option *ngFor="let type of carTypes" [value]="type.value">
                 {{type.viewValue}}
             </mat-option>
@@ -58,7 +58,7 @@
     </div>
 
     <div id="buttons">
-        <button [disabled]="passenger.blocked" (click)="orderRide()" mat-stroked-button id="goBtn"><span>GO! </span></button>
+        <button [disabled]="isGoDisabled()" (click)="orderRide()" mat-stroked-button id="goBtn"><span>GO! </span></button>
         <button [disabled]="passenger.blocked" (click)="showFutureOrder()" mat-stroked-button id="laterBtn"><span>BOOK FOR LATER </span></button>
     </div>
     </mat-card-content>
