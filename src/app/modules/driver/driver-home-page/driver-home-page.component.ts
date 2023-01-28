@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DriverService } from 'src/app/services/driver.service';
 import { Driver } from 'src/app/services/driver.service';
+import { MessageService } from '../../sockets/socket.service';
 
 @Component({
   selector: 'driver-home-page',
@@ -22,7 +23,8 @@ export class DriverHomePageComponent implements OnInit  {
   
   constructor(
     private route: ActivatedRoute,
-    private driverService: DriverService
+    private driverService: DriverService,
+    private messageService: MessageService,
   ) {}
 
   ngOnInit(): void {
@@ -30,6 +32,13 @@ export class DriverHomePageComponent implements OnInit  {
       this.driverService
         .getDriver(+params['driverId'])
         .subscribe((driver) => (this.driver = driver));
+      
+      this.messageService.subscribe("/topic/messages");
+      this.messageService.send("/chat", "AAAAAA");
+      this.messageService.send("/topic/messages", "BBBBBB");
+      this.messageService.send("/chat", "CCCCC");
+      this.messageService.send("/app/chat", "AAAAAApp");
+      this.messageService.send("/app/topic/messages", "BBBBBBpp");
     });
   }
 }
