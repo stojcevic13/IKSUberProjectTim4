@@ -1,7 +1,7 @@
 <mat-card>
     <mat-card-content>
         <div id="up-container">
-            <img src="../../../assets/images/cat.JPG" id="profilePicture">
+            <img src="../../../assets/images/{{passenger.profilePicture}}" id="profilePicture">
             <button mat-mini-fab id="updatePic"><mat-icon>link</mat-icon> </button>
             <div id="up-fields">
                 <mat-form-field>
@@ -29,9 +29,14 @@
         </mat-form-field>
 
         <div id="buttons">
-            <button mat-raised-button id="changeBtn"><span>CHANGE PASSWORD</span></button>
+            <button (click)="changingPassword()" mat-raised-button id="changeBtn"><span>CHANGE PASSWORD</span></button>
             <button (click)="updatePassenger()" mat-raised-button id="saveBtn"><span>SAVE CHANGES</span></button>
         </div>
+
+        <change-password 
+            (showWindow)="update($event)"
+            *ngIf="showChangePassword">
+        </change-password>
 
     </mat-card-content>
 </mat-card>

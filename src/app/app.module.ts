@@ -18,11 +18,12 @@ import { MapService } from './modules/map/map.service';
 import { DriverModule } from './modules/driver/driver.module';
 import { UserModule } from './modules/user/user.module';
 import { MessageService } from './modules/sockets/socket.service';
+import { AdminModule } from './modules/admin/admin.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-   
+ 
   ],
   imports: [
     BrowserModule,
@@ -36,7 +37,8 @@ import { MessageService } from './modules/sockets/socket.service';
     MapModule,
     UnregisteredUserModule,
     DriverModule,
-    UserModule
+    UserModule,
+    AdminModule
   ],
   providers: [
     {

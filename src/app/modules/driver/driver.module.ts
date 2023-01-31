@@ -19,6 +19,21 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { DriverProfilePageComponent } from './driver-profile-page/driver-profile-page.component';
 import { FormsModule } from '@angular/forms';
+import { ActiveButtonComponent } from './active-button/active-button.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { DeclineReasonComponent } from './decline-reason/decline-reason.component';
+import { FinishRideComponent } from './finish-ride/finish-ride.component';
+import { DriverRideHistoryComponent } from './driver-ride-history/driver-ride-history.component';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RidePopupDriverComponent } from './ride-popup-driver/ride-popup-driver.component';
+import { DriverReportsComponent } from './driver-reports/driver-reports.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,7 +42,14 @@ import { FormsModule } from '@angular/forms';
     DriverNavbarComponent,
     DriverProfileComponent,
     CarProfileComponent,
-    DriverProfilePageComponent
+    DriverProfilePageComponent,
+    ActiveButtonComponent,
+    DeclineReasonComponent,
+    FinishRideComponent,
+    DriverRideHistoryComponent,
+    RidePopupDriverComponent,
+    DriverReportsComponent,
+
   ],
   imports: [
     CommonModule,
@@ -43,8 +65,22 @@ import { FormsModule } from '@angular/forms';
     MatOptionModule,
     MatSelectModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    MatSlideToggleModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatTableModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    ReactiveFormsModule
+
  
+  ],
+  exports:[
+    CarProfileComponent,
+    DriverProfileComponent
   ]
 })
 export class DriverModule { }

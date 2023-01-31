@@ -17,7 +17,7 @@ export class PassengerService {
 
 
   getAll():Observable<Passenger[]>{
-    return this.http.get<Passenger[]>(environment.apiHost + 'api/passenger/all');
+    return this.http.get<Passenger[]>(environment.apiHost + 'api/passenger');
   }
 
   getPassenger(passengerId: number): Observable<Passenger> {
@@ -33,7 +33,15 @@ export interface Passenger {
   id: number;
   name: string;
   surname:string;
+  profilePicture:string;
   telephoneNumber:string;
   address:string;
   email:string;
+  active: boolean;
+  blocked: boolean;
+}
+
+export interface PassengerRideDTO {
+  id: number;
+  email: string;
 }

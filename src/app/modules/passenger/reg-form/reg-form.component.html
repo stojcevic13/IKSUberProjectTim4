@@ -1,30 +1,44 @@
 <mat-card>
     <mat-card-content>
+        <mat-checkbox class="example-margin" [(ngModel)]="favoriteOrder"> Order by favorite routes </mat-checkbox>
+        <mat-form-field appearance="fill" id="favoriteRoutes">
+            <mat-label>Favorite routes: </mat-label>
+            <mat-select [disabled]="!favoriteOrder" [(ngModel)]="selectedFavoriteRoute">
+                <mat-option id="favoriteOption" *ngFor="let favorite of favoriteRoutes" [value]="favorite">
+                    {{favorite.locations[0].departure.address}} - {{favorite.locations[0].destination.address}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
         <form class="form">
+ 
+
+            <div id="inputButtonContainer">
             <mat-form-field class="example-full-width">
                 <mat-label>Start destination</mat-label>
-                <input matInput id="startLocation" placeholder="Ex. Trg Slobode 4">
+                <input [disabled]="favoriteOrder" matInput id="startLocation" placeholder="Ex. Trg Slobode 4"  [(ngModel)]="departure" name="departure">
                 <mat-icon matSuffix color="primary">flag</mat-icon>
             </mat-form-field>
+            <button [disabled]="favoriteOrder" (click)="setUnchosenStartLocation()" *ngIf="startLocationChosen" id="startLocationDone"><mat-icon>highlight_off</mat-icon></button>
+            <button [disabled]="favoriteOrder" (click)="setChosenStartLocation()" *ngIf="!startLocationChosen" id="startLocationNotDone"><mat-icon>done_outline</mat-icon></button>   
+            </div>
             <mat-form-field class="example-full-width">
                 <mat-label>Final destination</mat-label>
-                <input matInput id="endLocation" placeholder="Ex. Narodni Front 4">
+                <input [disabled]="favoriteOrder" matInput id="endLocation" placeholder="Ex. Narodni Front 4" [(ngModel)]="destination" name="destination">
                 <mat-icon matSuffix color="primary">flag</mat-icon>
-            </mat-form-field>
+            </mat-form-field> 
+            
         </form>
-
-    <button (click)="inviteFriends()" mat-raised-button id="inviteBtn"><span>INVITE FRIENDS</span></button>
+        <mat-checkbox [disabled]="favoriteOrder" (change)="printState()" class="example-margin" [(ngModel)]="addToFavorites"> Add to favorite routes </mat-checkbox>
+        
+    <button (click)="inviteFriends()" [disabled]="favoriteOrder" mat-raised-button id="inviteBtn"><span>INVITE FRIENDS</span></button>
     <br>
     <div *ngFor="let f of friends" class="friend">
-        <mat-chip *ngIf="f.invited" color="accent">{{f.name}} {{f.surname}}<mat-icon matChipRemove (click)="uninviteFriend(f)">cancel</mat-icon></mat-chip>
+        <mat-chip *ngIf="f.invited" color="accent">{{f.passenger.name}} {{f.passenger.surname}}<mat-icon matChipRemove (click)="uninviteFriend(f)">cancel</mat-icon></mat-chip>
     </div>
-    <!-- <mat-chip color="accent">Ana <mat-icon matChipRemove>cancel</mat-icon></mat-chip>
-    <mat-chip color="accent">Marko <mat-icon matChipRemove>cancel</mat-icon></mat-chip>
-    <mat-chip color="accent">Vlada <mat-icon matChipRemove>cancel</mat-icon></mat-chip> -->
-
+    
     <mat-form-field appearance="fill" id="select">
         <mat-label>Car type</mat-label>
-        <mat-select>
+        <mat-select [disabled]="favoriteOrder" [(ngModel)]="ride.vehicleType">
             <mat-option *ngFor="let type of carTypes" [value]="type.value">
                 {{type.viewValue}}
             </mat-option>
@@ -32,14 +46,21 @@
     </mat-form-field>
 
     <section>
-        <mat-checkbox class="example-margin"> Baby </mat-checkbox>
+        <mat-checkbox [disabled]="favoriteOrder" class="example-margin" [(ngModel)]="ride.babyTransport"> Baby </mat-checkbox>
         <br>
-        <mat-checkbox class="example-margin"> Pet </mat-checkbox>  
+        <mat-checkbox [disabled]="favoriteOrder" class="example-margin" [(ngModel)]="ride.petTransport"> Pet </mat-checkbox>  
     </section>
 
+    <div id="futureOrdering" *ngIf="futureOrder">
+        <label for="enterTime">Future time:  </label>
+        <input id="enterTime" type="datetime-local" name="enterTime" [(ngModel)]="futureTime">    
+        <a (click)="hideFutureOrder()" id="cancelIcon"><mat-icon>cancel</mat-icon></a>
+    </div>
+
     <div id="buttons">
-        <button mat-stroked-button id="goBtn"><span>GO! </span></button>
-        <button mat-stroked-button id="laterBtn"><span>BOOK FOR LATER </span></button>
+        <button [hidden]="inSearch" [disabled]="passenger.blocked" (click)="orderRide()" mat-stroked-button id="goBtn"><span>GO! </span></button>
+        <button [hidden]="inSearch" [disabled]="passenger.blocked" (click)="showFutureOrder()" mat-stroked-button id="laterBtn"><span>BOOK FOR LATER </span></button>
+        <button [hidden]="!inSearch" aria-disabled="true">{{searchStatus}}</button>
     </div>
     </mat-card-content>
 </mat-card>

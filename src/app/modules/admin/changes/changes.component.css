@@ -1,0 +1,154 @@
+mat-card {
+    max-width: 560px;
+    margin: 2em auto;
+    height:450px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+
+mat-card-content{
+    margin: 20px;
+}
+
+#up-container {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 40px;
+}
+
+
+#profilePicture {
+    width: 25%;
+    border-radius: 50%;
+    position: absolute;
+}
+
+
+#updatePic {
+    background-color: #E39D5C;
+    margin-top: 100px;
+    margin-left: 100px;
+}
+
+
+#up-fields {
+    width: 70%;
+    margin-top: 10px;
+    margin-left: 50px;
+}
+
+mat-form-field {
+    height: 25px;
+    margin-bottom: 40px;
+    display: block;
+}
+
+
+.largerMargine {
+    margin-bottom: 45px;
+}
+
+#profile{
+    float: left;
+    margin-right: 20px;
+    margin-left: 100px;
+}
+
+
+#picture {
+    width: fit-content;
+    margin: 0px auto;
+}
+
+#carPicture {
+    width: 350px;
+    border-radius: 20px;
+    margin: 0px auto;
+    
+}
+
+#updatePic {
+    background-color: #E39D5C;
+}
+
+#carInfo {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+#leftInfo {
+    width: 50%;
+}
+
+#rightInfo {
+    width: 30%;
+    margin-left: 20%;
+    text-align: left;
+}
+
+#car{
+    float: left;
+}
+
+#page{
+    width: fit-content;
+    height: 580px;
+    text-align: center;
+    margin: 0px auto;
+    position: fixed;
+    top:55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    border:black;
+    box-shadow: 0px 6px 51px 8px rgb(122, 119, 115);
+    background-color:white;
+}
+
+#btn{
+    color: #E39D5C;
+    background-color: white;
+    box-shadow: 0px 1px 1px 1px rgb(170, 167, 163);
+    margin: 0px auto;
+}
+
+
+#saveBtn{
+    margin:0 auto;   
+    background-color: #E39D5C;
+    color:white;
+    font-size: 17px;
+    padding:10px;
+    border: none;
+    box-shadow: 0px 1px 1px 1px rgb(230, 228, 225);
+    border-radius: 5px;
+    margin-top:26px;
+    width:23%;
+}
+
+#components{
+    text-align: center;
+    margin: 10px 110px;
+    width:100%;
+}
+
+#cancelBtn{
+    margin:0 auto;
+    background-color: #b6b3b394;
+    color:rgb(105, 104, 104);
+    font-size: 17px;
+    padding:10px;
+    border: none;
+    box-shadow: 0px 1px 1px 1px rgb(230, 228, 225);
+    border-radius: 5px;
+    margin-top:26px;
+    margin-left: 50px;
+    width:27%;
+}

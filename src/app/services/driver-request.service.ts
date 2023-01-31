@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/enviroments/environment';
+import { VehicleName } from './vehicle.service';
 // import { ConsoleReporter } from 'jasmine';
 
 
@@ -22,8 +23,8 @@ export class DriverRequestService {
 
 
   // TODO: Trebace kasnije da se dobave svi zahtjevi, kad dodjemo do admina
-  getAll():Observable<DriverRequest[]>{
-    return this.http.get<DriverRequest[]>(environment.apiHost + 'api/driver-request/all');
+  getAll():Observable<DriverRequestResult>{
+    return this.http.get<DriverRequestResult>(environment.apiHost + 'api/driver/driver-request');
   }
 
   getDriverRequestById(driverRequestId: number): Observable<DriverRequest> {
@@ -35,12 +36,22 @@ export class DriverRequestService {
     return this.http.post<DriverRequest>('http://localhost:8080/api/driver/driver-request', driverRequest);
   }
 
+  deleteDriverRequest(driverRequest:DriverRequest):Observable<DriverRequest> {
+    console.log("cao");
+    console.log(driverRequest.id);
+    return this.http.delete<DriverRequest>(environment.apiHost + 'api/driver/driver-request/' + driverRequest.id);
 
+  }
 
 
 }
+export interface DriverRequestResult{
+  total:number,
+  results:DriverRequest[]
+}
 
 export interface DriverRequest {
+  id:number;
   driverId: number;
   newName: string;
   newSurname: string;
@@ -51,7 +62,7 @@ export interface DriverRequest {
   
   vehicleId: number;
   newModel: string;
-  newVehicleName: string;
+  newVehicleName: VehicleName;
   newRegPlates: string;
   newNumSeats: number;
   newBabyProof: boolean;

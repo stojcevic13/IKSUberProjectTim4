@@ -23,10 +23,12 @@ export class DriverProfileComponent {
     id: 0,
     name: '',
     surname: '',
+    profilePicture: '',
     telephoneNumber: '',
     address: '',
-    email: '',  
-    password: ''  
+    email: '',
+    active: false,
+    blocked: false
   };
 
   @Output() disabledValue = new EventEmitter<boolean>();
@@ -46,7 +48,7 @@ export class DriverProfileComponent {
 
   changingPassword() {
     this.showChangePassword = true;
-    new ChangePasswordComponent(this.driverService);
+    // new ChangePasswordComponent();
   }
 
   update(show: boolean) {

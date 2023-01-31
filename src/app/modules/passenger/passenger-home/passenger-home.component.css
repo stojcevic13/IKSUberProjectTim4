@@ -5,19 +5,22 @@
   align-items: right;
 }
 
-.map{ 
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right:0;
-    opacity: 0.9;
-    
-}
+
 .inviteFriends{
     z-index: 9;
     float:right;
    margin-top:30px;
-    
+}
+
+.map{    
+    width:100%;
+    height:90%;
+    position: absolute;
+    top: 100px;
+    left: 0;
+    right:0;
+    opacity: 0.9;
+}
+.id{
+    width:100%;
 }

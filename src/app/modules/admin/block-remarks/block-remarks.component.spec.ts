@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RideHistoryComponent } from './ride-history.component';
+import { BlockRemarksComponent } from './block-remarks.component';
 
-describe('RideHistoryComponent', () => {
-  let component: RideHistoryComponent;
-  let fixture: ComponentFixture<RideHistoryComponent>;
+describe('BlockRemarksComponent', () => {
+  let component: BlockRemarksComponent;
+  let fixture: ComponentFixture<BlockRemarksComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RideHistoryComponent ]
+      declarations: [ BlockRemarksComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(RideHistoryComponent);
+    fixture = TestBed.createComponent(BlockRemarksComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

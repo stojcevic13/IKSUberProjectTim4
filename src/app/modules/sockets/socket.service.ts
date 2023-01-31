@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { RxStomp, RxStompConfig } from '@stomp/rx-stomp';
+import { IMessage } from '@stomp/stompjs';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -26,10 +27,8 @@ export class MessageService {
     console.log('Broker url is:', this.rxStomp.stompClient.brokerURL);
   }
 
-  public subscribe(destination: string): void {
-    this.rxStomp.watch(destination).subscribe((msg) => {
-        console.log(msg);
-    });
+  public subscribe(destination: string): Observable<IMessage> {
+    return this.rxStomp.watch(destination);
   }
 
   public send(destination: string, body: any): void {

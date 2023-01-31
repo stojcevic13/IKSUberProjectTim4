@@ -1,0 +1,94 @@
+
+<div id="page">
+    <div id="profile">
+        <mat-card>
+            <mat-card-content>
+                <div id="up-container">
+                    <img src="../../../assets/images/cat.JPG" id="profilePicture">
+                    <button mat-mini-fab id="updatePic"><mat-icon>link</mat-icon> </button>
+                    <div id="up-fields">
+                        <mat-form-field>
+                            <mat-label>Name</mat-label>
+                            <input matInput placeholder="Name" #name  required>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Last name</mat-label>
+                            <input matInput placeholder="Last Name" #surname  required>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <mat-form-field class="largerMargine">
+                    <mat-label>Address</mat-label>
+                    <input matInput placeholder="Address" #address required>
+                </mat-form-field>
+                <mat-form-field class="largerMargine">
+                    <mat-label>Phone</mat-label>
+                    <input matInput placeholder="Phone" #telephoneNumber  required>
+                </mat-form-field>
+                <mat-form-field class="largerMargine">
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="Email" #email required>
+                </mat-form-field>
+                <mat-form-field class="largerMargine">
+                    <mat-label>Password</mat-label>
+                    <input matInput placeholder="Password" type="password" #password required>
+                </mat-form-field>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div id="car">
+        <mat-card>
+            <mat-card-content>
+                <div id="picture">
+                    <img src="../../../assets/images/car.jpg" id="carPicture">
+                    <!-- <button mat-mini-fab id="updatePic"><mat-icon>link</mat-icon> </button> -->
+                </div>
+
+                <div id="carInfo">
+                    <div id="leftInfo">
+                        <mat-form-field>
+                            <mat-label>Model</mat-label>
+                            <input  matInput placeholder="Model" #model required>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Registration number</mat-label>
+                            <input  matInput placeholder="Registration number" #licenseNumber required>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Num of seats:</mat-label>
+                            <input matInput placeholder="Passenger seats" #passengerSeats required>
+                        </mat-form-field>
+                    </div>
+            
+                    <div id="rightInfo">
+                        <mat-form-field appearance="fill" id="select">
+                            <mat-label>Car type</mat-label>
+                            <mat-select  [(ngModel)]="vehicleType">
+                                <mat-option *ngFor="let type of carTypes" [value]="type.value">
+                                    {{type.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <section>
+                            <mat-checkbox class="example-margin"[(ngModel)]="babyTransport"> Baby </mat-checkbox>
+                            <br>
+                            <mat-checkbox class="example-margin" [(ngModel)]="petTransport"> Pet </mat-checkbox>  
+                        </section>            
+                    </div>
+                </div>
+
+            </mat-card-content>
+            <!-- <div id="end-button">
+                
+            </div> -->
+        </mat-card>
+    </div>
+
+</div>
+<mat-card id="createCard">
+    <div id="createDiv">
+        <button  mat-raised-button id="createBtn" (click)="createDriver()"><span>CREATE DRIVER</span></button>
+    </div>
+</mat-card>

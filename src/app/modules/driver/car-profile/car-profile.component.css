@@ -5,7 +5,7 @@ mat-card {
 }
 
 mat-card-content{
-    margin: 20px;
+    margin: 10px;
 }
 
 #picture {
@@ -25,7 +25,7 @@ mat-card-content{
 }
 
 #carInfo {
-    margin-top: 50px;
+    margin-top: 20px;
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -52,5 +52,5 @@ mat-form-field {
 
 #validateBtn {
     background-color: #DDDDDD;
-    margin-top: 30px;
+    margin-top: 10px;
 }

@@ -1,30 +1,67 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Driver, DriverService } from 'src/app/services/driver.service';
+import { SharedService } from 'src/app/services/shared.service';
+import { AuthService, TokenDTO } from '../../security/auth.service';
+import { UserService } from '../../security/user.service';
+import { WorkingHoursDTO, WorkingHoursService } from '../../security/working-hours.service';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
-  currentClicked = "passengerHome"
-  role = "passenger"
+export class NavbarComponent implements OnInit{
+  currentClicked = "unregisteredHome";
+  role:string = 'unregistered';
+
+  driver: Driver = {
+    id: 0,
+    name: '',
+    surname: '',
+    profilePicture: '',
+    telephoneNumber: '',
+    address: '',
+    email: '',
+    active: false,
+    blocked: false
+  }
+
+  workingHour: WorkingHoursDTO = {
+    
+  }
 
 
-  // NAVIGATION METHODS FOR UNREGISTERED USER
+  constructor(private authService:AuthService, private sharedService: SharedService, private userService: UserService, private driverService: DriverService, private workingHoursService: WorkingHoursService){}
+
+
+  ngOnInit() {
+    this.sharedService.currentRole.subscribe((role) => {
+      this.role = role;
+      this.currentClicked = role.toLowerCase() + "Home";
+
+      if (this.role.toString() === "DRIVER") {
+          this.userService.getUser().subscribe((user) => {
+            this.driverService.getDriver(user.user.id).subscribe((driver) => {
+              this.driver = driver
+            })
+            this.workingHoursService.create(user.user.id, {start: new Date()}).subscribe((workingHour) => {this.workingHour = workingHour})
+          })
+      }
+    });
+  }
+
 
   unregHomeClicked() {
-    this.currentClicked = "unregHome"
+    this.currentClicked = "unregisteredHome";
+    this.role  = "unregistered";
   }
-  loginClicked() {
-    console.log(":");
-    //this.routerLink = 
-    this.currentClicked = "login"
-    console.log(this.currentClicked);
-    this.role = "driver"
+  loginClicked() { 
+    this.currentClicked = "login";
+    
   }
   registrationClicked() {
-    this.currentClicked = "registration"
-    this.role = "passenger"
+    this.currentClicked = "registration";
+
   }
 
 
@@ -32,19 +69,19 @@ export class NavbarComponent {
   // NAVIGATION METHODS FOR PASSENGER
 
   passengerHomeClicked() {
-    this.currentClicked = "passengerHome"
+    this.currentClicked = "passengerHome";
   }
 
   passengerProfileClicked() {
-    this.currentClicked = "passengerProfile"
+    this.currentClicked = "passengerProfile";
   }
 
   passengerHistoryClicked() {
-    this.currentClicked = "passengerHistory"
+    this.currentClicked = "passengerHistory";
   }
   
   passengerReportsClicked() {
-    this.currentClicked = "passengerReports"
+    this.currentClicked = "passengerReports";
   }
 
 
@@ -52,19 +89,19 @@ export class NavbarComponent {
   // NAVIGATION METHODS FOR DRIVER
 
   driverHomeClicked() {
-    this.currentClicked = "driverHome"
+    this.currentClicked = "driverHome";
   }
 
   driverProfileClicked() {
-    this.currentClicked = "driverProfile"
+    this.currentClicked = "driverProfile";
   }
 
   driverHistoryClicked() {
-    this.currentClicked = "driverHistory"
+    this.currentClicked = "driverHistory";
   }
   
   driverReportsClicked() {
-    this.currentClicked = "driverReports"
+    this.currentClicked = "driverReports";
   }
 
 
@@ -76,8 +113,26 @@ export class NavbarComponent {
   }
 
   logoutClicked() {
-    this.currentClicked = "logout"
+    if (this.role.toString() === "DRIVER") {
+      this.workingHoursService.update(Number(this.workingHour.id), {end: new Date()}).subscribe();
+    }
     this.role = "unregistered"
+    this.authService.logout();
+    this.currentClicked = "unregisteredHome"
   }
 
+  adminHomeClicked(){
+    this.currentClicked="adminHome";
+  }
+
+  adminCreateDriverClicked(){
+    this.currentClicked = "createDriver";
+  }
+
+  adminHistoryClicked(){
+    this.currentClicked = "adminHistory";
+  }
+  adminReportsClicked(){
+    this.currentClicked = "adminReports";
+  }
 }
