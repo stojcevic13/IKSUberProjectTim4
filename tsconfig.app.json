@@ -3,6 +3,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
+    "experimentalDecorators": true,
     "types": [
       "@angular/localize"
     ]
@@ -12,5 +13,8 @@
   ],
   "include": [
     "src/**/*.d.ts"
-  ]
+  ],
+  "paths": {
+    "socket.io-client": ["../node_modules/socketjs/"]
+  }
 }

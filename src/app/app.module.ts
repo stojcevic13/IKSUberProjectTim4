@@ -17,6 +17,7 @@ import { UnregisteredUserModule } from './modules/unregistered-user/unregistered
 import { MapService } from './modules/map/map.service';
 import { DriverModule } from './modules/driver/driver.module';
 import { UserModule } from './modules/user/user.module';
+import { MessageService } from './modules/sockets/socket.service';
 import { AdminModule } from './modules/admin/admin.module';
 
 @NgModule({
@@ -47,7 +48,8 @@ import { AdminModule } from './modules/admin/admin.module';
     },
     AuthService,
     MapService,
-    UserService
+    UserService,
+    MessageService
   ],
   bootstrap: [AppComponent]
 })
