@@ -102,6 +102,7 @@ export interface RideDTORequest {
   startTime: Date;
   estimatedTime: number;
   kilometers: number;
+  agreementCode?: number;
 }
 
 export interface RouteDTO {
