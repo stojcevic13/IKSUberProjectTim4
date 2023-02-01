@@ -80,6 +80,14 @@ export class UserService {
     activatePassenger(activationId:number){
         return this.http.get(environment.apiHost + "api/passenger/activate/" + activationId);
     }
+
+    resetPassword(userId:string|undefined, newPassword:PasswordDTO){
+        return this.http.put(environment.apiHost + "api/user/" + userId + "/resetPassword", newPassword);
+    }
+
+    sendEmailToReset(userId:number){
+        return this.http.get(environment.apiHost + "api/user/" + userId + "/resetPassword");
+    }
 }
 
 export interface UserRemarkResult{
@@ -87,6 +95,10 @@ export interface UserRemarkResult{
     results:Remark[]
 }
 
+export interface PasswordDTO{
+    newPassword:string,
+    code:string|undefined
+}
 
 export interface UserResult{
     total:number,

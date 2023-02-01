@@ -19,6 +19,7 @@ import { DriverModule } from './modules/driver/driver.module';
 import { UserModule } from './modules/user/user.module';
 import { AdminModule } from './modules/admin/admin.module';
 
+
 @NgModule({
   declarations: [
     AppComponent,

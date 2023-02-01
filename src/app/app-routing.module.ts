@@ -18,14 +18,15 @@ import { AdminRideHistoryComponent } from './modules/admin/admin-ride-history/ad
 import { DriverReportsComponent } from './modules/driver/driver-reports/driver-reports.component';
 import { PassengerReportsComponent } from './modules/passenger/passenger-reports/passenger-reports.component';
 import { AdminReportsComponent } from './modules/admin/admin-reports/admin-reports.component';
-import { ActivationPageComponent } from './modules/unregistered-user/activation-page/activation-page.component';
+import { ResetPasswordPageComponent } from './modules/unregistered-user/reset-password-page/reset-password-page.component';
+
 const routes: Routes = [
 
   // UNREGISTERED USER COMPONENTS
   {path: '', component:UnregisteredHomeComponent},
   {path: 'login', component:LoginComponent},
   {path: 'registration', component:RegistrationComponent},
-  {path: 'activation', component:ActivationPageComponent},
+
 
   // PASSENGER COMPONENTS
   {path: 'passengerHome', component:PassengerHomeComponent}, 
@@ -44,8 +45,9 @@ const routes: Routes = [
   {path: 'adminHome', component:AdminHomePageComponent},
   {path:'users', component:AdminDriverPageComponent},
   {path: 'support', component:SupportChatComponent},
-  {path:'adminReports', component:AdminReportsComponent}
-  
+  {path:'adminReports', component:AdminReportsComponent},
+ 
+  {path:'login/reset', component:ResetPasswordPageComponent, data:  {code: '/', email:'/', id:''}}
 
 ];
 
@@ -54,5 +56,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [UnregisteredHomeComponent, ActivationPageComponent, FooterComponent, LoginComponent, NavbarComponent,AdminReportsComponent, PassengerHomeComponent,
-   RegistrationComponent, UserProfileComponent, PassengerRideHistoryComponent,DriverReportsComponent,PassengerReportsComponent, AdminHomePageComponent,DriverRideHistoryComponent,AdminRideHistoryComponent,  AdminDriverPageComponent];
+export const routingComponents = [UnregisteredHomeComponent, FooterComponent, LoginComponent, NavbarComponent,AdminReportsComponent, PassengerHomeComponent,
+   RegistrationComponent, UserProfileComponent, ResetPasswordPageComponent, PassengerRideHistoryComponent,DriverReportsComponent,PassengerReportsComponent, AdminHomePageComponent,DriverRideHistoryComponent,AdminRideHistoryComponent,  AdminDriverPageComponent];

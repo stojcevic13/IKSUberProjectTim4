@@ -6,7 +6,7 @@ import { environment } from 'src/enviroments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
 // import { environment } from 'src/enviroments/environment';
 import { Ride, Route } from '../modules/passenger/passenger-ride-history/passenger-ride-history.component';
-import { Role } from '../modules/security/user.service';
+import { Role, UserDTO } from '../modules/security/user.service';
 
 
 @Injectable({
@@ -89,6 +89,7 @@ export class RideServiceService {
     return this.http.get<RideDTOResponse[]>(environment.apiHost + 'api/ride/passenger/' + passengerId);
   }
 
+ 
  
 }
 

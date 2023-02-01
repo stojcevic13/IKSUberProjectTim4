@@ -14,10 +14,11 @@ import {MatOptionModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
-import{MatInputModule} from '@angular/material/input';
+import {MatInputModule} from '@angular/material/input';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { UserModule } from '../user/user.module';
-import { ActivationPageComponent } from './activation-page/activation-page.component';
+import { ResetPasswordPageComponent } from './reset-password-page/reset-password-page.component';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ActivationPageComponent } from './activation-page/activation-page.compo
     UnregNavbarComponent,
     LoginComponent,
     RegistrationComponent,
-    ActivationPageComponent
+    ResetPasswordPageComponent,
+
   ],
   imports: [
     CommonModule,
