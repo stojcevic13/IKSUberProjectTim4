@@ -166,3 +166,9 @@ export interface FavouriteRoute {
   kilometers: number;
 }
 
+export interface PanicDTO{
+  user: UserDTO;
+  ride: RideDTOResponse;
+  time: Date;
+  reason: string;
+}

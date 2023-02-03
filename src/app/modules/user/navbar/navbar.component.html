@@ -24,7 +24,7 @@
         <a id="adminDriver" mat-button (click)="adminCreateDriverClicked()" [ngStyle]="{'color': currentClicked == 'createDriver'? 'orange' : 'white' }" color="white" routerLink="/users">USERS</a> 
         <a id="admin-history" mat-button (click)="adminHistoryClicked()" [ngStyle]="{'color': currentClicked == 'adminHistory'? 'orange' : 'white' }" color="white" routerLink="admin/rideHistory" >HISTORY</a>
         <a id="admin-reports"  mat-button (click)="adminReportsClicked()" [ngStyle]="{'color': currentClicked == 'adminReports'? 'orange' : 'white' }" color="white" routerLink="adminReports" >REPORTS</a>
-        <a id="admin-notification"  mat-button (click)="driverReportsClicked()" [ngStyle]="{'color': currentClicked == 'driverReports'? 'orange' : 'white' }" color="white" >NOTIFICATION</a></div>
+        <a id="admin-notification"  mat-button (click)="driverReportsClicked()" [ngStyle]="{'color': currentClicked == 'driverReports'? 'orange' : 'white' }" color="white" >CHAT</a></div>
 
 
         <a *ngIf="role == 'passenger' || role == 'driver'" id="support" mat-button (click)="supportClicked()" [ngStyle]="{'color': currentClicked == 'support'? 'orange' : 'white' }" color="white" routerLink="/support">SUPPORT</a>

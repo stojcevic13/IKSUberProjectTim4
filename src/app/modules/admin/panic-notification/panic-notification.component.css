@@ -1,0 +1,35 @@
+mat-card {
+    position: fixed;
+    top:25%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    margin-top: 10px;
+    padding-bottom: 20px;
+    z-index: 1000;
+}
+#panics{
+    margin: 20px 15px;
+    font-size: 20px;
+    color: red;
+    font-weight: 800;
+}
+span{
+    font-size:14px;
+}
+td {
+    padding-right: 5px;
+    padding-top: 15px;
+    font-size: 17px;
+    text-align: left;
+    color: rgb(204, 141, 82);
+}
+thead{
+    margin-bottom:20px;
+}
+
+th{
+    text-align: left;
+    font-size: 14px;
+    font-weight: 300;
+}

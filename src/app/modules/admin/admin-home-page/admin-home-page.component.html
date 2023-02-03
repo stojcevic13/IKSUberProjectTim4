@@ -1,4 +1,4 @@
-<div fxlayout="column" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap.xs="0"  class="container">
+<div  class="container">
     <div class="map">
         <app-map></app-map>
     </div>
@@ -7,5 +7,14 @@
     <br>
     <br>
     <br>
-    <br>
+  
 </p>
+<app-panic-notification></app-panic-notification>
+
+<div id="driverMail">
+    <mat-form-field appearance="fill" id="email">
+        <mat-label>DRIVERS EMAIL</mat-label>
+        <input  matInput id="data">
+    </mat-form-field>
+    <button mat-raised-button id="seeBtn">SEE DRIVERS RIDE</button>
+</div>

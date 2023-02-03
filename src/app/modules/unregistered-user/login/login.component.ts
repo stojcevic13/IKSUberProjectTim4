@@ -57,6 +57,7 @@ export class LoginComponent {
           this.handleError(error);
         }
       );
+   // this.router.navigate(['/login/reset']);
     }
   }
 
