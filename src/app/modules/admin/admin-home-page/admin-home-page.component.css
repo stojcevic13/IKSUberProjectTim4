@@ -1,11 +1,24 @@
 
 .map{    
-    width:100%;
+    width:110%;
     height:100%;
     position: absolute;
     top: 100px;
     left: 0;
     right:0;
-    margin-left: 150px;
+    margin-left: 100px;
 
+}
+
+#driverMail{
+    margin-left: 100px;
+    margin-top: 600px;
+    font-size:17px;
+}
+
+#seeBtn{
+    color:white;
+    font-size: 16px;
+    background-color: #E39D5C;
+    margin-left: 50px;
 }

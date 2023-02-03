@@ -11,14 +11,16 @@ import { Subject } from 'rxjs';
 
 export type TokenDTO = { accessToken: string, refreshToken?: string }
 
-@Injectable()
+@Injectable({
+  providedIn:"root"
+})
 export class AuthService {
   private roleSubject = new Subject<string>();
   role$ = this.roleSubject.asObservable();
   constructor(
     private router: Router,
+    private userService: UserService,
     private http: HttpClient,
-    private userService: UserService
   ) {
   }
 

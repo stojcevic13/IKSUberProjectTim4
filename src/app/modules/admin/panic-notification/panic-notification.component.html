@@ -1,0 +1,27 @@
+<mat-card *ngIf="panics.length > 0">
+    <div id="panics">PANICS</div>
+
+    <table>
+        <thead>
+          <tr>
+          
+            <th></th>
+            <th>CAUSED BY</th>
+            <th>REASON</th>
+            <th>TIME</th>
+            <th>DRIVER</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of panics">
+            <td></td>
+            <td>{{p.user.email}}</td>
+            <td>{{p.reason}}</td>
+            <td>{{ getTime(p.time) }}</td>
+            <td>{{p.ride.driver.email}}</td>
+          </tr>
+        </tbody>
+      </table>
+      
+
+</mat-card>

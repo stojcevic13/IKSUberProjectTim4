@@ -33,6 +33,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
+import { PanicNotificationComponent } from './panic-notification/panic-notification.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import {MatRadioModule} from '@angular/material/radio';
     RidePopupAdminComponent,
     AllUsersComponent,
     BlockRemarksComponent,
-    AdminReportsComponent
+    AdminReportsComponent,
+    PanicNotificationComponent
   ],
   imports: [
     CommonModule,
