@@ -148,8 +148,7 @@ export enum RideStatus {
   ACCEPTED,
   CANCELED,
   ACTIVE,
-  FINISHED,
-  REJECTED
+  FINISHED
 }
 
 export interface FavouriteRoute {

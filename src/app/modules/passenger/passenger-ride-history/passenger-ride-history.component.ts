@@ -172,8 +172,7 @@ export enum RideStatus{
   ACCEPTED,
   CANCELED,
   ACTIVE,
-  FINISHED, 
-  REJECTED
+  FINISHED
 }
 export enum VehicleName{
   STANDARD, 
