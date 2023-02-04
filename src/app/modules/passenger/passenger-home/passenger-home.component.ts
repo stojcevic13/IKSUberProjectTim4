@@ -10,6 +10,7 @@ import { MapComponent } from '../../map/map/map.component';
 import { VehicleName } from 'src/app/services/vehicle.service';
 import { Driver } from 'src/app/services/driver.service';
 import { MessageService } from '../../sockets/socket.service';
+import { EndRideComponent } from '../end-ride/end-ride.component';
 
 
 
@@ -62,6 +63,7 @@ export class PassengerHomeComponent {
   @ViewChild(RegFormComponent) regFormComponent: any; 
   @ViewChild(InviteFriendComponent) inviteFriendComponent: any; 
   @ViewChild(MapComponent) mapComponent: any;
+  @ViewChild(EndRideComponent) endRideComponent!: EndRideComponent;
   invitedFriends:boolean = false;
   friends:friend[] =[];
   showInviteFriendsComponent(){
@@ -86,6 +88,7 @@ export class PassengerHomeComponent {
             if (ride.status != RideStatus.ACTIVE) {
               this.rideNotInProggress(true);
               this.activeRide = ride;
+              this.endRideComponent.setRide(ride);
             }
           }
 
