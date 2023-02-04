@@ -12,6 +12,8 @@ import { IMessage } from '@stomp/stompjs';
 import { Router } from '@angular/router';
 import { MapComponent } from '../../map/map/map.component';
 import { forkJoin, map, Observable, throwError } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
+
 
 interface CarType {
   value: string;
@@ -99,6 +101,8 @@ export class RegFormComponent implements OnInit {
   };
 
   favoriteOrder: boolean = false;
+  isFavoriteSelected: boolean = false;
+  isVehicleSelected: boolean = false;
   addToFavorites: boolean = false;
 
   printState() {
@@ -126,6 +130,7 @@ export class RegFormComponent implements OnInit {
       }
     }
   }
+
   a: number = 0;
   createRideAndSearchDriver() {
     this.inSearch = true;
@@ -146,8 +151,14 @@ export class RegFormComponent implements OnInit {
         }
       });
   }
+
   orderRide() {
+    this.setRideInformation();
+    if (this.setDateSuccessfully())
+      this.createRideAndSearchDriver();
     // ZNAM DA JE KOD UZASAN / I KNOW THE CODE IS TERRIBLE / Я знаю, код ужасен
+
+    /*
     if (this.favoriteOrder) {
       this.ride.locations = this.selectedFavoriteRoute.locations;
       this.ride.passengers = this.selectedFavoriteRoute.passengers;
@@ -164,7 +175,7 @@ export class RegFormComponent implements OnInit {
       this.createRideAndSearchDriver();
       return;
     }
-    
+
     this.getLocations().subscribe((locations)=> {
       this.ride.locations = locations;
       this.ride.passengers = this.getPassengersFromFriends();
@@ -184,8 +195,23 @@ export class RegFormComponent implements OnInit {
       if (this.addToFavorites) {
         this.createFavoriteRoute();
       }
+
       this.createRideAndSearchDriver();
     })
+
+    }
+      this.rideService.createRide(this.ride).subscribe((res) => {
+        alert("Ride successfully ordered!");
+      }, (error) => {
+        if (error.status === 404) {
+          alert("There is no available driver!");
+        } else if (error.status === 204) {
+          alert("Cannot order a ride with these passengers!")
+        } else {
+          alert("An error occured: " + error.error.message);
+        }
+      });
+      */
   }
 
   favoriteRoute: FavoriteRoute = {
@@ -198,6 +224,34 @@ export class RegFormComponent implements OnInit {
     kilometers: 0,
     estimatedTimeInMinutes: 0
   }
+
+
+  setRideInformation(){
+    if (this.favoriteOrder){
+      this.setFromFavorite();
+    } else {
+      this.pickUpData();
+      if (this.addToFavorites)
+        this.createFavoriteRoute();
+    }
+  }
+
+  setFromFavorite(){
+    this.ride.locations = this.selectedFavoriteRoute.locations;
+    this.ride.passengers = this.selectedFavoriteRoute.passengers;
+    this.ride.vehicleType = this.selectedFavoriteRoute.vehicleType;
+    this.ride.babyTransport = this.selectedFavoriteRoute.babyTransport;
+    this.ride.petTransport = this.selectedFavoriteRoute.petTransport;
+    this.ride.kilometers = this.selectedFavoriteRoute.kilometers;
+    this.ride.estimatedTime = this.selectedFavoriteRoute.estimatedTimeInMinutes;
+  }
+
+  pickUpData(){
+    this.ride.locations = this.getLocations();
+    this.ride.passengers = this.getPassengersFromFriends();
+    this.ride.passengers.push(this.passenger);
+  }
+
   createFavoriteRoute() {
     this.favoriteRoute.favoriteName = "..." // Ne bih da maltretiramo korisnika (i nas) da unosi... naziv omiljene rute. Glupo je sto su to napravili na iss.
     this.favoriteRoute.locations = this.ride.locations;
@@ -209,19 +263,48 @@ export class RegFormComponent implements OnInit {
     this.favoriteRoute.estimatedTimeInMinutes = 20;
 
     this.favoriteRouteService.create(this.favoriteRoute).subscribe((res) => {
-      alert("Successfully added to favourite routes!");
+      alert("Added to favorite routes!");
     }, (error) => {
-      alert("An error occured: " + error.error.message);
+      this.handleError(error);
     });
-
   }
+
+  setDateSuccessfully() : boolean {
+    if (this.futureOrder && this.futureTime != '') {
+      this.ride.startTime = new Date(this.futureTime);
+      let now = new Date();
+      let fiveHoursFromNow = new Date(now.getTime() + 5*60*60*1000);
+      if (this.ride.startTime > fiveHoursFromNow || this.ride.startTime < now) {
+          alert("Future ride can be ordered just in next 5 hours.");
+          return false;
+      }
+    }
+    this.ride.startTime = new Date();
+    return true;
+  }
+
+  createRide(){
+    this.rideService.createRide(this.ride).subscribe((response) => {
+      console.log(response);
+      alert("Ride successfully ordered!");
+    }, (error) => {
+      console.log(error);
+      this.handleError(error);
+    });
+  }
+
+  handleError(error: HttpErrorResponse) {
+    console.log(error);
+    alert("An error occurred: " + error.error.message);
+  }
+
 
   getLocations(): Observable<RouteDTO[]> {
     const departureHTML: HTMLInputElement = document.getElementById("startLocation") as HTMLInputElement;
     const destinationHTML: HTMLInputElement = document.getElementById("endLocation") as HTMLInputElement;
 
     if (!this.mapComponent) {
-      return throwError(() => new Error('No map found!')); 
+      return throwError(() => new Error('No map found!'));
     }
     this.mapComponent.route(departureHTML.value, destinationHTML.value);
 
@@ -230,17 +313,17 @@ export class RegFormComponent implements OnInit {
       this.mapComponent.getCoordinates(destinationHTML.value)
     ]).pipe(map((points) => {
       console.log(points);
-      const departure: LocationVehicle = { 
-        latitude: JSON.parse(points[0].lat), 
-        longitude: JSON.parse(points[0].lon), 
-        address: departureHTML.value 
+      const departure: LocationVehicle = {
+        latitude: JSON.parse(points[0].lat),
+        longitude: JSON.parse(points[0].lon),
+        address: departureHTML.value
       };
 
-      const destination: LocationVehicle = { 
-        latitude: JSON.parse(points[0].lat), 
-        longitude: JSON.parse(points[0].lon), 
-        address: 
-        destinationHTML.value 
+      const destination: LocationVehicle = {
+        latitude: JSON.parse(points[0].lat),
+        longitude: JSON.parse(points[0].lon),
+        address:
+        destinationHTML.value
       };
 
       const routes: RouteDTO[] = [];
@@ -282,5 +365,23 @@ export class RegFormComponent implements OnInit {
     } else {
       this.destination = startLocation;
     }
+  }
+
+  onFavoriteSelected() {
+    this.isFavoriteSelected = true;
+  }
+
+  onVehicleSelected(){
+    this.isVehicleSelected = true;
+  }
+
+  isGoDisabled(){
+    if (this.passenger.blocked)
+      return true;
+    if (this.favoriteOrder && !this.isFavoriteSelected)
+      return true;
+    if (!this.favoriteOrder && !this.isVehicleSelected)
+      return true;
+    return false;
   }
 }
