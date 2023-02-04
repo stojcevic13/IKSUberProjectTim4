@@ -133,7 +133,8 @@ export class RegFormComponent implements OnInit {
       next: (res) => {
         alert("Ride successfully ordered!");
         this.inSearch = false;
-      }, error: (error) => {
+      }, 
+      error: (error) => {
         alert("An error occured: " + error.error.message);
         this.inSearch = false;
       }

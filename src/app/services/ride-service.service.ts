@@ -146,6 +146,7 @@ export interface Panic {
 
 export enum RideStatus {
   PENDING,
+  STARTED,
   ACCEPTED,
   CANCELED,
   ACTIVE,

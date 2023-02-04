@@ -22,7 +22,7 @@ export class DriverRideHistoryComponent implements OnInit, AfterViewInit{
   popup:boolean = false;
   @ViewChild(MatPaginator) paginator!: any;
   @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(RidePopupDriverComponent) ridePopupComponent:any; 
+  @ViewChild(RidePopupDriverComponent) ridePopupComponent!: RidePopupDriverComponent; 
 //  @ViewChild(RidePopupComponent) ridePopupComponent:any; 
 
 changeDateFormat(date:number[]) : string{
