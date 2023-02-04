@@ -13,7 +13,10 @@ import { Role, UserService } from '../../security/user.service';
 })
 export class AdminReportsComponent {
   show:boolean = false;
+  first:boolean = false;
+  second:boolean = false;
   chart!:Chart; 
+  chart2!:Chart;
   startDate!: Date;
   endDate!: Date; 
   form!: FormGroup;
@@ -36,12 +39,70 @@ export class AdminReportsComponent {
     alert("An error occurred: " + error.error.message);
   }
   onSubmit(){
+    this.first = true;
+    this.second = false;
+    if (this.chart2) {
+      this.chart2.destroy();
+  }
     this.show=true;
     this.userService.getUserByEmail(this.email.nativeElement.value).subscribe((user)=> this.getRides(user.id, user.role),
       (error) => {
         this.handleError(error);
       }
     )
+  }
+
+
+  onSubmit2(){
+    this.second = true;
+    this.first = false;
+    if (this.chart) {
+      this.chart.destroy();
+  }
+    let sumCost=0;
+    let sumRides=0;
+    this.show = true;
+    let numOfSeconds =  this.form.value.daterange.end.valueOf() - this.form.value.daterange.start.valueOf();
+    let numOfDays = Math.ceil(numOfSeconds / (1000 * 3600 * 24)); 
+    const startDate = this.getCorrectFormat(this.start.nativeElement.value);
+    const endDate = this.getCorrectFormat(this.end.nativeElement.value);
+    let ridesByDate2: { [key: string]: number } = {};                        // cuva broj voznji po danu
+    let earnByDate2: { [key: string]: number } = {};                        // cuva zaradu po danu
+    let kilometersByDate2: { [key: string]: number } = {};                   // cuva kilometre po danu
+
+    this.rideService.getAllRidesByDate(startDate, endDate).subscribe(({
+      next: (rides) => {
+        this.rides= rides;
+        sumRides = this.rides.length;
+        this.rides.forEach(ride => {
+            sumCost+=ride.totalCost;
+            //sumKilometers+=;
+            const splitted = ride.startTime.toString().split(",");
+            const d = new Date(Number(splitted[0]), Number(splitted[1]) - 1, Number(splitted[2])).toISOString();
+            let date = d.split("T")[0];
+            if(ridesByDate2[date]){
+                ridesByDate2[date]++;
+            }else{
+                ridesByDate2[date] = 1;    
+            }
+            if(earnByDate2[date]){
+                earnByDate2[date] += ride.totalCost;
+            }else{
+                earnByDate2[date] = ride.totalCost;
+            }
+            if(kilometersByDate2[date]){
+                kilometersByDate2[date] += 1;                                                    // IZMJENA
+            }else{
+                kilometersByDate2[date] = 1;
+            }
+            }
+          );
+          var averageRides= sumRides/numOfDays;
+          var averageEarnings = sumCost/numOfDays;
+          //var averageKilometers = sumKilometers/numOfDays;
+          
+       this.createSecondGraph(ridesByDate2,earnByDate2, averageEarnings, averageRides,sumCost, sumRides); 
+  }}));
   }
 
   getRides(userId:number, role:Role){
@@ -87,18 +148,22 @@ export class AdminReportsComponent {
             var averageEarnings = sumCost/numOfDays;
             //var averageKilometers = sumKilometers/numOfDays;
             
-         this.createFirstGraph(ridesByDate,earnByDate, averageEarnings, averageRides); 
+         this.createFirstGraph(ridesByDate,earnByDate, averageEarnings, averageRides,sumCost, sumRides); 
         
       }}
   )
     );
+ 
+
   }
 
 
 
-createFirstGraph(ridesByDate:Object, earnByDate:Object, average:number, sum:number){
- // this.averageRidesPerDay.nativeElement.value = average.toFixed(2);
-  //this.sumRidesPerDay.nativeElement.value = sum;
+createFirstGraph(ridesByDate:Object, earnByDate:Object, averageCost:number, averageRides:number, sumCost:number, sumRides:number){
+  this.averageRidesPerDay.nativeElement.value = averageRides.toFixed(2);
+  this.sumRidesPerDay.nativeElement.value = sumRides;
+  this.averageEarningsPerDay.nativeElement.value = averageCost.toFixed(2);
+  this.sumEarningsPerDay.nativeElement.value = sumCost.toFixed(2);
   if (this.chart) {
       this.chart.destroy();
   }
@@ -107,7 +172,7 @@ createFirstGraph(ridesByDate:Object, earnByDate:Object, average:number, sum:numb
       data: {
           labels:  Object.keys(ridesByDate),
           datasets: [{
-             label: 'Number of Rides Per Day',
+             label: 'Number of Rides Per Day of the user',
           data: Object.values(ridesByDate),
           backgroundColor: 'rgba(255, 99, 132, 0.2)',
           borderColor: 'rgba(255, 149, 128, 1)',
@@ -133,6 +198,48 @@ createFirstGraph(ridesByDate:Object, earnByDate:Object, average:number, sum:numb
   });
 
 }
+
+
+createSecondGraph(ridesByDate:Object, earnByDate:Object, averageCost:number, averageRides:number, sumCost:number, sumRides:number){
+  this.averageRidesPerDay.nativeElement.value = averageRides.toFixed(2);
+  this.sumRidesPerDay.nativeElement.value = sumRides;
+  this.averageEarningsPerDay.nativeElement.value = averageCost.toFixed(2);
+  this.sumEarningsPerDay.nativeElement.value = sumCost.toFixed(2);
+   if (this.chart2) {
+       this.chart2.destroy();
+   }
+   this.chart = new Chart('ridesPerDayTotal', {
+       type: 'line',
+       data: {
+           labels:  Object.keys(ridesByDate),
+           datasets: [{
+              label: 'Number of Rides Per Day in TOTAL',
+           data: Object.values(ridesByDate),
+           backgroundColor: 'rgba(255, 99, 132, 0.2)',
+           borderColor: 'rgba(255, 149, 128, 1)',
+           borderWidth: 3
+           },
+           {
+             label: 'Earnings Per Day',
+          data: Object.values(earnByDate),
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          borderColor: 'rgba(255, 170, 0, 1)',
+          borderWidth: 3
+          }
+       ]
+      },
+      options: {
+          scales: {
+           y: {
+               type: 'linear',
+               beginAtZero: true
+             }
+          },
+      }
+   });
+ 
+ }
+ 
 
 
 

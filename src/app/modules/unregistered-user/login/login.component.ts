@@ -36,6 +36,31 @@ export class LoginComponent {
     alert("An error occurred: " + error.error.message);
   }
 
+  sendEmail(){
+    if(this.email==''){
+      alert("You need to enter your email!")
+    }else{
+      this.userService.getUserByEmail(this.email).subscribe(
+        (user) => {
+          this.userService.sendEmailToReset(user.id).subscribe(
+            () => {
+              alert('We successfully sent you an email. Please check your mail to reset password! ');
+            },
+            (error) => {
+              console.error(error);
+              this.handleError(error);
+            }
+          );
+        },
+        (error) => {
+          console.error(error);
+          this.handleError(error);
+        }
+      );
+   // this.router.navigate(['/login/reset']);
+    }
+  }
+
   login() {
     console.log(this.email, this.password);
     
