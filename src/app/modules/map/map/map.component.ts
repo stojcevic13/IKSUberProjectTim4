@@ -41,7 +41,8 @@ export class MapComponent implements AfterViewInit {
     );
     tiles.addTo(this.map);
 
-  //  this.markVehicles();
+    // this.markVehicles();S
+
 
   }
 

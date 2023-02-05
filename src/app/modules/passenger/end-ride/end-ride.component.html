@@ -19,18 +19,25 @@
             <td class="info">{{ ride.totalCost }}</td>
         </tr>
         <tr>
-            <td class="ride">RATE:</td>
-            <td class="info">Zvezdice</td>
+            <td class="ride">RATE DRIVER:</td>
+            <td class="info"><input [(ngModel)]="review.driverGrade" matInput type="number" id="driverReview" placeholder="Driver rating" name="description" ></td>
+        </tr>
+        <tr>
+            <td class="ride">RATE VEHICLE:</td>
+            <td class="info"><input [(ngModel)]="review.vehicleGrade" matInput type="number" id="vehicleReview" placeholder="Vehicle rating" name="description"></td>
         </tr>
         <tr>
             <td class="ride">MESSAGE:</td>
             <td class="info">
-                <input matInput id="ride-description" placeholder="Ride description" name="description">
+                <input matInput [(ngModel)]="review.comment" id="ride-description" placeholder="Ride description" name="description">
             </td>
         </tr>
     </table>
 
-    <div id="close"><button mat-raised-button id="closeBtn" (click)="close()"><span>CLOSE</span></button></div>
+    <div id="close">
+        <button mat-raised-button id="reviewBtn" (click)="reviewRide()"><span>CONFIRM</span></button>
+        <button mat-raised-button id="closeBtn" (click)="close()"><span>CLOSE</span></button>
+    </div>
 
 
 </mat-card>
