@@ -1,22 +1,22 @@
-<mat-card>
+<mat-card *ngIf="show">
     <p id="title">RIDE IS OVER</p>
 
     <table>
         <tr>
             <td class="ride">FROM:</td>
-            <td class="info">Nikole Tesle 20</td>
+            <td class="info">{{ride.locations[0].departure.address}}</td>
         </tr>
         <tr>
             <td class="ride">TO:</td>
-            <td class="info">Mihajla Pupina 5</td>
+            <td class="info">{{ride.locations[0].destination.address}}</td>
         </tr>
         <tr>
             <td class="ride">DRIVER:</td>
-            <td class="info">Dejan Stankovic</td>
+            <td class="info">{{ride.driver.email}}</td>
         </tr>
         <tr>
             <td class="ride">PRICE:</td>
-            <td class="info">200 RSD</td>
+            <td class="info">{{ ride.totalCost }}</td>
         </tr>
         <tr>
             <td class="ride">RATE:</td>
@@ -30,7 +30,7 @@
         </tr>
     </table>
 
-    <div id="close"><button mat-raised-button id="closeBtn"><span>CLOSE</span></button></div>
+    <div id="close"><button mat-raised-button id="closeBtn" (click)="close()"><span>CLOSE</span></button></div>
 
 
 </mat-card>

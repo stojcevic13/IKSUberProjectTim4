@@ -9,6 +9,8 @@ import { UserService } from '../../security/user.service';
 import { MapComponent } from '../../map/map/map.component';
 import { VehicleName } from 'src/app/services/vehicle.service';
 import { Driver } from 'src/app/services/driver.service';
+import { MessageService } from '../../sockets/socket.service';
+import { EndRideComponent } from '../end-ride/end-ride.component';
 
 
 
@@ -18,8 +20,8 @@ import { Driver } from 'src/app/services/driver.service';
   styleUrls: ['./passenger-home.component.css']
 })
 export class PassengerHomeComponent {
-
   constructor(
+    private messageService: MessageService,
     private userService: UserService,
     private passengerService: PassengerService, 
     private rideService: RideServiceService,  
@@ -61,6 +63,7 @@ export class PassengerHomeComponent {
   @ViewChild(RegFormComponent) regFormComponent: any; 
   @ViewChild(InviteFriendComponent) inviteFriendComponent: any; 
   @ViewChild(MapComponent) mapComponent: any;
+  @ViewChild(EndRideComponent) endRideComponent!: EndRideComponent;
   invitedFriends:boolean = false;
   friends:friend[] =[];
   showInviteFriendsComponent(){
@@ -70,13 +73,37 @@ export class PassengerHomeComponent {
 
   ngOnInit(): void {
 
-    this.userService.getUser().subscribe((user) => (
+    this.userService.getUser().subscribe((user) => {
       this.passengerService.getPassenger(user.user.id).subscribe((passenger)=> (this.passenger = passenger)),
-      this.rideService.getByPassengerId(user.user.id).subscribe((passengerRides) => {
-        (this.passengerRides = passengerRides)
-        this.checkRides();
-      })
-      ));
+        this.rideService.getByPassengerId(user.user.id).subscribe((passengerRides) => {
+          (this.passengerRides = passengerRides)
+          this.checkRides();
+        })
+
+        this.messageService.subscribe("/topic/ride-for-passenger/" + user.user.id).subscribe(msg => {
+          console.log(JSON.parse(msg.body).payload);
+          const ride: RideDTOResponse = JSON.parse(msg.body).payload;
+
+          if (ride.id == this.activeRide.id) {
+            if (ride.status != RideStatus.ACTIVE) {
+              this.rideNotInProggress(true);
+              this.activeRide = ride;
+              this.endRideComponent.setRide(ride);
+            }
+          }
+
+          const nextRide = this.passengerRides.find(nextRide => nextRide.id == ride.id);
+          if (nextRide) {
+            for (let i = 0; i < this.passengerRides.length; i++) {
+              if (this.passengerRides[i].id === ride.id)
+                this.passengerRides[i] = ride;
+            }
+          } else {
+            this.passengerRides.push(ride);
+          }
+          this.checkRides();
+        });
+    });
   }
 
   getFriends(){

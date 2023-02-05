@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, Output, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Output, OnDestroy, Input } from '@angular/core';
 import { MapService } from '../map.service';
 import { forkJoin, Observable } from 'rxjs';
 import { map, filter, tap } from 'rxjs/operators'
@@ -17,7 +17,7 @@ export class MapComponent implements AfterViewInit {
   center: number[] = [45.2396, 19.8227];
   private map: any;   // Luka je rekao da je ok da ovdje ostavimo any :D
 
-
+  @Input() showInstruction?: boolean;
   @Output() emitter: EventEmitter<Array<string>> = new EventEmitter<Array<string>>();
   @Output() emitter_kilometeres: EventEmitter<string> = new EventEmitter<string>();
   @Output() emitter_minutes:EventEmitter<string> = new EventEmitter<string>();
@@ -119,6 +119,10 @@ export class MapComponent implements AfterViewInit {
         this.emitter_kilometeres.emit(String(Number(kilometers.toFixed(2))));
         this.emitter_minutes.emit(String(Number(time.toFixed(2))));
      });
+
+     if (!this.showInstruction) {
+      document.getElementsByClassName('leaflet-routing-container')[0].remove();
+     }
   
     })
   }

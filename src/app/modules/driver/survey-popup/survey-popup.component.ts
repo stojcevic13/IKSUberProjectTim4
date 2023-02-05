@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { DriverService } from 'src/app/services/driver.service';
@@ -8,18 +8,17 @@ import { MapComponent } from '../../map/map/map.component';
 import { Review, Ride, RideStatus, VehicleName } from '../../passenger/passenger-ride-history/passenger-ride-history.component';
 
 @Component({
-  selector: 'app-ride-popup-driver',
-  templateUrl: './ride-popup-driver.component.html',
-  styleUrls: ['./ride-popup-driver.component.css']
+  selector: 'survey-popup',
+  templateUrl: './survey-popup.component.html',
+  styleUrls: ['./survey-popup.component.css']
 })
-export class RidePopupDriverComponent {
+export class SurveyPopupComponent {
 
   driver: DriverRideDTO= {
     id: 0,
     email: ''
   }
   reviews:Review[] = [];
-  @ViewChild(MapComponent) mapComponent: any;
   ride: Ride = {
     id:0,
     startTime: new Date(),
@@ -38,29 +37,12 @@ export class RidePopupDriverComponent {
     reviews:[]
   };
   show: boolean = false;
-  constructor(private rideService: RideServiceService, private driverService:DriverService, private route: ActivatedRoute,private changeDetectorRef: ChangeDetectorRef){
+  @Output() agree: EventEmitter<Boolean> = new EventEmitter<Boolean>();
+  constructor(private changeDetectorRef: ChangeDetectorRef){
   }
   handleError(error: HttpErrorResponse) {
     console.log(error);
     alert("An error occurred: " + error.error.message);
-  }
-  set(rideId:number){
-    this.show = true;
-    this.changeDetectorRef.detectChanges();
-    forkJoin([
-      this.rideService.getRide(rideId),
-    ]).subscribe(
-      (ride) => {
-        this.ride = ride[0];
-        this.mapComponent.route(ride[0].departure, ride[0].destination);
-        this.reviews = this.ride.reviews;
-        console.log(this.ride.passengers);
-      },
-      (error) => {
-        console.error(error);
-        this.handleError(error);
-      }
-    );   
   }
   setRide(ride: RideDTORequest) {
     this.show = true;
@@ -68,10 +50,9 @@ export class RidePopupDriverComponent {
     this.ride = {...this.ride, ...ride};
     this.ride.departure = "" + ride.locations[0].departure.address;
     this.ride.destination = "" + ride.locations[0].destination.address;
-    this.mapComponent.route(ride.locations[0].departure.address, ride.locations[0].destination.address);
-    console.log(this.ride.passengers);
   }
-  close(){
+  close(agree: boolean){
     this.show = false;
+    this.agree.emit(agree);
   }
 }

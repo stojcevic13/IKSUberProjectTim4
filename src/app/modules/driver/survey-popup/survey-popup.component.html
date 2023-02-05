@@ -1,7 +1,7 @@
 <body>
     <mat-card *ngIf = "show">
-        <div id = "mapContainer" fxFlex>
-            <app-map id="map"></app-map>
+        <div id="header">
+            You can take a ride
         </div>
         <div id="tableDiv" fxFlex>
             <table>
@@ -23,17 +23,11 @@
                     <td> <span id="name"> PRICE: </span></td>
                     <td><span id="data">{{ride.totalCost + "DIN"}} </span></td>
                 </tr>
-            
-                <tr>
-                    <td><span id="name"> REVIEWS:</span></td>
-                </tr>
-                <tr *ngFor="let r of reviews">
-                    <td> <span id="rating">BY {{r.passenger.name.toUpperCase() + " " + r.passenger.surname.toUpperCase()}}: </span></td>
-                    <td> <span id="dataRating"> {{r.driverGrade + "/5 "}} {{r.vehicleGrade + "/5 "}} {{"'" + r.comment.toUpperCase() + "'"}}</span></td>
-                </tr>
+
             </table>
         
         </div>
-        <button mat-stroked-button (click)="close()" id="okButton"> OK </button>
+        <button mat-stroked-button (click)="close(true)" id="okButton"> Accept </button>
+        <button mat-stroked-button (click)="close(false)" id="cancelButton"> Decline </button>
     </mat-card>
     

@@ -9,6 +9,7 @@ import { UserService } from '../../security/user.service';
 import { WorkingHoursDTO } from '../../security/working-hours.service';
 import { DeclineReasonComponent } from '../decline-reason/decline-reason.component';
 import { DriverNextRidesComponent } from '../driver-next-rides/driver-next-rides.component';
+import { SurveyPopupComponent } from '../survey-popup/survey-popup.component';
 
 @Component({
   selector: 'driver-home-page',
@@ -18,8 +19,10 @@ import { DriverNextRidesComponent } from '../driver-next-rides/driver-next-rides
 export class DriverHomePageComponent implements OnInit {
   @ViewChild(DriverNextRidesComponent) inviteFriendComponent: any;
   @ViewChild(DeclineReasonComponent) declineReasonComponent: any;
+  @ViewChild(SurveyPopupComponent) surveyPopup!: SurveyPopupComponent; 
   showDecline: boolean = false;
   rideInProgress: boolean = false;
+  popup: boolean = false;
 
   driver: Driver = {
     id: 0,
@@ -84,29 +87,50 @@ export class DriverHomePageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      this.driverService
-        .getDriver(+params['driverId'])
-        .subscribe((driver) => (this.driver = driver));
-
-    });
-
     this.userService.getUser().subscribe({
       next: (user) => {
         this.driverService.getDriver(user.user.id).subscribe((driver) => (this.driver = driver));
         this.driverService.getDriverNextRides(user.user.id).subscribe((nextRides) => { this.nextRides = nextRides; });
 
+        // Ride requests
         this.messageService.subscribe("/topic/driver-survey/" + user.user.id).subscribe(msg => {
-          console.log(msg);
-          this.messageService.send("app/driver-survey/" + user.user.id + "/" + (<RideDTORequest>JSON.parse(msg.body)).agreementCode, "ok");
+          this.popup = true;
+          console.log(JSON.parse(msg.body).payload);
+          this.surveyPopup.setRide(JSON.parse(msg.body).payload);
+          this.surveyPopup.agree.subscribe({
+            next: (agree: boolean) => {
+              if (agree) {
+                this.messageService.send("/app/driver-survey/" + user.user.id, JSON.parse(msg.body).payload.agreementCode);
+              } else {
+                this.messageService.send("/app/driver-survey/" + user.user.id + '/decline', JSON.parse(msg.body).payload.agreementCode);
+              }
+            }
+          })
         });
-        // this.messageService.send("/chat", "AAAAAA");
-        // this.messageService.send("/topic/messages", "BBBBBB");
-        // this.messageService.send("/chat", "CCCCC");
-        // this.messageService.send("/app/chat", "AAAAAApp");
-        // this.messageService.send("/app/topic/messages", "BBBBBBpp");
 
-        this.messageService.send("/app/chat/" + user.user.id, "AAAAAApp");
+        // Just all info about accepted rides
+        this.messageService.subscribe("/topic/ride-for-driver/" + user.user.id).subscribe(msg => {
+            console.log(JSON.parse(msg.body).payload);
+            const ride: RideDTOResponse = JSON.parse(msg.body).payload;
+
+            if (ride.id == this.activeRide.id) {
+              if (ride.status != RideStatus.STARTED) {
+                this.rideNotInProggress(true);
+                this.activeRide = ride;
+              }
+            }
+
+            const nextRide = this.nextRides.find(nextRide => nextRide.id == ride.id);
+            if (nextRide) {
+              for (let i = 0; i < this.nextRides.length; i++) {
+                if (this.nextRides[i].id === ride.id)
+                  this.nextRides[i] = ride;
+              }
+            } else {
+              this.nextRides.push(ride);
+            }
+          }
+        );
       },
       error: (error) => {
         this.router.navigate(['/login'])
