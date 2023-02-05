@@ -63,18 +63,21 @@ export class LoginComponent {
 
   login() {
     console.log(this.email, this.password);
-    
     this.authService.login(this.email, this.password).subscribe(()=>(
       this.userService.getUser().subscribe((user) =>{
+        console.log(user.role.toString());
         this.sharedService.currentRole.next(user.role.toString());
         this.roleEmitter.emit(user.role.toString());
-        if(user.role.toString() == "DRIVER"){
+        if(user.role == "DRIVER"){
           this.router.navigate(['driverHome']);
-        }else if(user.role.toString() == "PASSENGER"){
+        }else if(user.role == "PASSENGER"){
          this.router.navigate(['passengerHome']);
-        }else if(user.role.toString() == "ADMIN"){
+        }else if(user.role == "ADMIN"){
           this.router.navigate(['adminHome']);
         }
+
+
+
       }) 
     ),
     (error) => {

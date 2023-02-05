@@ -23,19 +23,19 @@ export class UnregisteredHomeComponent implements OnInit{
 
 
   ngOnInit(): void {
-    this.vehicleService.getAll().subscribe((result) => {
-      this.vehicles = result;
-      let v:Vehicle;
-      for(v of this.vehicles){
-        if(v.available){
-        console.log(v.currentLocation);
-        this.mapComponent.markAvailableCar(v.currentLocation.address);
-        }else{
-          this.mapComponent.markUnavailableCar(v.currentLocation.address);
-        } 
-      }
+    // this.vehicleService.getAll().subscribe((result) => {
+    //   this.vehicles = result;
+    //   let v:Vehicle;
+    //   for(v of this.vehicles){
+    //     if(v.available){
+    //     console.log(v.currentLocation);
+    //     this.mapComponent.markAvailableCar(v.currentLocation.address);
+    //     }else{
+    //       this.mapComponent.markUnavailableCar(v.currentLocation.address);
+    //     } 
+    //   }
 
-    });
+    // });
 
   }
 

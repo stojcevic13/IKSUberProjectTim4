@@ -4,6 +4,8 @@ import { forkJoin, Observable } from 'rxjs';
 import { map, filter, tap } from 'rxjs/operators'
 import * as L from 'leaflet';
 import 'leaflet-routing-machine';
+import { MessageService } from '../../sockets/socket.service';
+import { Vehicle } from 'src/app/services/vehicle.service';
 
 @Component({
   selector: 'app-map',
@@ -20,7 +22,7 @@ export class MapComponent implements AfterViewInit {
   @Output() emitter_kilometeres: EventEmitter<string> = new EventEmitter<string>();
   @Output() emitter_minutes:EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(private mapService: MapService) { }
+  constructor(private mapService: MapService, private messageService: MessageService) { }
 
   private initMap(): void {
     this.map = L.map('map', {
@@ -39,8 +41,28 @@ export class MapComponent implements AfterViewInit {
     );
     tiles.addTo(this.map);
 
+    this.markVehicles();
+
   }
 
+    markVehicles(){
+    this.messageService.subscribe("/topic/vehicles").subscribe(msg => {
+      let payload = JSON.parse(msg.body)['payload'];
+      console.log(payload);
+      let vehicles:Vehicle[] = payload; 
+      let v:Vehicle;
+      for(v of vehicles){
+          if(v.available){
+          console.log(v.currentLocation);
+          this.markAvailableCar(v.currentLocation.address);
+          }else{
+            this.markUnavailableCar(v.currentLocation.address);
+          } 
+      }
+    });
+  }
+
+  
   markDeparture(departure: string) {
     this.mapService.search(departure).subscribe({
       next: (result) => {

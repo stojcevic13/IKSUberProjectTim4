@@ -41,7 +41,7 @@ export class RegistrationComponent {
   
     this.userService.postPassenger(passenger).subscribe({
       next: (response) => {
-        //this.router.navigate(['activation']);
+
         this.activating = true;
       },
       error: (error) => {
@@ -60,7 +60,6 @@ export class RegistrationComponent {
 
   submitActivation(){
     this.userService.activatePassenger(this.activationId).subscribe({
-      //this.roleEmitter.emit(user.role.toString());
       next: (response) => {
         this.sharedService.currentRole.next('PASSENGER');
         console.log(response);
