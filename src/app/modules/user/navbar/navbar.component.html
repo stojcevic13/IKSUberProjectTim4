@@ -27,9 +27,9 @@
         <a id="admin-notification"  mat-button (click)="driverReportsClicked()" [ngStyle]="{'color': currentClicked == 'driverReports'? 'orange' : 'white' }" color="white" >CHAT</a></div>
 
 
-        <a *ngIf="role == 'passenger' || role == 'driver'" id="support" mat-button (click)="supportClicked()" [ngStyle]="{'color': currentClicked == 'support'? 'orange' : 'white' }" color="white" routerLink="/support">SUPPORT</a>
+        <a *ngIf="role != 'unregistered'" id="support" mat-button (click)="supportClicked()" [ngStyle]="{'color': currentClicked == 'support'? 'orange' : 'white' }" color="white" routerLink="/support">SUPPORT</a>
         <a *ngIf="role != 'unregistered'" mat-button (click)="logoutClicked()" color="white" id="logoutBtn" routerLink="">LOGOUT</a>
-
+        
 
 </mat-toolbar>
 <support-chat *ngIf="currentClicked == 'support'"></support-chat>
