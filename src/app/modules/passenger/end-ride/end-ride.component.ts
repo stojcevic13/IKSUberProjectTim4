@@ -1,5 +1,7 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
+import { Passenger } from 'src/app/services/passenger.service';
 import { RideDTOResponse } from 'src/app/services/ride-service.service';
+import { ReviewService, ReviewDTORequest } from '../../security/review.service';
 
 @Component({
   selector: 'app-end-ride',
@@ -9,8 +11,25 @@ import { RideDTOResponse } from 'src/app/services/ride-service.service';
 export class EndRideComponent {
   show: boolean = false;
   ride: RideDTOResponse = <RideDTOResponse>{};
+  review: ReviewDTORequest = {
+    driverGrade: 0,
+    vehicleGrade: 0,
+    comment: ''
+  }
 
-  constructor(private changeDetectorRef: ChangeDetectorRef){
+  @Input() passenger: Passenger = {
+    id: 0,
+    name: '',
+    surname: '',
+    profilePicture: '',
+    telephoneNumber: '',
+    address: '',
+    email: '',
+    active: false,
+    blocked: false
+  }
+
+  constructor(private changeDetectorRef: ChangeDetectorRef, private reviewService: ReviewService){
   }
   
   setRide(ride: RideDTOResponse) {
@@ -22,4 +41,18 @@ export class EndRideComponent {
   close(){
     this.show = false;
   }
+
+  reviewRide(){
+    this.reviewService.create(this.ride.id, this.passenger.id, this.review).subscribe(
+      () => {
+        alert("Ride successfully reviewed!");
+      },
+      (error) => {
+        console.error(error);
+        alert("An error occurred: " + error.error.message);
+      }
+    );
+  }
+
+
 }
