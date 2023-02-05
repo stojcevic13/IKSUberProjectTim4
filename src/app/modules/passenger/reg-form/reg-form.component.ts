@@ -13,10 +13,7 @@ import { Router } from '@angular/router';
 import { MapComponent } from '../../map/map/map.component';
 import { forkJoin, map, Observable, throwError } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
-<<<<<<< HEAD
-=======
 
->>>>>>> 6501f554610851f39489a5309f4e6c0ecd1310b3
 
 
 interface CarType {

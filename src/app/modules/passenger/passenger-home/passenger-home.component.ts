@@ -102,7 +102,9 @@ export class PassengerHomeComponent {
             }
           } else {
             this.passengerRides.push(ride);
+            console.log("Got new ride");
             if (ride.passengers[ride.passengers.length - 1].id != user.user.id) {
+              console.log("As invintation");
               this.rideRequest.setRide(ride);
             }
           }
