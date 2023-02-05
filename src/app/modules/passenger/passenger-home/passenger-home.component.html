@@ -12,7 +12,7 @@
         <app-reg-form *ngIf="!rideInProgress" [mapComponent]="mapComponent" [friends]="friends" [passenger]="passenger" (emitter)="showInviteFriendsComponent()"></app-reg-form>
         <app-panic *ngIf="rideInProgress" [userId]="passenger.id" [activeRide]="activeRide" (rideNotInProggress)="rideNotInProggress($event)"></app-panic>
         <app-remark *ngIf="rideInProgress" [userId]="activeDriver.id" ></app-remark>
-        <app-end-ride></app-end-ride>
+        <app-end-ride [passenger]="passenger" ></app-end-ride>
     </div>
 
 </div>

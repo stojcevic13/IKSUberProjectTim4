@@ -13,8 +13,7 @@ import { Router } from '@angular/router';
 import { MapComponent } from '../../map/map/map.component';
 import { forkJoin, map, Observable, throwError } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
-import * as L from 'leaflet';
-import 'leaflet-routing-machine';
+
 
 
 interface CarType {
