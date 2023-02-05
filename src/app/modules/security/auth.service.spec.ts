@@ -6,7 +6,7 @@ import { UserService } from './user.service';
 import { environment } from 'src/enviroments/environment';
 
 
-describe('AuthService', () => {
+fdescribe('AuthService', () => {
     let service: AuthService;
     let httpMock: HttpTestingController;
   
@@ -24,16 +24,38 @@ describe('AuthService', () => {
     httpMock.verify();
   });
 
-  it('should log in', () => {
-    const email = 'dejan@gmail.com';
-    const password = 'dejan123';
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
+
+  it('should handle a successful login', () => {
+    const email = 'test@gmail.com';
+    const password = 'test123';
     const tokenDTO = { accessToken: 'access-token' };
+  
     service.login(email, password).subscribe(res => {
       expect(res).toEqual(tokenDTO);
+      expect(localStorage.getItem('jwt')).toEqual(tokenDTO.accessToken);
     });
-
+  
     const req = httpMock.expectOne(`${environment.apiHost}api/login/`);
     expect(req.request.method).toBe('POST');
     req.flush(tokenDTO);
   });
+
+  it('should handle a bad request (400)', () => {
+    const email = 'bad-test@gmail.com';
+    const password = 'test321';
+    const errorMessage = 'Bad Request';
+  
+    service.login(email, password).subscribe(
+      res => fail('expected an error, not a response'),
+      error => expect(error.message).toContain(errorMessage)
+    );
+  
+    const req = httpMock.expectOne(`${environment.apiHost}api/login/`);
+    expect(req.request.method).toBe('POST');
+    req.flush({ message: errorMessage }, { status: 400, statusText: 'Bad Request' });
+  });
+
 });

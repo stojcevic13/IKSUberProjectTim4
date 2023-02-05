@@ -18,25 +18,24 @@ export type UserDTO = {
     role:Role
 }
 
-export enum Role{
-    DRIVER,
-    PASSENGER,
-    ADMIN
+
+export enum Role {
+    DRIVER = "DRIVER",
+    PASSENGER = "PASSENGER",
+    ADMIN = "ADMIN"
 }
 
 
-interface User{
+export interface User{
     user: UserDTO;
     role: Role;
-    driver:Driver;
-    passenger: Passenger;
 }
 @Injectable({
     providedIn: 'root'
 })
 export class UserService {
     private value$ = new BehaviorSubject<any>({});
-    selectedValue$ = this.value$.asObservable();      // posmatra value i onda neka druga komponenta moze da zna da neka druga komponenta to vidi
+    selectedValue$ = this.value$.asObservable();     
     constructor(private http: HttpClient) { }
 
     setValue(test: any) {           // moze String umjesto any
