@@ -11,6 +11,7 @@ import { VehicleName } from 'src/app/services/vehicle.service';
 import { Driver } from 'src/app/services/driver.service';
 import { MessageService } from '../../sockets/socket.service';
 import { EndRideComponent } from '../end-ride/end-ride.component';
+import { RideRequestComponent } from '../ride-request/ride-request.component';
 
 
 
@@ -64,6 +65,7 @@ export class PassengerHomeComponent {
   @ViewChild(InviteFriendComponent) inviteFriendComponent: any; 
   @ViewChild(MapComponent) mapComponent: any;
   @ViewChild(EndRideComponent) endRideComponent!: EndRideComponent;
+  @ViewChild(RideRequestComponent) rideRequest!: RideRequestComponent;
   invitedFriends:boolean = false;
   friends:friend[] =[];
   showInviteFriendsComponent(){
@@ -100,6 +102,9 @@ export class PassengerHomeComponent {
             }
           } else {
             this.passengerRides.push(ride);
+            if (ride.passengers[ride.passengers.length - 1].id != user.user.id) {
+              this.rideRequest.setRide(ride);
+            }
           }
           this.checkRides();
         });

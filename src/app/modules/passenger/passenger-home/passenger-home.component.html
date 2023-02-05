@@ -13,6 +13,7 @@
         <app-panic *ngIf="rideInProgress" [userId]="passenger.id" [activeRide]="activeRide" (rideNotInProggress)="rideNotInProggress($event)"></app-panic>
         <app-remark *ngIf="rideInProgress" [userId]="activeDriver.id" ></app-remark>
         <app-end-ride></app-end-ride>
+        <app-ride-request></app-ride-request>
     </div>
 
 </div>
