@@ -44,6 +44,13 @@ table tr td {
 }
 
 #closeBtn {
+    background-color: #DDDDDD;
+    color: white;
+    margin-left: 10px;
+}
+
+#reviewBtn {
     background-color: #E39D5C;
     color: white;
- }
+    margin-right: 10px;
+}
