@@ -64,9 +64,18 @@ export class PanicComponent {
     this.panic.ride = this.activeRide;
     this.panic.time = new Date();
         
-    this.rideService.panicRide(this.activeRide.id, this.panic).subscribe();
-    this.rideNotInProggress.emit(false);
+    this.rideService.panicRide(this.activeRide.id, this.panic).subscribe((res)=>
+    {
+     alert("Panic sent to support."); 
+    },
+    (error) => {
+      console.error(error);
+      alert("An error occurred: " + error.error.message);
+    }
+    );
+    
 
+    this.rideNotInProggress.emit(false);
     this.panicShow = false;
   }
 
