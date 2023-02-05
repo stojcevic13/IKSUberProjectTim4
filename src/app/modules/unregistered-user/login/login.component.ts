@@ -18,18 +18,12 @@ export class LoginComponent {
     private authService: AuthService,
     private userService: UserService,
     private sharedService: SharedService,
-    private workingHoursService: WorkingHoursService
   ) {
   }
 
   email: string = "";       
   password: string = "";
 
-  // workingHours: WorkingHoursDTO = {
-  //   id: 0,
-  //   start: new Date(),
-  //   end: new Date()
-  // }
 
   handleError(error: HttpErrorResponse) {
     console.log(error);

@@ -25,7 +25,7 @@
         </mat-form-field>
         <mat-form-field class="largerMargine">
             <mat-label>Email</mat-label>
-            <input matInput placeholder="Email" name="email" [(ngModel)]="passenger.email" required>
+            <input matInput placeholder="Email" name="email" [(ngModel)]="passenger.email" [disabled]="true" required>
         </mat-form-field>
 
         <div id="buttons">

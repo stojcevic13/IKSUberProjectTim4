@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { DriverService, Driver } from 'src/app/services/driver.service';
 import { ChangePasswordService, ChangePasswordDTO } from '../../security/change-password.service';
@@ -35,18 +36,25 @@ export class ChangePasswordComponent implements OnInit {
 
 
   changePassword() {
-    this.changePasswordService.changePassword(this.id, this.changePasswordDTO).subscribe();
-    /*
-    if (this.driver.password === this.previousPassword) {
-      this.driver.password = this.newPassword;
-      this.driverService.updateDriver(this.driver).subscribe();
-      alert("Successfully updated password!")
-    }
-    else{
-      alert("Invalid previous password!")
-    }
-    */
+    this.changePasswordService.changePassword(this.id, this.changePasswordDTO).subscribe(
+
+      ()=> {
+        alert('Your password has been successfully changed!');
+      },
+      (error) => {
+        console.error(error);
+        this.handleError(error);
+      }
+    );
   }
+
+
+  
+  handleError(error: HttpErrorResponse) {
+    console.log(error);
+    alert("An error occurred: " + error.error.message);
+  }
+
 
   sendBeverage2() {
     this.showWindow.emit(this.showChangePassword);

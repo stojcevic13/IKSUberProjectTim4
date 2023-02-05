@@ -47,3 +47,14 @@
         <input  matInput  #sumEarningsPerDay id="data">
     </mat-form-field>
 </span> 
+<br>
+<span id="earnings" *ngIf="show">
+    <mat-form-field appearance="fill">
+    <mat-label>AVERAGE KILOMETERS PER DAY</mat-label>
+    <input  matInput  #averageKilometersPerDay id="data">
+    </mat-form-field>
+    <mat-form-field appearance="fill" id="sum">
+        <mat-label>SUM KILOMETERS</mat-label>
+        <input  matInput  #sumKilometersPerDay id="data">
+    </mat-form-field>
+</span> 

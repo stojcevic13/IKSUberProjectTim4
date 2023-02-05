@@ -63,8 +63,11 @@ export class RegistrationComponent {
       next: (response) => {
         this.sharedService.currentRole.next('PASSENGER');
         console.log(response);
-        this.authService.login(this.email, this.password).subscribe();
-        this.router.navigate(['passengerHome']);
+        this.authService.login(this.email, this.password).subscribe({
+          next: ()=>{
+            this.router.navigate(['passengerHome']);
+          }
+        });
       },
       error: (error) => {
         console.log(error);

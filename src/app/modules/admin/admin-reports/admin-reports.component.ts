@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import Chart from 'chart.js/auto';
-import { RideServiceService } from 'src/app/services/ride-service.service';
+import { RideDTOResponse, RideServiceService } from 'src/app/services/ride-service.service';
 import { Ride } from '../../passenger/passenger-ride-history/passenger-ride-history.component';
 import { Role, UserService } from '../../security/user.service';
 
@@ -20,7 +20,7 @@ export class AdminReportsComponent {
   startDate!: Date;
   endDate!: Date; 
   form!: FormGroup;
-  rides: Ride[] = [];
+  rides: RideDTOResponse[] = [];
   userId:number = 0;
   @ViewChild('start') start!: ElementRef;
   @ViewChild('end') end!: ElementRef;
@@ -61,6 +61,7 @@ export class AdminReportsComponent {
   }
     let sumCost=0;
     let sumRides=0;
+    let sumKilometers = 0;
     this.show = true;
     let numOfSeconds =  this.form.value.daterange.end.valueOf() - this.form.value.daterange.start.valueOf();
     let numOfDays = Math.ceil(numOfSeconds / (1000 * 3600 * 24)); 
@@ -76,7 +77,7 @@ export class AdminReportsComponent {
         sumRides = this.rides.length;
         this.rides.forEach(ride => {
             sumCost+=ride.totalCost;
-            //sumKilometers+=;
+            sumKilometers+= ride.kilometers;
             const splitted = ride.startTime.toString().split(",");
             const d = new Date(Number(splitted[0]), Number(splitted[1]) - 1, Number(splitted[2])).toISOString();
             let date = d.split("T")[0];
@@ -91,17 +92,17 @@ export class AdminReportsComponent {
                 earnByDate2[date] = ride.totalCost;
             }
             if(kilometersByDate2[date]){
-                kilometersByDate2[date] += 1;                                                    // IZMJENA
+                kilometersByDate2[date] += ride.kilometers;                                                    // IZMJENA
             }else{
-                kilometersByDate2[date] = 1;
+                kilometersByDate2[date] = ride.kilometers;
             }
             }
           );
           var averageRides= sumRides/numOfDays;
           var averageEarnings = sumCost/numOfDays;
-          //var averageKilometers = sumKilometers/numOfDays;
+          var averageKilometers = sumKilometers/numOfDays;
           
-       this.createSecondGraph(ridesByDate2,earnByDate2, averageEarnings, averageRides,sumCost, sumRides); 
+       this.createSecondGraph(ridesByDate2,earnByDate2, averageEarnings, averageRides, averageKilometers, sumCost, sumRides, sumKilometers); 
   }}));
   }
 
@@ -123,7 +124,7 @@ export class AdminReportsComponent {
           sumRides = this.rides.length;
           this.rides.forEach(ride => {
               sumCost+=ride.totalCost;
-              //sumKilometers+=;
+              sumKilometers+= ride.kilometers;
               const splitted = ride.startTime.toString().split(",");
               const d = new Date(Number(splitted[0]), Number(splitted[1]) - 1, Number(splitted[2])).toISOString();
               let date = d.split("T")[0];
@@ -138,17 +139,17 @@ export class AdminReportsComponent {
                   earnByDate[date] = ride.totalCost;
               }
               if(kilometersByDate[date]){
-                  kilometersByDate[date] += 1;                                                    // IZMJENA
+                  kilometersByDate[date] += ride.kilometers;                                                    // IZMJENA
               }else{
-                  kilometersByDate[date] = 1;
+                  kilometersByDate[date] = ride.kilometers;
               }
               }
             );
             var averageRides= sumRides/numOfDays;
             var averageEarnings = sumCost/numOfDays;
-            //var averageKilometers = sumKilometers/numOfDays;
+            var averageKilometers = sumKilometers/numOfDays;
             
-         this.createFirstGraph(ridesByDate,earnByDate, averageEarnings, averageRides,sumCost, sumRides); 
+         this.createFirstGraph(ridesByDate,earnByDate, averageEarnings, averageRides, averageKilometers, sumCost, sumRides, sumKilometers); 
         
       }}
   )
@@ -159,11 +160,13 @@ export class AdminReportsComponent {
 
 
 
-createFirstGraph(ridesByDate:Object, earnByDate:Object, averageCost:number, averageRides:number, sumCost:number, sumRides:number){
+createFirstGraph(ridesByDate:Object, earnByDate:Object, averageCost:number, averageRides:number,averageKilometers:number, sumCost:number, sumRides:number, sumKilometers:number){
   this.averageRidesPerDay.nativeElement.value = averageRides.toFixed(2);
   this.sumRidesPerDay.nativeElement.value = sumRides;
   this.averageEarningsPerDay.nativeElement.value = averageCost.toFixed(2);
   this.sumEarningsPerDay.nativeElement.value = sumCost.toFixed(2);
+  this.averageKilometersPerDay.nativeElement.value = averageKilometers.toFixed(2);
+  this.sumKilometersPerDay.nativeElement.value = sumCost.toFixed(2);
   if (this.chart) {
       this.chart.destroy();
   }
@@ -200,11 +203,13 @@ createFirstGraph(ridesByDate:Object, earnByDate:Object, averageCost:number, aver
 }
 
 
-createSecondGraph(ridesByDate:Object, earnByDate:Object, averageCost:number, averageRides:number, sumCost:number, sumRides:number){
+createSecondGraph(ridesByDate:Object, earnByDate:Object, averageCost:number, averageRides:number, averageKilometers:number, sumCost:number, sumRides:number, sumKilometers:number){
   this.averageRidesPerDay.nativeElement.value = averageRides.toFixed(2);
   this.sumRidesPerDay.nativeElement.value = sumRides;
   this.averageEarningsPerDay.nativeElement.value = averageCost.toFixed(2);
   this.sumEarningsPerDay.nativeElement.value = sumCost.toFixed(2);
+  this.averageKilometersPerDay.nativeElement.value = averageKilometers.toFixed(2);
+  this.sumKilometersPerDay.nativeElement.value = sumCost.toFixed(2);
    if (this.chart2) {
        this.chart2.destroy();
    }

@@ -23,7 +23,7 @@ export class MapComponent implements AfterViewInit {
   @Output() emitter_minutes:EventEmitter<string> = new EventEmitter<string>();
 
   constructor(private mapService: MapService, private messageService: MessageService) { }
-
+ 
   private initMap(): void {
     this.map = L.map('map', {
       center: [45.2396, 19.8227],               // centar postavljen na Novi Sad
@@ -41,7 +41,7 @@ export class MapComponent implements AfterViewInit {
     );
     tiles.addTo(this.map);
 
-    this.markVehicles();
+  //  this.markVehicles();
 
   }
 

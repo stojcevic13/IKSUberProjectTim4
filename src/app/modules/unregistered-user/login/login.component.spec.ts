@@ -28,7 +28,6 @@ fdescribe('LoginComponent', () => {
   let userService: UserService;
   let router: Router;
   let sharedService: SharedService;
-  let workingHoursService: WorkingHoursService;
   let de: DebugElement;
   let el: HTMLElement;
   beforeEach(async () => {
@@ -65,13 +64,12 @@ fdescribe('LoginComponent', () => {
     authService = TestBed.get(AuthService);
     userService = TestBed.get(UserService);
     sharedService = TestBed.get(SharedService);
-    workingHoursService = TestBed.get(WorkingHoursService);
     component = new LoginComponent(
       router,
       authService,
       userService,
       sharedService,
-      workingHoursService
+    
     );
 
     component.email = 'test@gmail.com';

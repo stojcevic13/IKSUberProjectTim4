@@ -31,24 +31,24 @@ export class RideServiceService {
     return this.http.get<Ride[]>(environment.apiHost + 'api/ride/driver/' + driverId + '/rideHistory');
   }
 
-  getAllRidesByDateAndRole(startDate:string, endDate:string, userId:number, role:Role):Observable<Ride[]>{
+  getAllRidesByDateAndRole(startDate:string, endDate:string, userId:number, role:Role):Observable<RideDTOResponse[]>{
     if(role.toString()=='DRIVER'){
-      return this.http.get<Ride[]>(environment.apiHost + 'api/ride/driver/' + userId + '/' + startDate + '/' + endDate);
+      return this.http.get<RideDTOResponse[]>(environment.apiHost + 'api/ride/driver/' + userId + '/' + startDate + '/' + endDate);
     }else{
-      return this.http.get<Ride[]>(environment.apiHost + 'api/ride/passenger/' + userId + '/' + startDate + '/' + endDate);
+      return this.http.get<RideDTOResponse[]>(environment.apiHost + 'api/ride/passenger/' + userId + '/' + startDate + '/' + endDate);
     }
   }
 
-  getDriverRidesByDate(startDate: string, endDate: string, driverId:number):Observable<Ride[]> {
-    return this.http.get<Ride[]>(environment.apiHost + 'api/ride/driver/' + driverId + '/' + startDate + '/' + endDate);
+  getDriverRidesByDate(startDate: string, endDate: string, driverId:number):Observable<RideDTOResponse[]> {
+    return this.http.get<RideDTOResponse[]>(environment.apiHost + 'api/ride/driver/' + driverId + '/' + startDate + '/' + endDate);
   }  
   
-  getPassengerRidesByDate(startDate: string, endDate: string, passengerId:number):Observable<Ride[]> {
-    return this.http.get<Ride[]>(environment.apiHost + 'api/ride/passenger/' + passengerId + '/' + startDate + '/' + endDate);
+  getPassengerRidesByDate(startDate: string, endDate: string, passengerId:number):Observable<RideDTOResponse[]> {
+    return this.http.get<RideDTOResponse[]>(environment.apiHost + 'api/ride/passenger/' + passengerId + '/' + startDate + '/' + endDate);
   }
     
-  getAllRidesByDate(startDate: string, endDate: string):Observable<Ride[]> {
-    return this.http.get<Ride[]>(environment.apiHost + 'api/ride/' + startDate + '/' + endDate);
+  getAllRidesByDate(startDate: string, endDate: string):Observable<RideDTOResponse[]> {
+    return this.http.get<RideDTOResponse[]>(environment.apiHost + 'api/ride/' + startDate + '/' + endDate);
   }
 
   getAllRides():Observable<Ride[]>{
