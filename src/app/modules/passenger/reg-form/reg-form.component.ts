@@ -15,7 +15,6 @@ import { forkJoin, map, Observable, throwError } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 
 
-
 interface CarType {
   value: string;
   viewValue: string;

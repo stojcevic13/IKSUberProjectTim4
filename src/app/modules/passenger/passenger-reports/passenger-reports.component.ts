@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Chart } from 'chart.js/auto';
-import { RideServiceService } from 'src/app/services/ride-service.service';
+import { RideDTOResponse, RideServiceService } from 'src/app/services/ride-service.service';
 import { UserService } from '../../security/user.service';
 import { Ride } from '../passenger-ride-history/passenger-ride-history.component';
 
@@ -18,7 +18,7 @@ export class PassengerReportsComponent {
   startDate!: Date;
   endDate!: Date; 
   form!: FormGroup;
-  rides: Ride[] = [];
+  rides: RideDTOResponse[] = [];
   userId:number = 0;
   @ViewChild('start') start!: ElementRef;
   @ViewChild('end') end!: ElementRef;
@@ -50,7 +50,7 @@ export class PassengerReportsComponent {
               sumRides = this.rides.length;
               this.rides.forEach(ride => {
                   sumCost+=ride.totalCost;
-                  //sumKilometers+=;
+                  sumKilometers+= ride.kilometers;
                   const splitted = ride.startTime.toString().split(",");
                   const d = new Date(Number(splitted[0]), Number(splitted[1]) - 1, Number(splitted[2])).toISOString();
                   let date = d.split("T")[0];
@@ -65,19 +65,19 @@ export class PassengerReportsComponent {
                       earnByDate[date] = ride.totalCost;
                   }
                   if(kilometersByDate[date]){
-                      kilometersByDate[date] += 1;                                                    // IZMJENA
+                      kilometersByDate[date] += ride.kilometers;                                                    // IZMJENA
                   }else{
-                      kilometersByDate[date] = 1;
+                      kilometersByDate[date] = ride.kilometers;
                   }
                   }
                 );
                 var averageRides= sumRides/numOfDays;
                 var averageEarnings = sumCost/numOfDays;
-                //var averageKilometers = sumKilometers/numOfDays;
+                var averageKilometers = sumKilometers/numOfDays;
                 
              this.createFirstGraph(ridesByDate, averageRides, sumRides); 
              this.createSecondGraph(earnByDate, averageEarnings, sumCost);
-             this.createThirdGraph(kilometersByDate, averageEarnings, sumCost);
+             this.createThirdGraph(kilometersByDate, averageKilometers, sumKilometers);
           }}
       )
         );
@@ -148,8 +148,8 @@ export class PassengerReportsComponent {
   }
 
   createThirdGraph(kilometersByDate:Object, average:number, sum:number){
-      this.averageKilometersPerDay.nativeElement.value = average.toFixed(2) + " RSD";
-      this.sumKilometersPerDay.nativeElement.value = sum + " RSD";
+      this.averageKilometersPerDay.nativeElement.value = average.toFixed(2);
+      this.sumKilometersPerDay.nativeElement.value = sum.toFixed(2);
       if (this.chart3) {
           this.chart3.destroy();
       }
