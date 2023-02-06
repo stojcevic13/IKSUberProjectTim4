@@ -60,7 +60,7 @@
     <div id="buttons">
         <button [hidden]="inSearch" [disabled]="isGoDisabled()" (click)="orderRide()" mat-stroked-button id="goBtn"><span>GO! </span></button>
         <button [hidden]="inSearch" [disabled]="passenger.blocked" (click)="showFutureOrder()" mat-stroked-button id="laterBtn"><span>BOOK FOR LATER </span></button>
-        <button [hidden]="!inSearch" aria-disabled="true">{{searchStatus}}</button>
+        <button [hidden]="!inSearch" aria-disabled="true" id="messageBtn">{{searchStatus}}</button>
     </div>
     </mat-card-content>
 </mat-card>
