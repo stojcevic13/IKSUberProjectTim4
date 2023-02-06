@@ -1,0 +1,38 @@
+<mat-card>
+    <div id="next-rides-title">NEXT RIDES</div>
+
+    <table *ngIf="nextRides.length > 0">
+        <thead>
+          <tr>
+          
+            <th>START</th>
+            <th>DEPARTURE</th>
+            <th>DESTINATION</th>
+            <th>GO</th>
+            <th>CANCEL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let r of nextRides">
+         
+            <td id="startTime">{{ getTime(r.startTime)}}</td>
+            <td>{{r.locations[0].departure.address.split(",")[0]}}</td>
+            <td>{{r.locations[0].destination.address.split(",")[0]}}</td>
+            <td><button (click)="goClick(r)" id="goBtn">GO</button></td>
+            <td><button mat-raised-button (click)="cancelClick(r)" id="cancelBtn">CANCEL <mat-icon>cancel</mat-icon> </button></td>
+          </tr>
+        </tbody>
+      </table>
+      
+
+    <!-- <div *ngFor="let r of nextRides" class="RideDTOResponse">
+        <span class="rideDescription">R{{r.id}}</span>
+        <span class="rideDescription">{{r.locations[0].departure.address}}</span>
+        <span class="rideDescription">{{r.locations[0].destination.address}}</span>
+        <button mat-raised-button (click)="goClick()" id="goBtn">GO</button>
+        <button mat-raised-button (click)=" cancelClick(r)" id="cancelBtn">CANCEL <mat-icon>cancel</mat-icon> </button>    
+    </div> -->
+
+</mat-card>
+
+<app-active-button></app-active-button>

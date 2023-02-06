@@ -1,0 +1,58 @@
+<body>
+<mat-card *ngIf = "show">
+    <div id = "mapContainer" fxFlex>
+        <app-map id="map"></app-map>
+    </div>
+    <div id="tableDiv" fxFlex>
+        <table>
+            <tr>
+                <td> <span id="name"> FROM: </span> </td>
+                <td><span id="data">{{ride.departure.split(",")[0].toUpperCase()}} </span></td>
+            </tr>
+            <tr> 
+                <td> <span id="name"> TO: </span></td>
+                <td><span id="data">{{ride.destination.split(",")[0].toUpperCase()}} </span></td>
+            </tr>
+            <tr>
+                <td> <span id="name"> DRIVER: </span></td>
+                <td><span id="data">{{ride.driver.email.toUpperCase()}} </span></td>
+            </tr>
+
+            <tr>
+                <td> <span id="name"> VEHICLE TYPE: </span></td>
+                <td><span id="data">{{ride.vehicleType}} </span></td>
+            </tr>
+            <tr>
+                <td> <span id="name"> PRICE: </span></td>
+                <td><span id="data">{{ride.totalCost + "DIN"}} </span></td>
+            </tr>
+        
+            <tr *ngIf="reviewsExist">
+                <td><span id="name"> REVIEWS:</span></td>
+            </tr>
+            <tr *ngFor="let r of reviews">
+                <td> <span id="rating">BY {{r.passenger.name.toUpperCase() + " " + r.passenger.surname.toUpperCase()}}: </span></td>
+                <td> <span id="dataRating"> {{r.driverGrade + "/5 "}} {{r.vehicleGrade + "/5 "}} {{"'" + r.comment.toUpperCase() + "'"}}</span></td>
+            </tr>
+        </table>
+        <div *ngIf="!gradedByThisUser && !passThreeDays" id="gradeDiv"> 
+            <input name="gradeDriver" placeholder="Vehicle:Grade(1-5)" id="gradingDriver" class="grading" [(ngModel)]="newReview.driverGrade">
+            <input name="gradeVehicle" placeholder="Driver:Grade(1-5)" id="gradingVehicle" class="grading" [(ngModel)]="newReview.vehicleGrade">
+            <input name="comment" placeholder="Comment" id="gradingComment" [(ngModel)]="newReview.comment">
+            <button (click)="gradeRide()" id="gradeButton" class="smallOrangeButton" type="submit">GRADE</button>
+        </div>
+    </div>
+    <span class = "buttons">
+    <button (click)="orderForNow()" mat-stroked-button id="now"> ORDER NOW </button>
+    <button (click)="showFutureOrder()" mat-stroked-button id="later"> LATER </button>
+    <button mat-stroked-button (click)="close()" id="okButton"> OK </button>
+
+    <div id="futureOrdering" *ngIf="futureOrder">
+        <label for="enterTime">Future time:  </label>
+        <input id="enterTime" type="datetime-local" name="enterTime" [(ngModel)]="futureTime">
+        <a (click)="hideFutureOrder()" id="cancelIcon"><mat-icon>cancel</mat-icon></a>
+        <button (click)="orderForFuture()" id="orderFutureButton" class="smallOrangeButton" type="submit">ORDER</button>
+    </div>
+
+    </span>
+</mat-card>

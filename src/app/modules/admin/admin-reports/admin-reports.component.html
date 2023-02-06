@@ -1,0 +1,49 @@
+<form [formGroup]="form">
+    <mat-form-field appearance="fill" id="datePicker">
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [rangePicker]="picker" formGroupName="daterange">
+                <input matStartDate placeholder="Start date" formControlName="start" #start>
+                <input matEndDate formControlName="end" placeholder="End date" #end>
+        </mat-date-range-input>
+        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+      <mat-form-field appearance="fill" id="email">
+        <mat-label>USERS EMAIL</mat-label>
+        <input  matInput id="data" #email>
+    </mat-form-field>
+    <button mat-raised-button id="confirmBtn" (click)="onSubmit()">USER GRAPH</button>
+    <button mat-raised-button id="confirmBtn" (click)="onSubmit2()">TOTAL GRAPH</button>
+
+
+</form>
+
+    <div *ngIf="first" id="firstGraph">
+        <canvas id="ridesPerDay"></canvas>
+    </div>
+    <div *ngIf="second" id="firstGraph">
+        <canvas id="ridesPerDayTotal"></canvas>
+    </div>
+
+<span id="rides" *ngIf="show">
+    <mat-form-field appearance="fill">
+    <mat-label>AVERAGE RIDES PER DAY</mat-label>
+    <input  matInput  #averageRidesPerDay id="data">
+    </mat-form-field>
+    <mat-form-field appearance="fill" id="sum">
+        <mat-label>SUM RIDES</mat-label>
+        <input  matInput  #sumRidesPerDay id="data">
+    </mat-form-field>
+</span> 
+<br>
+<span id="earnings" *ngIf="show">
+    <mat-form-field appearance="fill">
+    <mat-label>AVERAGE MONEY PER DAY</mat-label>
+    <input  matInput  #averageEarningsPerDay id="data">
+    </mat-form-field>
+    <mat-form-field appearance="fill" id="sum">
+        <mat-label>SUM MONEY</mat-label>
+        <input  matInput  #sumEarningsPerDay id="data">
+    </mat-form-field>
+</span> 

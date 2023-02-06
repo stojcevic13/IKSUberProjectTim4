@@ -1,0 +1,13 @@
+<mat-card *ngIf="show">
+    <div id="request-type">RIDE REQUEST</div> <!-- Ride request or Friend request -->
+
+    <div id="invite">
+        <mat-icon>person_icon</mat-icon>
+        <span id="message"> <span id="name">{{ride.passengers[ride.passengers.length-1].email}}</span> (your friend) invite you to the ride</span>
+    </div>
+
+    <div id="buttons">
+        <button mat-raised-button id="acceptBtn" (click)="close()"><span>Close</span></button>
+    </div>
+    
+</mat-card>

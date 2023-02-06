@@ -1,0 +1,11 @@
+.container {
+    margin-top: 40px;
+
+}
+.map{
+    position: absolute;
+    top:100px;
+    left:0;
+    right: 0;
+    bottom:0;
+}

@@ -1,0 +1,33 @@
+<body>
+    <mat-card *ngIf = "show">
+        <div id="header">
+            You can take a ride
+        </div>
+        <div id="tableDiv" fxFlex>
+            <table>
+                <tr>
+                    <td> <span id="name"> FROM: </span> </td>
+                    <td><span id="data">{{ride.departure.split(",")[0].toUpperCase()}} </span></td>
+                </tr>
+                <tr> 
+                    <td> <span id="name"> TO: </span></td>
+                    <td><span id="data">{{ride.destination.split(",")[0].toUpperCase()}} </span></td>
+                </tr>
+                <tr>
+                    <td> <span id="name"> PASSENGERS: </span></td>
+                </tr>
+                <tr *ngFor="let p of ride.passengers; let i = index">
+                    <td id="redniBroj">{{i+1}}</td>
+                    <td> <span id="emailPassenger"> {{p.name}}: </span></td>
+                <tr>
+                    <td> <span id="name"> PRICE: </span></td>
+                    <td><span id="data">{{ride.totalCost + "DIN"}} </span></td>
+                </tr>
+
+            </table>
+        
+        </div>
+        <button mat-stroked-button (click)="close(true)" id="okButton"> Accept </button>
+        <button mat-stroked-button (click)="close(false)" id="cancelButton"> Decline </button>
+    </mat-card>
+    

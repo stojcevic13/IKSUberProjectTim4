@@ -1,0 +1,56 @@
+mat-card {
+    max-width: 500px;
+    background-color: white;
+    min-height: 560px;
+    max-height: 700px;
+    position: fixed;
+    top:55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    border:black;
+    box-shadow: 0px 6px 51px 8px rgb(122, 119, 115);
+    padding-bottom: 20px;
+}
+
+#title {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+table {
+    margin: 0px auto;
+    width: 300px;
+}
+
+
+table tr td {
+    font-size: 17px;
+}
+
+.info {
+    color: #E39D5C;
+}
+
+#ride-description {
+    border: 1px solid lightgray;
+    border-radius: 3px;
+}
+
+#close {
+    text-align: center;
+    margin-top: 30px;
+}
+
+#closeBtn {
+    background-color: #DDDDDD;
+    color: white;
+    margin-left: 10px;
+}
+
+#reviewBtn {
+    background-color: #E39D5C;
+    color: white;
+    margin-right: 10px;
+}

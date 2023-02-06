@@ -1,0 +1,36 @@
+<!-- <div   fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap.xs="0" class="container">
+    <div class="map" fxFlex="70%">
+        <app-map></app-map>
+    </div>
+    <div fxFlex="30%">
+        <app-reg-form></app-reg-form>
+    </div>
+</div> -->
+
+<div fxlayout="column" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap.xs="0" class="container">
+
+    <div class="overlaying" fxFlex="65%">
+        <div class="map" fxFlex="70%">
+            <app-map></app-map>
+        </div>
+    </div>
+
+    <!-- OVAJ DIV KOJI PRIKAZUJE DUGMAD U TOKU VOZNJE NEKA BUDE PORED MAPE JER NIJE PREVELIK -->
+    <div *ngIf="rideInProgress" id="activeRideButtons">
+        <app-panic [userId]="driver.id" [driver]="driver" [activeRide]="activeRide" ></app-panic>
+        <app-finish-ride [driver]="driver" [activeRide]="activeRide" (rideNotInProggress)="rideNotInProggress($event)"></app-finish-ride>
+    </div>
+
+    <driver-next-rides *ngIf="!rideInProgress" [driver]="driver" [nextRides]="nextRides"
+          (emitter)=" showDeclineReasonComponent()"
+          (nextRidesEmiter)="selectRide($event)" 
+          (activeRideEmiter)="activateRide($event)" fxFlex="43%" >
+    </driver-next-rides>
+    
+    <survey-popup></survey-popup>
+</div>
+<!-- <div fxlayout="column" fxLayoutAlign="space-evenly center" style="background-color: red;">
+
+</div> -->
+<!-- (closed)="deleteRide($event)"  -->
+<app-decline-reason [driver]="driver" [selectedRide]="selectedRide" *ngIf="showDecline"  id="declineComponent" ></app-decline-reason>

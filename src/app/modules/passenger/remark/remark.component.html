@@ -1,0 +1,12 @@
+<mat-card>
+    <button (click)="remarkUser()" mat-raised-button id="remarkBtn"><span>REMARK <br> DRIVER</span></button>
+</mat-card>
+
+<mat-card *ngIf="remarkShow" id="remarkMessage">
+    <span id="remarkMessageSpan"> What's wrong? </span>
+    <mat-form-field appearance="fill">
+        <mat-label>Reason</mat-label>
+        <textarea matInput [(ngModel)]="remark.message"></textarea>
+    </mat-form-field>
+    <button mat-button id="sendRemarkBtn" (click)="sendRemark()"> SEND </button>
+</mat-card>

@@ -1,0 +1,35 @@
+#firstGraph{
+    width:60%;
+    margin:0 auto;
+}
+
+#datePicker{
+    width:25%;
+    margin-top:40px;
+    margin-left:300px;
+    color: #E39D5C;
+}
+
+
+#confirmBtn{
+    margin-left: 50px;
+    background-color: #E39D5C;
+    color:white;
+}
+
+#email{
+    margin-left: 20px;
+}
+
+
+#data{
+    color:#E39D5C;
+}
+
+#earnings{
+    margin-left:300px;
+}
+
+#rides{
+    margin-left:300px;
+}

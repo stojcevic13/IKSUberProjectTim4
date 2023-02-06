@@ -1,0 +1,19 @@
+
+<mat-card>
+    <div>
+        <div *ngFor="let request of requests">
+        
+            <span><mat-icon>account_circle</mat-icon> DRIVER REQUEST</span>
+            <span>{{request.newName.toUpperCase() + " " + request.newSurname.toUpperCase()}} </span>
+            <button type="submit" id="seeBtn"  (click)="showRequest(request)">SEE</button>
+            <button type="submit" id="cancelBtn"  (click)="deleteRequest(request)">CANCEL</button>
+        </div>
+    </div>
+
+</mat-card>
+
+
+<app-changes  (closed)="deleteRequest($event)"></app-changes>
+
+
+

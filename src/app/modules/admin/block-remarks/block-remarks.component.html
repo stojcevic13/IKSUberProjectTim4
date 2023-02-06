@@ -1,0 +1,22 @@
+<mat-card *ngIf="show">
+    <div id="divNoRemarks" *ngIf="!hasRemarks"> 
+        <span id="noRemarks">User {{user.name + " " + user.surname}} has no remarks! </span>
+    </div>
+    <div id="hasRemarks">
+        <span *ngIf="hasRemarks" id="remarksTitle"> {{user.name+ " " + user.surname}} remarks: </span>
+        <div *ngFor="let r of usersRemarks" class="RideDTOResponse">
+            <span id="r">{{r.message}}</span>
+        </div>
+    
+    </div>
+    <span>
+        <input name="remark" placeholder="Leave a new remark" id="remarkInput" [(ngModel)]="remark.message">
+        <button mat-raised-button id="addRemarkBtn" type="submit" (click)="addRemark(user.id)">ADD REMARK</button>
+    </span>
+
+    <span>
+        <button *ngIf="!isUserBlocked" (click)="block(user.id)" id="blockBtn"> BLOCK USER </button>
+        <button *ngIf="isUserBlocked" id="unblockBtn" (click)='unblock(user.id)'>UNBLOCK USER</button>
+        <button id="okBtn" (click)="close()">OK</button>
+    </span>
+</mat-card>
