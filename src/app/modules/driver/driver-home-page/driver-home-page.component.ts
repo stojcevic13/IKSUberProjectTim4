@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DriverService } from 'src/app/services/driver.service';
 import { Driver } from 'src/app/services/driver.service';
 import { MessageService } from '../../sockets/socket.service';
-import { RejectionDTO, RideDTORequest, RideDTOResponse, RideServiceService, RideStatus } from 'src/app/services/ride-service.service';
+import { RejectionDTO, RideDTORequest, RideDTOResponse, RideDTOResponseWS, RideServiceService, RideStatus } from 'src/app/services/ride-service.service';
 import { VehicleName } from '../../passenger/passenger-ride-history/passenger-ride-history.component';
 import { UserService } from '../../security/user.service';
 import { WorkingHoursDTO } from '../../security/working-hours.service';
@@ -61,7 +61,7 @@ export class DriverHomePageComponent implements OnInit {
   }
 
   activeRide: RideDTOResponse = {
-    id: 0,
+    id: -1,
     startTime: new Date(),
     endTime: new Date(),
     totalCost: 0,
@@ -110,24 +110,40 @@ export class DriverHomePageComponent implements OnInit {
 
         // Just all info about accepted rides
         this.messageService.subscribe("/topic/ride-for-driver/" + user.user.id).subscribe(msg => {
-            console.log(JSON.parse(msg.body).payload);
-            const ride: RideDTOResponse = JSON.parse(msg.body).payload;
+            const rideWS: RideDTOResponseWS = <RideDTOResponseWS> JSON.parse(msg.body).payload;
+            const ride: RideDTOResponse = {...rideWS, status: RideStatus[rideWS.status as keyof typeof RideStatus]}
+            console.log(ride);
 
             if (ride.id == this.activeRide.id) {
-              if (ride.status != RideStatus.STARTED) {
+              console.log("It's current ride");
+              if (ride.status != RideStatus.ACTIVE) {
                 this.rideNotInProggress(true);
                 this.activeRide = ride;
+                console.log("And it stopped", ride.status, RideStatus.ACTIVE);
               }
             }
 
             const nextRide = this.nextRides.find(nextRide => nextRide.id == ride.id);
             if (nextRide) {
+              console.log('Ride was registered as', nextRide)
+              let ind = 0;
               for (let i = 0; i < this.nextRides.length; i++) {
-                if (this.nextRides[i].id === ride.id)
+                if (this.nextRides[i].id === ride.id) {
+                  console.log("Update in next rides");
                   this.nextRides[i] = ride;
+                  ind = i;
+                }
+              }
+              if (ride.status != RideStatus.ACCEPTED && ride.status != RideStatus.PENDING) {
+                this.nextRides.splice(ind, 1)
+                console.log("Remove from next rides");
               }
             } else {
-              this.nextRides.push(ride);
+              console.log("That's new ride");
+              if (ride.status == RideStatus.ACCEPTED || ride.status == RideStatus.PENDING) {
+                console.log("Add to next rides");
+                this.nextRides.push(ride);
+              }
             }
           }
         );
@@ -144,16 +160,20 @@ export class DriverHomePageComponent implements OnInit {
 
   activateRide(r: RideDTOResponse) {
     this.activeRide = r;
-    this.rideService.startRide(r.id).subscribe();
-    this.rideInProgress = true;
-    for (let i = 0; i < this.nextRides.length; i++) {
-      if (this.nextRides[i].id === this.activeRide.id)
-        this.nextRides.splice(i, 1);
-    }
+    this.rideService.startRide(r.id).subscribe({
+      next: () => {
+        this.rideInProgress = true;
+        for (let i = 0; i < this.nextRides.length; i++) {
+          if (this.nextRides[i].id === this.activeRide.id)
+            this.nextRides.splice(i, 1);
+        }
+      }
+    });
   }
 
   rideNotInProggress(value: boolean) {
     this.rideInProgress = false;
+    this.activeRide.status = RideStatus.FINISHED;
   }
 
   showDeclineReasonComponent() {
