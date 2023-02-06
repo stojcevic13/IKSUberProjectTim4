@@ -128,6 +128,23 @@ export interface RideDTOResponse {
   locations: RouteDTO[];
 }
 
+export interface RideDTOResponseWS {
+  id: number;
+  startTime: Date;
+  endTime: Date;
+  totalCost: number;
+  driver: DriverRideDTO;
+  estimatedTimeInMinutes: number;
+  kilometers: number;
+  status: string;
+  rejection?: RejectionDTO;
+  babyTransport: boolean;
+  petTransport: boolean;
+  vehicleType: VehicleName;
+  passengers: PassengerRideDTO[];
+  locations: RouteDTO[];
+}
+
 export interface DriverRideDTO {
   id: number,
   email: string;
@@ -147,7 +164,6 @@ export interface Panic {
 
 export enum RideStatus {
   PENDING,
-  STARTED,
   ACCEPTED,
   CANCELED,
   ACTIVE,

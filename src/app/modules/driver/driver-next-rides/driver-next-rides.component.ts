@@ -85,8 +85,12 @@ export class DriverNextRidesComponent {
     
   }
 
-  getTimeStr(datetime: Date){
-    let str: string[] = datetime.toString().split(",");
-    return `${str[2]}. ${str[1]}. ${str[0]}. - ${str[3]}:${str[4]}`;
+  getTime(date:Date|number[]):string{
+    if(date instanceof Array){
+      const d = new Date(date[0], date[1], date[2], date[3], date[4], date[5]);
+      const res = d.toTimeString().split(" ")[0].split(":")[0] + ":" + d.toTimeString().split(" ")[0].split(":")[1];
+      return res;
+    }
+    return date.toString().split("T")[1].split(":")[0] + ":" + date.toString().split("T")[1].split(":")[1];
   }
 }

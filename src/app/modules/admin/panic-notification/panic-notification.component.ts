@@ -57,11 +57,6 @@ ngOnInit():void{
     audio.load();
     audio.play();
   }
-  getTimeStr(datetime: Date){
-    console.log(datetime);
-    return datetime.toString().split("T")[1].split(":")[0] + ":" + datetime.toString().split("T")[1].split(":")[1];
-  }
-
 
   getTime(date:Date|number[]):string{
     if(date instanceof Array){
