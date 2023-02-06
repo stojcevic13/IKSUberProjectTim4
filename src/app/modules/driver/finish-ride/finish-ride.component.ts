@@ -43,8 +43,11 @@ export class FinishRideComponent {
   @Output() rideNotInProggress = new EventEmitter<boolean>();
 
   finishRide() {
-    this.rideService.finishRide(this.activeRide.id).subscribe();
-    this.rideNotInProggress.emit(false);
+    this.rideService.finishRide(this.activeRide.id).subscribe({
+      next: ()=>{
+        this.rideNotInProggress.emit(false);
+      }
+    });
   }
 
 }

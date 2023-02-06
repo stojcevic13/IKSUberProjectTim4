@@ -3,7 +3,7 @@ import { friend, InviteFriendComponent } from '../invite-friend/invite-friend.co
 import { RegFormComponent } from '../reg-form/reg-form.component';
 import { ActivatedRoute } from '@angular/router';
 import { PassengerService, Passenger } from 'src/app/services/passenger.service';
-import { DriverRideDTO, RideDTOResponse, RideServiceService, RideStatus } from 'src/app/services/ride-service.service';
+import { DriverRideDTO, RideDTOResponse, RideDTOResponseWS, RideServiceService, RideStatus } from 'src/app/services/ride-service.service';
 import { LoginComponent } from '../../unregistered-user/login/login.component';
 import { UserService } from '../../security/user.service';
 import { MapComponent } from '../../map/map/map.component';
@@ -83,11 +83,12 @@ export class PassengerHomeComponent {
         })
 
         this.messageService.subscribe("/topic/ride-for-passenger/" + user.user.id).subscribe(msg => {
-          console.log(JSON.parse(msg.body).payload);
-          const ride: RideDTOResponse = JSON.parse(msg.body).payload;
+          const rideWS: RideDTOResponseWS = <RideDTOResponseWS> JSON.parse(msg.body).payload;
+          const ride: RideDTOResponse = {...rideWS, status: RideStatus[rideWS.status as keyof typeof RideStatus]}
+          console.log(ride);
 
           if (ride.id == this.activeRide.id) {
-            if (ride.status != RideStatus.ACTIVE) {
+            if (ride.status == RideStatus.CANCELED || ride.status == RideStatus.FINISHED) {
               this.rideNotInProggress(true);
               this.activeRide = ride;
               this.endRideComponent.setRide(ride);
@@ -120,9 +121,9 @@ export class PassengerHomeComponent {
 
   checkRides() {
     for (let ride of this.passengerRides) {
-      if (Number(RideStatus[ride.status]) === RideStatus.ACCEPTED || Number(RideStatus[ride.status]) === RideStatus.PENDING) 
-        alert("You have ride at " + this.getTimeStr(ride.startTime))
-      if (Number(RideStatus[ride.status]) === RideStatus.ACTIVE) {
+      if (ride.status == RideStatus.ACCEPTED || ride.status== RideStatus.PENDING) 
+        alert("You have ride at " + this.getTime(ride.startTime))
+      if (ride.status== RideStatus.ACTIVE) {
         this.activeRide = ride;
         this.activeDriver = ride.driver;
         this.rideInProgress = true;
@@ -139,8 +140,13 @@ export class PassengerHomeComponent {
     this.regFormComponent.setStartAndEndLocation(location);
   }
 
-  getTimeStr(datetime: Date){
-    let str: string[] = datetime.toString().split(",");
-    return `${str[2]}. ${str[1]}. ${str[0]}. - ${str[3]}:${str[4]}`;
+  
+  getTime(date:Date|number[]):string{
+    if(date instanceof Array){
+      const d = new Date(date[0], date[1], date[2], date[3], date[4], date[5]);
+      const res = d.toTimeString().split(" ")[0].split(":")[0] + ":" + d.toTimeString().split(" ")[0].split(":")[1];
+      return res;
+    }
+    return date.toString().split("T")[1].split(":")[0] + ":" + date.toString().split("T")[1].split(":")[1];
   }
 }
