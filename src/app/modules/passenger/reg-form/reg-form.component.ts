@@ -158,64 +158,6 @@ export class RegFormComponent implements OnInit {
 
   orderRide() {
     this.setRideAndCreate();
-    // if (this.setDateSuccessfully())
-    //   this.createRideAndSearchDriver();
-    // ZNAM DA JE KOD UZASAN / I KNOW THE CODE IS TERRIBLE / Я знаю, код ужасен
-
-    /*
-    if (this.favoriteOrder) {
-      this.ride.locations = this.selectedFavoriteRoute.locations;
-      this.ride.passengers = this.selectedFavoriteRoute.passengers;
-      this.ride.startTime = new Date();
-      if (this.futureOrder && this.futureTime != '') {
-        this.ride.startTime = new Date(this.futureTime);
-        let now = new Date();
-        let fiveHoursFromNow = new Date(now.getTime() + 5 * 60 * 60 * 1000);
-        if (this.ride.startTime > fiveHoursFromNow || this.ride.startTime < now) {
-          alert("Future ride can be ordered just in next 5 hours.");
-          return;
-        }
-      }
-      this.createRideAndSearchDriver();
-      return;
-    }
-
-    this.getLocations().subscribe((locations)=> {
-      this.ride.locations = locations;
-      this.ride.passengers = this.getPassengersFromFriends();
-      this.ride.passengers.push(this.passenger);
-      this.ride.startTime = new Date();
-      if (this.futureOrder && this.futureTime != '') {
-        if (this.futureOrder && this.futureTime != '') {
-          this.ride.startTime = new Date(this.futureTime);
-          let now = new Date();
-          let fiveHoursFromNow = new Date(now.getTime() + 5 * 60 * 60 * 1000);
-          if (this.ride.startTime > fiveHoursFromNow || this.ride.startTime < now) {
-            alert("Future ride can be ordered just in next 5 hours.");
-            return;
-          }
-        }
-      }
-      if (this.addToFavorites) {
-        this.createFavoriteRoute();
-      }
-
-      this.createRideAndSearchDriver();
-    })
-
-    }
-      this.rideService.createRide(this.ride).subscribe((res) => {
-        alert("Ride successfully ordered!");
-      }, (error) => {
-        if (error.status === 404) {
-          alert("There is no available driver!");
-        } else if (error.status === 204) {
-          alert("Cannot order a ride with these passengers!")
-        } else {
-          alert("An error occured: " + error.error.message);
-        }
-      });
-      */
   }
 
   favoriteRoute: FavoriteRoute = {
@@ -251,16 +193,14 @@ export class RegFormComponent implements OnInit {
     this.ride.estimatedTime = this.selectedFavoriteRoute.estimatedTimeInMinutes;
   }
 
-  pickUpDataAndCreate(){
-    console.log("VRIJEDNOST: " + this.departure);
-    console.log("SADRZI undefined: " + this.departure.includes("undefined"));
-
-    if (this.departure.includes("undefined") || this.destination.includes("undefined")) {
+  pickUpDataAndCreate(){    
+    if ((this.departure.includes("undefined") || this.destination.includes("undefined")) ||
+       (this.departure == "" || this.destination == "") ||
+       (this.departure == this.destination) || 
+       (this.departure.split(" ").length == 1 || this.destination.split(" ").length == 1)) {
       alert("Please enter departure and destination correctly!");
-      console.log("NEISPRAVNO");
     }
     else {
-      console.log("ISPRAVNO: " + this.departure + " " + this.destination);
       this.getLocations().subscribe((locations) => {
         this.ride.locations = locations;
         this.ride.passengers = this.getPassengersFromFriends();
