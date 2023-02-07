@@ -17,7 +17,7 @@
 
     <!-- OVAJ DIV KOJI PRIKAZUJE DUGMAD U TOKU VOZNJE NEKA BUDE PORED MAPE JER NIJE PREVELIK -->
     <div *ngIf="rideInProgress" id="activeRideButtons">
-        <app-panic [userId]="driver.id" [driver]="driver" [activeRide]="activeRide" ></app-panic>
+        <app-panic id="driverPanicRide" [userId]="driver.id" [driver]="driver" [activeRide]="activeRide" ></app-panic>
         <app-finish-ride [driver]="driver" [activeRide]="activeRide" (rideNotInProggress)="rideNotInProggress($event)"></app-finish-ride>
     </div>
 
