@@ -23,6 +23,7 @@ export class DriverHomePageComponent implements OnInit {
   showDecline: boolean = false;
   rideInProgress: boolean = false;
   popup: boolean = false;
+  license?: string;
 
   driver: Driver = {
     id: 0,
@@ -91,6 +92,7 @@ export class DriverHomePageComponent implements OnInit {
       next: (user) => {
         this.driverService.getDriver(user.user.id).subscribe((driver) => (this.driver = driver));
         this.driverService.getDriverNextRides(user.user.id).subscribe((nextRides) => { this.nextRides = nextRides; });
+        this.driverService.getDriverVehicle(user.user.id).subscribe((vehicle)=> (this.license = vehicle.licenseNumber))
 
         // Ride requests
         this.messageService.subscribe("/topic/driver-survey/" + user.user.id).subscribe(msg => {

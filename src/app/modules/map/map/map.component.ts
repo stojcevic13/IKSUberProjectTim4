@@ -1,11 +1,12 @@
 import { AfterViewInit, Component, EventEmitter, Output, OnDestroy, Input } from '@angular/core';
 import { MapService } from '../map.service';
-import { forkJoin, Observable } from 'rxjs';
+import { forkJoin, Observable, Subscription } from 'rxjs';
 import { map, filter, tap } from 'rxjs/operators'
 import * as L from 'leaflet';
 import 'leaflet-routing-machine';
 import { MessageService } from '../../sockets/socket.service';
 import { Vehicle } from 'src/app/services/vehicle.service';
+import { Ride } from '../../passenger/passenger-ride-history/passenger-ride-history.component';
 
 @Component({
   selector: 'app-map',
@@ -24,9 +25,15 @@ export class MapComponent implements AfterViewInit {
     1: this.greenCar,
     0: this.redCar
    }
+  private vechicleSubscription?: Subscription;
+  private routeSubscription?: Subscription;
+  private routes: { [key: number]: L.Routing.Control } = {};
 
   @Input() showInstruction?: boolean;
   @Input() showCars: boolean = true;
+  @Input() showCarByLicense?: string = undefined;
+  @Input() showRoutes: boolean = false;
+  @Input() showRouteByID?: number = undefined;
   @Output() emitter: EventEmitter<Array<string>> = new EventEmitter<Array<string>>();
   @Output() emitter_kilometeres: EventEmitter<string> = new EventEmitter<string>();
   @Output() emitter_minutes:EventEmitter<string> = new EventEmitter<string>();
@@ -50,16 +57,14 @@ export class MapComponent implements AfterViewInit {
     );
     tiles.addTo(this.map);
 
-    if (this.showCars) {
-      this.markVehicles();
-    }
-
+    this.markVehicles();
+    this.markRides();
   }
 
   markVehicles(){
-    this.messageService.subscribe("/topic/vehicles").subscribe(msg => {
+    this.vechicleSubscription = this.messageService.subscribe("/topic/vehicles").subscribe(msg => {
       let payload = JSON.parse(msg.body)['payload'];
-      console.log(payload);
+      console.log('vechicleSubscription', payload);
       let vehicles:Vehicle[] = payload; 
       let v:Vehicle;
       for(v of vehicles){
@@ -69,6 +74,23 @@ export class MapComponent implements AfterViewInit {
           }else{
             this.markCarLL(v.currentLocation.latitude, v.currentLocation.longitude, this.hashCode(v.licenseNumber), 0);
           } 
+      }
+    });
+  }
+
+  markRides(){
+    this.routeSubscription = this.messageService.subscribe("/topic/rides").subscribe(msg => {
+      let payload = JSON.parse(msg.body)['payload'];
+      console.log('routeSubscription', payload);
+      let rides:Ride[] = payload; 
+      let ride:Ride;
+      for(ride of rides){
+        console.log(ride);
+        this.routeLL(
+          new L.LatLng(ride.locations[0].departure.latitude, ride.locations[0].departure.longitude), 
+          new L.LatLng(ride.locations[0].destination.latitude, ride.locations[0].destination.longitude),
+          ride.id
+        );
       }
     });
   }
@@ -109,33 +131,44 @@ export class MapComponent implements AfterViewInit {
     }));
   }
 
- 
-
-
   route(departure: string, destination: string): void {
-    let kilometers:number = 0;
-    let time:number = 0;
     forkJoin([
       this.getCoordinates(departure),
       this.getCoordinates(destination)
     ]).subscribe((points) => {
-
-      L.Routing.control({
-        waypoints: points
-      }).addTo(this.map).on('routesfound', (e) => {
-        let routes = e.routes;
-        let summary = routes[0].summary;
-        kilometers = summary.totalDistance/1000;
-        time = summary.totalTime% 3600/60;
-        this.emitter_kilometeres.emit(String(Number(kilometers.toFixed(2))));
-        this.emitter_minutes.emit(String(Number(time.toFixed(2))));
-     });
-
-     if (!this.showInstruction) {
-      document.getElementsByClassName('leaflet-routing-container')[0].remove();
-     }
-  
+      this.routeLL(points[0], points[1]);
     })
+  }
+
+  routeLL(departure: L.LatLng, destination: L.LatLng, id: number = -1) {
+    if (this.routes.hasOwnProperty(id)) {
+      if (this.showRoutes == false && this.showRouteByID != id) {
+        this.routes[id].hide();
+      } else {
+        this.routes[id].show();
+      }
+      return
+    }
+    if (this.showRoutes == false && this.showRouteByID != id) {
+      return;
+    }
+
+    let kilometers:number = 0;
+    let time:number = 0;
+    this.routes[id] = L.Routing.control({
+      waypoints: [departure, destination],
+    }).addTo(this.map).on('routesfound', (e) => {
+      let routes = e.routes;
+      let summary = routes[0].summary;
+      kilometers = summary.totalDistance/1000;
+      time = summary.totalTime% 3600/60;
+      this.emitter_kilometeres.emit(String(Number(kilometers.toFixed(2))));
+      this.emitter_minutes.emit(String(Number(time.toFixed(2))));
+   });
+
+   if (!this.showInstruction) {
+    document.getElementsByClassName('leaflet-routing-container')[0].remove();
+   }
   }
   
   
@@ -183,7 +216,20 @@ export class MapComponent implements AfterViewInit {
         this.markers[id].setIcon(this.icons[available]);
       }
 
+      console.log(id, this.showCarsByHashCode(), this.showCars)
+      if (!this.showCars && this.showCarsByHashCode() != id) {
+        this.markers[id].setOpacity(0);
+      }
+
+      if (this.showCars || this.showCarsByHashCode() == id) {
+        this.markers[id].setOpacity(100);
+      }
+
       return;
+    }
+
+    if (!this.showCars && this.showCarsByHashCode() != id) {
+      return
     }
     
     var markerOptions = {
@@ -198,6 +244,7 @@ export class MapComponent implements AfterViewInit {
   }
 
   ngOnDestroy():void{
+    this.vechicleSubscription?.unsubscribe();
     this.map.off();
     this.map.clearAllEventListeners();
     this.map.remove();
@@ -209,5 +256,10 @@ export class MapComponent implements AfterViewInit {
       a = ((a << 5) - a) + b.charCodeAt(0);
       return a & a;
     }, 0);
+  }
+
+  showCarsByHashCode(): number {
+    if (!this.showCarByLicense) return -1;
+    return this.hashCode(this.showCarByLicense);
   }
 }

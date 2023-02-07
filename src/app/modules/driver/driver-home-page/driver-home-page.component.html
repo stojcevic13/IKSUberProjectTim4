@@ -11,7 +11,7 @@
 
     <div class="overlaying" fxFlex="65%">
         <div class="map" fxFlex="70%">
-            <app-map></app-map>
+            <app-map [showCars]="false" [showCarByLicense]="license" [showRouteByID]="activeRide.id"></app-map>
         </div>
     </div>
 
